@@ -1,23 +1,23 @@
 // MESSAGE CONTROL_FEEDBACK PACKING
 
-#define MAVLINK_MSG_ID_CONTROL_FEEDBACK 233
+#define MAVLINK_MSG_ID_CONTROL_FEEDBACK 183
 
 typedef struct __mavlink_control_feedback_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float elevator; ///< Elevator angle in deg
- float rudder; ///< Rudder angle in deg
- float aileron; ///< Aileron angle in deg
- float ctrl_aux_1; ///< Aux channel 1 in deg
- float ctrl_aux_2; ///< Aux channel 2 in deg
- float ctrl_aux_3; ///< Aux channel 3 in deg
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float elevator; /*< Elevator angle in deg*/
+ float rudder; /*< Rudder angle in deg*/
+ float aileron; /*< Aileron angle in deg*/
+ float ctrl_aux_1; /*< Aux channel 1 in deg*/
+ float ctrl_aux_2; /*< Aux channel 2 in deg*/
+ float ctrl_aux_3; /*< Aux channel 3 in deg*/
 } mavlink_control_feedback_t;
 
 #define MAVLINK_MSG_ID_CONTROL_FEEDBACK_LEN 28
-#define MAVLINK_MSG_ID_233_LEN 28
+#define MAVLINK_MSG_ID_183_LEN 28
 
 #define MAVLINK_MSG_ID_CONTROL_FEEDBACK_CRC 140
-#define MAVLINK_MSG_ID_233_CRC 140
+#define MAVLINK_MSG_ID_183_CRC 140
 
 
 

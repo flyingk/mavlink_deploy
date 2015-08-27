@@ -1,23 +1,23 @@
 // MESSAGE AIRDATA_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_AIRDATA_DEBUG 232
+#define MAVLINK_MSG_ID_AIRDATA_DEBUG 182
 
 typedef struct __mavlink_airdata_debug_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float density; ///< air density
- float DP1; ///< Differential Pressure 1
- float DP2; ///< Differential Pressure 2
- float DP3; ///< Differential Pressure 3
- uint16_t dynamic_pressure; ///< Dynamic pressure in Pa
- int8_t temperature; ///< Temperature in deg C
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float density; /*< air density*/
+ float DP1; /*< Differential Pressure 1*/
+ float DP2; /*< Differential Pressure 2*/
+ float DP3; /*< Differential Pressure 3*/
+ uint16_t dynamic_pressure; /*< Dynamic pressure in Pa*/
+ int8_t temperature; /*< Temperature in deg C*/
 } mavlink_airdata_debug_t;
 
 #define MAVLINK_MSG_ID_AIRDATA_DEBUG_LEN 23
-#define MAVLINK_MSG_ID_232_LEN 23
+#define MAVLINK_MSG_ID_182_LEN 23
 
 #define MAVLINK_MSG_ID_AIRDATA_DEBUG_CRC 105
-#define MAVLINK_MSG_ID_232_CRC 105
+#define MAVLINK_MSG_ID_182_CRC 105
 
 
 

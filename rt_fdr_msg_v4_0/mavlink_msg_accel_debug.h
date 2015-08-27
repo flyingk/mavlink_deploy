@@ -1,29 +1,29 @@
 // MESSAGE ACCEL_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_ACCEL_DEBUG 238
+#define MAVLINK_MSG_ID_ACCEL_DEBUG 188
 
 typedef struct __mavlink_accel_debug_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- int16_t imu_ax; ///< X acceleration (mg)
- int16_t imu_ay; ///< Y acceleration (mg)
- int16_t imu_az; ///< Z acceleration (mg)
- int16_t tail_ax; ///< X acceleration (mg)
- int16_t tail_ay; ///< Y acceleration (mg)
- int16_t tail_az; ///< Z acceleration (mg)
- int16_t wing_ax; ///< X acceleration (mg)
- int16_t wing_ay; ///< Y acceleration (mg)
- int16_t wing_az; ///< Z acceleration (mg)
- int16_t aird_ax; ///< X acceleration (mg)
- int16_t aird_ay; ///< Y acceleration (mg)
- int16_t aird_az; ///< Z acceleration (mg)
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ int16_t imu_ax; /*< X acceleration (mg)*/
+ int16_t imu_ay; /*< Y acceleration (mg)*/
+ int16_t imu_az; /*< Z acceleration (mg)*/
+ int16_t tail_ax; /*< X acceleration (mg)*/
+ int16_t tail_ay; /*< Y acceleration (mg)*/
+ int16_t tail_az; /*< Z acceleration (mg)*/
+ int16_t wing_ax; /*< X acceleration (mg)*/
+ int16_t wing_ay; /*< Y acceleration (mg)*/
+ int16_t wing_az; /*< Z acceleration (mg)*/
+ int16_t aird_ax; /*< X acceleration (mg)*/
+ int16_t aird_ay; /*< Y acceleration (mg)*/
+ int16_t aird_az; /*< Z acceleration (mg)*/
 } mavlink_accel_debug_t;
 
 #define MAVLINK_MSG_ID_ACCEL_DEBUG_LEN 28
-#define MAVLINK_MSG_ID_238_LEN 28
+#define MAVLINK_MSG_ID_188_LEN 28
 
 #define MAVLINK_MSG_ID_ACCEL_DEBUG_CRC 57
-#define MAVLINK_MSG_ID_238_CRC 57
+#define MAVLINK_MSG_ID_188_CRC 57
 
 
 

@@ -1,26 +1,26 @@
 // MESSAGE MAG_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_MAG_DEBUG 239
+#define MAVLINK_MSG_ID_MAG_DEBUG 189
 
 typedef struct __mavlink_mag_debug_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- int16_t imu_mx; ///< X Magnetic field (Mx*1000)
- int16_t imu_my; ///< Y Magnetic field (My*1000)
- int16_t imu_mz; ///< Z Magnetic field (Mz*1000)
- int16_t tail_mx; ///< X Magnetic field (Mx*1000)
- int16_t tail_my; ///< Y Magnetic field (My*1000)
- int16_t tail_mz; ///< Z Magnetic field (Mz*1000)
- int16_t wing_mx; ///< X Magnetic field (Mz*1000)
- int16_t wing_my; ///< Y Magnetic field (Mz*1000)
- int16_t wing_mz; ///< Z Magnetic field (Mz*1000)
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ int16_t imu_mx; /*< X Magnetic field (Mx*1000)*/
+ int16_t imu_my; /*< Y Magnetic field (My*1000)*/
+ int16_t imu_mz; /*< Z Magnetic field (Mz*1000)*/
+ int16_t tail_mx; /*< X Magnetic field (Mx*1000)*/
+ int16_t tail_my; /*< Y Magnetic field (My*1000)*/
+ int16_t tail_mz; /*< Z Magnetic field (Mz*1000)*/
+ int16_t wing_mx; /*< X Magnetic field (Mz*1000)*/
+ int16_t wing_my; /*< Y Magnetic field (Mz*1000)*/
+ int16_t wing_mz; /*< Z Magnetic field (Mz*1000)*/
 } mavlink_mag_debug_t;
 
 #define MAVLINK_MSG_ID_MAG_DEBUG_LEN 22
-#define MAVLINK_MSG_ID_239_LEN 22
+#define MAVLINK_MSG_ID_189_LEN 22
 
 #define MAVLINK_MSG_ID_MAG_DEBUG_CRC 16
-#define MAVLINK_MSG_ID_239_CRC 16
+#define MAVLINK_MSG_ID_189_CRC 16
 
 
 

@@ -1,25 +1,25 @@
 // MESSAGE Longitudinal PACKING
 
-#define MAVLINK_MSG_ID_Longitudinal 241
+#define MAVLINK_MSG_ID_Longitudinal 191
 
 typedef struct __mavlink_longitudinal_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- float AoA; ///< Angle of attack
- float q; ///< pitchrate
- float ax; ///< Ax (mg)
- float az; ///< Az (mg)
- float IMU_pitch; ///< theta
- float GBL_pitch; ///< theta
- float elevator; ///< elevator fdbk
- float elevator_cmd; ///< Elevator command
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ float AoA; /*< Angle of attack*/
+ float q; /*< pitchrate*/
+ float ax; /*< Ax (mg)*/
+ float az; /*< Az (mg)*/
+ float IMU_pitch; /*< theta*/
+ float GBL_pitch; /*< theta*/
+ float elevator; /*< elevator fdbk*/
+ float elevator_cmd; /*< Elevator command*/
 } mavlink_longitudinal_t;
 
 #define MAVLINK_MSG_ID_Longitudinal_LEN 36
-#define MAVLINK_MSG_ID_241_LEN 36
+#define MAVLINK_MSG_ID_191_LEN 36
 
 #define MAVLINK_MSG_ID_Longitudinal_CRC 68
-#define MAVLINK_MSG_ID_241_CRC 68
+#define MAVLINK_MSG_ID_191_CRC 68
 
 
 

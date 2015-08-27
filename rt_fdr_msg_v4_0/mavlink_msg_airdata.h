@@ -1,21 +1,21 @@
 // MESSAGE AIRDATA PACKING
 
-#define MAVLINK_MSG_ID_AIRDATA 231
+#define MAVLINK_MSG_ID_AIRDATA 181
 
 typedef struct __mavlink_airdata_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float pressure_alt; ///< Altitude above ground in m
- float airspeed; ///< Airspeed in m/s
- float aoa; ///< Angle of attack in deg
- float sideslip; ///< Sideslip in deg
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float pressure_alt; /*< Altitude above ground in m*/
+ float airspeed; /*< Airspeed in m/s*/
+ float aoa; /*< Angle of attack in deg*/
+ float sideslip; /*< Sideslip in deg*/
 } mavlink_airdata_t;
 
 #define MAVLINK_MSG_ID_AIRDATA_LEN 20
-#define MAVLINK_MSG_ID_231_LEN 20
+#define MAVLINK_MSG_ID_181_LEN 20
 
 #define MAVLINK_MSG_ID_AIRDATA_CRC 130
-#define MAVLINK_MSG_ID_231_CRC 130
+#define MAVLINK_MSG_ID_181_CRC 130
 
 
 

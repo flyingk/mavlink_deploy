@@ -1,22 +1,22 @@
 // MESSAGE PROPULSION PACKING
 
-#define MAVLINK_MSG_ID_PROPULSION 234
+#define MAVLINK_MSG_ID_PROPULSION 184
 
 typedef struct __mavlink_propulsion_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float motor_volt; ///< Motor Volts
- float motor_amp; ///< Motor Amps
- float motor_temp; ///< Motor temp in deg C
- uint16_t motor_rpm; ///< RPM
- uint16_t motor_watt; ///< Motor Watts
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float motor_volt; /*< Motor Volts*/
+ float motor_amp; /*< Motor Amps*/
+ float motor_temp; /*< Motor temp in deg C*/
+ uint16_t motor_rpm; /*< RPM*/
+ uint16_t motor_watt; /*< Motor Watts*/
 } mavlink_propulsion_t;
 
 #define MAVLINK_MSG_ID_PROPULSION_LEN 20
-#define MAVLINK_MSG_ID_234_LEN 20
+#define MAVLINK_MSG_ID_184_LEN 20
 
 #define MAVLINK_MSG_ID_PROPULSION_CRC 126
-#define MAVLINK_MSG_ID_234_CRC 126
+#define MAVLINK_MSG_ID_184_CRC 126
 
 
 

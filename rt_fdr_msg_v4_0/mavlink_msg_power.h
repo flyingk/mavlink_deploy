@@ -1,26 +1,26 @@
 // MESSAGE POWER PACKING
 
-#define MAVLINK_MSG_ID_POWER 235
+#define MAVLINK_MSG_ID_POWER 185
 
 typedef struct __mavlink_power_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float Avionics_Volt; ///< FDR Batt Volts
- float Servo_Volt; ///< Servo Amps
- float Shunt_temp; ///< Shunt temp in deg C
- uint16_t Avionics_mA; ///< FDR Amps*1000
- uint16_t Avionics_mAh; ///< FDR Batt capacity used
- uint16_t Servo_mA; ///< Servo Amps *1000
- uint16_t Main_mAh; ///< Main Batt capacity used
- uint8_t Avionics_Batt; ///< FDR Batt capacity remaining
- uint8_t Main_Batt; ///< Main Batt capacity remaining
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float Avionics_Volt; /*< FDR Batt Volts*/
+ float Servo_Volt; /*< Servo Amps*/
+ float Shunt_temp; /*< Shunt temp in deg C*/
+ uint16_t Avionics_mA; /*< FDR Amps*1000*/
+ uint16_t Avionics_mAh; /*< FDR Batt capacity used*/
+ uint16_t Servo_mA; /*< Servo Amps *1000*/
+ uint16_t Main_mAh; /*< Main Batt capacity used*/
+ uint8_t Avionics_Batt; /*< FDR Batt capacity remaining*/
+ uint8_t Main_Batt; /*< Main Batt capacity remaining*/
 } mavlink_power_t;
 
 #define MAVLINK_MSG_ID_POWER_LEN 26
-#define MAVLINK_MSG_ID_235_LEN 26
+#define MAVLINK_MSG_ID_185_LEN 26
 
 #define MAVLINK_MSG_ID_POWER_CRC 24
-#define MAVLINK_MSG_ID_235_CRC 24
+#define MAVLINK_MSG_ID_185_CRC 24
 
 
 

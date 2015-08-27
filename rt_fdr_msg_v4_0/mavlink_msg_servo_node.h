@@ -1,25 +1,25 @@
 // MESSAGE SERVO_NODE PACKING
 
-#define MAVLINK_MSG_ID_SERVO_NODE 236
+#define MAVLINK_MSG_ID_SERVO_NODE 186
 
 typedef struct __mavlink_servo_node_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- int8_t relay_ch_1; ///< Relay status channel 1 (on/off)
- int8_t relay_ch_2; ///< Relay status channel 2 (on/off)
- int8_t relay_ch_3; ///< Relay status channel 3 (on/off)
- int8_t relay_ch_4; ///< Relay status channel 4 (on/off)
- int8_t relay_ch_5; ///< Relay status channel 5 (on/off)
- int8_t relay_ch_6; ///< Relay status channel 6 (on/off)
- uint8_t RC_ch9; ///< RC signal for override switch
- uint8_t Override_SW; ///< Override switch feedback
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ int8_t relay_ch_1; /*< Relay status channel 1 (on/off)*/
+ int8_t relay_ch_2; /*< Relay status channel 2 (on/off)*/
+ int8_t relay_ch_3; /*< Relay status channel 3 (on/off)*/
+ int8_t relay_ch_4; /*< Relay status channel 4 (on/off)*/
+ int8_t relay_ch_5; /*< Relay status channel 5 (on/off)*/
+ int8_t relay_ch_6; /*< Relay status channel 6 (on/off)*/
+ uint8_t RC_ch9; /*< RC signal for override switch*/
+ uint8_t Override_SW; /*< Override switch feedback*/
 } mavlink_servo_node_t;
 
 #define MAVLINK_MSG_ID_SERVO_NODE_LEN 12
-#define MAVLINK_MSG_ID_236_LEN 12
+#define MAVLINK_MSG_ID_186_LEN 12
 
 #define MAVLINK_MSG_ID_SERVO_NODE_CRC 87
-#define MAVLINK_MSG_ID_236_CRC 87
+#define MAVLINK_MSG_ID_186_CRC 87
 
 
 

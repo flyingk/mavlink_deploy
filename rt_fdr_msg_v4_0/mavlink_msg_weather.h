@@ -1,22 +1,22 @@
 // MESSAGE WEATHER PACKING
 
-#define MAVLINK_MSG_ID_WEATHER 248
+#define MAVLINK_MSG_ID_WEATHER 193
 
 typedef struct __mavlink_weather_t
 {
- float Wind_speed; ///< Wind speed in m/s
- float Wind_dir; ///< Wind direction in deg
- float Temp; ///< Ground temp in C
- float Pressure; ///< Ground air pressure in Pa
- float Density; ///< Ground air density in kg/m3
- uint8_t Beaufort; ///< Wind in Beaufort scale
+ float Wind_speed; /*< Wind speed in m/s*/
+ float Wind_dir; /*< Wind direction in deg*/
+ float Temp; /*< Ground temp in C*/
+ float Pressure; /*< Ground air pressure in Pa*/
+ float Density; /*< Ground air density in kg/m3*/
+ uint8_t Beaufort; /*< Wind in Beaufort scale*/
 } mavlink_weather_t;
 
 #define MAVLINK_MSG_ID_WEATHER_LEN 21
-#define MAVLINK_MSG_ID_248_LEN 21
+#define MAVLINK_MSG_ID_193_LEN 21
 
 #define MAVLINK_MSG_ID_WEATHER_CRC 16
-#define MAVLINK_MSG_ID_248_CRC 16
+#define MAVLINK_MSG_ID_193_CRC 16
 
 
 

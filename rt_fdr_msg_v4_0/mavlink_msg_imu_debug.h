@@ -1,27 +1,27 @@
 // MESSAGE IMU_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_IMU_DEBUG 237
+#define MAVLINK_MSG_ID_IMU_DEBUG 187
 
 typedef struct __mavlink_imu_debug_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- int16_t Ax; ///< X acceleration (mg)
- int16_t Ay; ///< Y acceleration (mg)
- int16_t Az; ///< Z acceleration (mg)
- int16_t Gx_u; ///< Uncomp. Angular rate X axis (deg/sec)
- int16_t Gy_u; ///< Uncomp. Angular rate Y axis (deg/sec)
- int16_t Gz_u; ///< Uncomp. Angular rate Z axis (deg/sec)
- int16_t Mx; ///< X Magnetic field (Mx*1000)
- int16_t My; ///< Y Magnetic field (My*1000)
- int16_t Mz; ///< Z Magnetic field (Mz*1000)
- int8_t IMU_temp; ///< IMU Temp
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ int16_t Ax; /*< X acceleration (mg)*/
+ int16_t Ay; /*< Y acceleration (mg)*/
+ int16_t Az; /*< Z acceleration (mg)*/
+ int16_t Gx_u; /*< Uncomp. Angular rate X axis (deg/sec)*/
+ int16_t Gy_u; /*< Uncomp. Angular rate Y axis (deg/sec)*/
+ int16_t Gz_u; /*< Uncomp. Angular rate Z axis (deg/sec)*/
+ int16_t Mx; /*< X Magnetic field (Mx*1000)*/
+ int16_t My; /*< Y Magnetic field (My*1000)*/
+ int16_t Mz; /*< Z Magnetic field (Mz*1000)*/
+ int8_t IMU_temp; /*< IMU Temp*/
 } mavlink_imu_debug_t;
 
 #define MAVLINK_MSG_ID_IMU_DEBUG_LEN 23
-#define MAVLINK_MSG_ID_237_LEN 23
+#define MAVLINK_MSG_ID_187_LEN 23
 
 #define MAVLINK_MSG_ID_IMU_DEBUG_CRC 160
-#define MAVLINK_MSG_ID_237_CRC 160
+#define MAVLINK_MSG_ID_187_CRC 160
 
 
 

@@ -1,27 +1,27 @@
 // MESSAGE FDR_STATUS PACKING
 
-#define MAVLINK_MSG_ID_FDR_STATUS 240
+#define MAVLINK_MSG_ID_FDR_STATUS 190
 
 typedef struct __mavlink_fdr_status_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- uint8_t GPS_SAT; ///< Satnum
- uint8_t GPS_FIX; ///< 2d/3d fix
- uint8_t GPS_HDOP; ///< gps hdop
- uint8_t GPS_VDOP; ///< gps vdop
- uint8_t VN200_SAT; ///< Satnum VN200
- uint8_t VN200_FIX; ///< Fix VN200
- uint8_t VN200_Status; ///< Filter status VN200
- uint8_t Radio_txbuff; ///< On board radio tx buffer
- uint8_t PWR_Gains; ///< Binary gains feedback
- uint8_t CPU_load; ///< CPU load
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ uint8_t GPS_SAT; /*< Satnum*/
+ uint8_t GPS_FIX; /*< 2d/3d fix*/
+ uint8_t GPS_HDOP; /*< gps hdop*/
+ uint8_t GPS_VDOP; /*< gps vdop*/
+ uint8_t VN200_SAT; /*< Satnum VN200*/
+ uint8_t VN200_FIX; /*< Fix VN200*/
+ uint8_t VN200_Status; /*< Filter status VN200*/
+ uint8_t Radio_txbuff; /*< On board radio tx buffer*/
+ uint8_t PWR_Gains; /*< Binary gains feedback*/
+ uint8_t CPU_load; /*< CPU load*/
 } mavlink_fdr_status_t;
 
 #define MAVLINK_MSG_ID_FDR_STATUS_LEN 14
-#define MAVLINK_MSG_ID_240_LEN 14
+#define MAVLINK_MSG_ID_190_LEN 14
 
 #define MAVLINK_MSG_ID_FDR_STATUS_CRC 128
-#define MAVLINK_MSG_ID_240_CRC 128
+#define MAVLINK_MSG_ID_190_CRC 128
 
 
 

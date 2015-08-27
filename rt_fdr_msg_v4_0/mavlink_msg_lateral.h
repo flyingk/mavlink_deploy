@@ -1,29 +1,29 @@
 // MESSAGE Lateral PACKING
 
-#define MAVLINK_MSG_ID_Lateral 242
+#define MAVLINK_MSG_ID_Lateral 192
 
 typedef struct __mavlink_lateral_t
 {
- uint32_t time_boot_ms; ///< Timestamp (milliseconds since system boot)
- float Beta; ///< Sideslip
- float p; ///< roll rate
- float r; ///< yaw rate
- float ay; ///< Ay (mg)
- float IMU_roll; ///< phi
- float IMU_yaw; ///< psi
- float GBL_roll; ///< phi
- float GBL_yaw; ///< psi
- float Rudder; ///< rudder fdbk
- float Aileron; ///< aileron fdbk
- float Rudder_cmd; ///< Rudder command
- float Aileron_cmd; ///< Aileron command
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ float Beta; /*< Sideslip*/
+ float p; /*< roll rate*/
+ float r; /*< yaw rate*/
+ float ay; /*< Ay (mg)*/
+ float IMU_roll; /*< phi*/
+ float IMU_yaw; /*< psi*/
+ float GBL_roll; /*< phi*/
+ float GBL_yaw; /*< psi*/
+ float Rudder; /*< rudder fdbk*/
+ float Aileron; /*< aileron fdbk*/
+ float Rudder_cmd; /*< Rudder command*/
+ float Aileron_cmd; /*< Aileron command*/
 } mavlink_lateral_t;
 
 #define MAVLINK_MSG_ID_Lateral_LEN 52
-#define MAVLINK_MSG_ID_242_LEN 52
+#define MAVLINK_MSG_ID_192_LEN 52
 
 #define MAVLINK_MSG_ID_Lateral_CRC 179
-#define MAVLINK_MSG_ID_242_CRC 179
+#define MAVLINK_MSG_ID_192_CRC 179
 
 
 

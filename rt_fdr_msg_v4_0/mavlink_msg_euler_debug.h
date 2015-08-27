@@ -1,23 +1,23 @@
 // MESSAGE EULER_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_EULER_DEBUG 230
+#define MAVLINK_MSG_ID_EULER_DEBUG 180
 
 typedef struct __mavlink_euler_debug_t
 {
- uint32_t time_boot_ms; ///< Time since boot in msec
- float IMU_roll; ///< IMU roll in deg
- float IMU_pitch; ///< IMU pitch in deg
- float IMU_yaw; ///< IMU yaw in deg
- float GBL_roll; ///< Gimbal roll in deg
- float GBL_pitch; ///< Gimbal pitch in deg
- float GBL_yaw; ///< Gimbal yaw in deg
+ uint32_t time_boot_ms; /*< Time since boot in msec*/
+ float IMU_roll; /*< IMU roll in deg*/
+ float IMU_pitch; /*< IMU pitch in deg*/
+ float IMU_yaw; /*< IMU yaw in deg*/
+ float GBL_roll; /*< Gimbal roll in deg*/
+ float GBL_pitch; /*< Gimbal pitch in deg*/
+ float GBL_yaw; /*< Gimbal yaw in deg*/
 } mavlink_euler_debug_t;
 
 #define MAVLINK_MSG_ID_EULER_DEBUG_LEN 28
-#define MAVLINK_MSG_ID_230_LEN 28
+#define MAVLINK_MSG_ID_180_LEN 28
 
 #define MAVLINK_MSG_ID_EULER_DEBUG_CRC 25
-#define MAVLINK_MSG_ID_230_CRC 25
+#define MAVLINK_MSG_ID_180_CRC 25
 
 
 
