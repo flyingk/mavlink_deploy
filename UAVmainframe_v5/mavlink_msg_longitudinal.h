@@ -5,7 +5,7 @@
 typedef struct __mavlink_longitudinal_t
 {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float AoA; /*< Angle of attack*/
+ float AoA_cal; /*< Calibrated angle of attack*/
  float q; /*< pitchrate*/
  float ax; /*< Ax (mg)*/
  float az; /*< Az (mg)*/
@@ -18,8 +18,8 @@ typedef struct __mavlink_longitudinal_t
 #define MAVLINK_MSG_ID_Longitudinal_LEN 36
 #define MAVLINK_MSG_ID_191_LEN 36
 
-#define MAVLINK_MSG_ID_Longitudinal_CRC 68
-#define MAVLINK_MSG_ID_191_CRC 68
+#define MAVLINK_MSG_ID_Longitudinal_CRC 74
+#define MAVLINK_MSG_ID_191_CRC 74
 
 
 
@@ -27,7 +27,7 @@ typedef struct __mavlink_longitudinal_t
 	"Longitudinal", \
 	9, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_longitudinal_t, time_boot_ms) }, \
-         { "AoA", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_longitudinal_t, AoA) }, \
+         { "AoA_cal", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_longitudinal_t, AoA_cal) }, \
          { "q", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_longitudinal_t, q) }, \
          { "ax", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_longitudinal_t, ax) }, \
          { "az", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_longitudinal_t, az) }, \
@@ -46,7 +46,7 @@ typedef struct __mavlink_longitudinal_t
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param AoA Angle of attack
+ * @param AoA_cal Calibrated angle of attack
  * @param q pitchrate
  * @param ax Ax (mg)
  * @param az Az (mg)
@@ -57,12 +57,12 @@ typedef struct __mavlink_longitudinal_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_longitudinal_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, float AoA, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
+						       uint32_t time_boot_ms, float AoA_cal, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_Longitudinal_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, AoA);
+	_mav_put_float(buf, 4, AoA_cal);
 	_mav_put_float(buf, 8, q);
 	_mav_put_float(buf, 12, ax);
 	_mav_put_float(buf, 16, az);
@@ -75,7 +75,7 @@ static inline uint16_t mavlink_msg_longitudinal_pack(uint8_t system_id, uint8_t 
 #else
 	mavlink_longitudinal_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.AoA = AoA;
+	packet.AoA_cal = AoA_cal;
 	packet.q = q;
 	packet.ax = ax;
 	packet.az = az;
@@ -102,7 +102,7 @@ static inline uint16_t mavlink_msg_longitudinal_pack(uint8_t system_id, uint8_t 
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param AoA Angle of attack
+ * @param AoA_cal Calibrated angle of attack
  * @param q pitchrate
  * @param ax Ax (mg)
  * @param az Az (mg)
@@ -114,12 +114,12 @@ static inline uint16_t mavlink_msg_longitudinal_pack(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_longitudinal_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float AoA,float q,float ax,float az,float IMU_pitch,float GBL_pitch,float elevator,float elevator_cmd)
+						           uint32_t time_boot_ms,float AoA_cal,float q,float ax,float az,float IMU_pitch,float GBL_pitch,float elevator,float elevator_cmd)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_Longitudinal_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, AoA);
+	_mav_put_float(buf, 4, AoA_cal);
 	_mav_put_float(buf, 8, q);
 	_mav_put_float(buf, 12, ax);
 	_mav_put_float(buf, 16, az);
@@ -132,7 +132,7 @@ static inline uint16_t mavlink_msg_longitudinal_pack_chan(uint8_t system_id, uin
 #else
 	mavlink_longitudinal_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.AoA = AoA;
+	packet.AoA_cal = AoA_cal;
 	packet.q = q;
 	packet.ax = ax;
 	packet.az = az;
@@ -162,7 +162,7 @@ static inline uint16_t mavlink_msg_longitudinal_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_longitudinal_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_longitudinal_t* longitudinal)
 {
-	return mavlink_msg_longitudinal_pack(system_id, component_id, msg, longitudinal->time_boot_ms, longitudinal->AoA, longitudinal->q, longitudinal->ax, longitudinal->az, longitudinal->IMU_pitch, longitudinal->GBL_pitch, longitudinal->elevator, longitudinal->elevator_cmd);
+	return mavlink_msg_longitudinal_pack(system_id, component_id, msg, longitudinal->time_boot_ms, longitudinal->AoA_cal, longitudinal->q, longitudinal->ax, longitudinal->az, longitudinal->IMU_pitch, longitudinal->GBL_pitch, longitudinal->elevator, longitudinal->elevator_cmd);
 }
 
 /**
@@ -176,7 +176,7 @@ static inline uint16_t mavlink_msg_longitudinal_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_longitudinal_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_longitudinal_t* longitudinal)
 {
-	return mavlink_msg_longitudinal_pack_chan(system_id, component_id, chan, msg, longitudinal->time_boot_ms, longitudinal->AoA, longitudinal->q, longitudinal->ax, longitudinal->az, longitudinal->IMU_pitch, longitudinal->GBL_pitch, longitudinal->elevator, longitudinal->elevator_cmd);
+	return mavlink_msg_longitudinal_pack_chan(system_id, component_id, chan, msg, longitudinal->time_boot_ms, longitudinal->AoA_cal, longitudinal->q, longitudinal->ax, longitudinal->az, longitudinal->IMU_pitch, longitudinal->GBL_pitch, longitudinal->elevator, longitudinal->elevator_cmd);
 }
 
 /**
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_longitudinal_encode_chan(uint8_t system_id, u
  * @param chan MAVLink channel to send the message
  *
  * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param AoA Angle of attack
+ * @param AoA_cal Calibrated angle of attack
  * @param q pitchrate
  * @param ax Ax (mg)
  * @param az Az (mg)
@@ -195,12 +195,12 @@ static inline uint16_t mavlink_msg_longitudinal_encode_chan(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_longitudinal_send(mavlink_channel_t chan, uint32_t time_boot_ms, float AoA, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
+static inline void mavlink_msg_longitudinal_send(mavlink_channel_t chan, uint32_t time_boot_ms, float AoA_cal, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_Longitudinal_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, AoA);
+	_mav_put_float(buf, 4, AoA_cal);
 	_mav_put_float(buf, 8, q);
 	_mav_put_float(buf, 12, ax);
 	_mav_put_float(buf, 16, az);
@@ -217,7 +217,7 @@ static inline void mavlink_msg_longitudinal_send(mavlink_channel_t chan, uint32_
 #else
 	mavlink_longitudinal_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.AoA = AoA;
+	packet.AoA_cal = AoA_cal;
 	packet.q = q;
 	packet.ax = ax;
 	packet.az = az;
@@ -242,12 +242,12 @@ static inline void mavlink_msg_longitudinal_send(mavlink_channel_t chan, uint32_
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_longitudinal_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float AoA, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
+static inline void mavlink_msg_longitudinal_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float AoA_cal, float q, float ax, float az, float IMU_pitch, float GBL_pitch, float elevator, float elevator_cmd)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, AoA);
+	_mav_put_float(buf, 4, AoA_cal);
 	_mav_put_float(buf, 8, q);
 	_mav_put_float(buf, 12, ax);
 	_mav_put_float(buf, 16, az);
@@ -264,7 +264,7 @@ static inline void mavlink_msg_longitudinal_send_buf(mavlink_message_t *msgbuf, 
 #else
 	mavlink_longitudinal_t *packet = (mavlink_longitudinal_t *)msgbuf;
 	packet->time_boot_ms = time_boot_ms;
-	packet->AoA = AoA;
+	packet->AoA_cal = AoA_cal;
 	packet->q = q;
 	packet->ax = ax;
 	packet->az = az;
@@ -298,11 +298,11 @@ static inline uint32_t mavlink_msg_longitudinal_get_time_boot_ms(const mavlink_m
 }
 
 /**
- * @brief Get field AoA from longitudinal message
+ * @brief Get field AoA_cal from longitudinal message
  *
- * @return Angle of attack
+ * @return Calibrated angle of attack
  */
-static inline float mavlink_msg_longitudinal_get_AoA(const mavlink_message_t* msg)
+static inline float mavlink_msg_longitudinal_get_AoA_cal(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
@@ -387,7 +387,7 @@ static inline void mavlink_msg_longitudinal_decode(const mavlink_message_t* msg,
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	longitudinal->time_boot_ms = mavlink_msg_longitudinal_get_time_boot_ms(msg);
-	longitudinal->AoA = mavlink_msg_longitudinal_get_AoA(msg);
+	longitudinal->AoA_cal = mavlink_msg_longitudinal_get_AoA_cal(msg);
 	longitudinal->q = mavlink_msg_longitudinal_get_q(msg);
 	longitudinal->ax = mavlink_msg_longitudinal_get_ax(msg);
 	longitudinal->az = mavlink_msg_longitudinal_get_az(msg);
