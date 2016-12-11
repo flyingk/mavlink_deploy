@@ -949,9 +949,9 @@ static void mavlink_test_ekf_state(uint8_t system_id, uint8_t component_id, mavl
 	mavlink_ekf_state_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.time_boot_ms = packet_in.time_boot_ms;
-        	packet1.Roll Angle = packet_in.Roll Angle;
-        	packet1.Pitch Angle = packet_in.Pitch Angle;
-        	packet1.Yaw Angle = packet_in.Yaw Angle;
+        	packet1.Roll = packet_in.Roll;
+        	packet1.Pitch = packet_in.Pitch;
+        	packet1.Yaw = packet_in.Yaw;
         	packet1.p = packet_in.p;
         	packet1.q = packet_in.q;
         	packet1.r = packet_in.r;
@@ -964,12 +964,12 @@ static void mavlink_test_ekf_state(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_state_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll Angle , packet1.Pitch Angle , packet1.Yaw Angle );
+	mavlink_msg_ekf_state_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll , packet1.Pitch , packet1.Yaw );
 	mavlink_msg_ekf_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll Angle , packet1.Pitch Angle , packet1.Yaw Angle );
+	mavlink_msg_ekf_state_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll , packet1.Pitch , packet1.Yaw );
 	mavlink_msg_ekf_state_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -982,7 +982,7 @@ static void mavlink_test_ekf_state(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_state_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll Angle , packet1.Pitch Angle , packet1.Yaw Angle );
+	mavlink_msg_ekf_state_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.p , packet1.q , packet1.r , packet1.Roll , packet1.Pitch , packet1.Yaw );
 	mavlink_msg_ekf_state_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

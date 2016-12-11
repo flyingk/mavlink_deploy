@@ -5,9 +5,9 @@
 typedef struct __mavlink_ekf_state_t
 {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float Roll Angle; /*< Estimated roll angle [deg]*/
- float Pitch Angle; /*< Estimated pitch angle [deg]*/
- float Yaw Angle; /*< Estimated yaw angle [deg]*/
+ float Roll; /*< Estimated roll angle [deg]*/
+ float Pitch; /*< Estimated pitch angle [deg]*/
+ float Yaw; /*< Estimated yaw angle [deg]*/
  int16_t p; /*< Estimated angular rate X axis (deg/sec)*/
  int16_t q; /*< Estimated angular rate Y axis (deg/sec)*/
  int16_t r; /*< Estimated angular rate Z axis (deg/sec)*/
@@ -16,8 +16,8 @@ typedef struct __mavlink_ekf_state_t
 #define MAVLINK_MSG_ID_EKF_STATE_LEN 22
 #define MAVLINK_MSG_ID_198_LEN 22
 
-#define MAVLINK_MSG_ID_EKF_STATE_CRC 161
-#define MAVLINK_MSG_ID_198_CRC 161
+#define MAVLINK_MSG_ID_EKF_STATE_CRC 53
+#define MAVLINK_MSG_ID_198_CRC 53
 
 
 
@@ -25,9 +25,9 @@ typedef struct __mavlink_ekf_state_t
 	"EKF_STATE", \
 	7, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_ekf_state_t, time_boot_ms) }, \
-         { "Roll Angle", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_ekf_state_t, Roll Angle) }, \
-         { "Pitch Angle", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_ekf_state_t, Pitch Angle) }, \
-         { "Yaw Angle", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_ekf_state_t, Yaw Angle) }, \
+         { "Roll", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_ekf_state_t, Roll) }, \
+         { "Pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_ekf_state_t, Pitch) }, \
+         { "Yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_ekf_state_t, Yaw) }, \
          { "p", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_ekf_state_t, p) }, \
          { "q", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_ekf_state_t, q) }, \
          { "r", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_ekf_state_t, r) }, \
@@ -45,20 +45,20 @@ typedef struct __mavlink_ekf_state_t
  * @param p Estimated angular rate X axis (deg/sec)
  * @param q Estimated angular rate Y axis (deg/sec)
  * @param r Estimated angular rate Z axis (deg/sec)
- * @param Roll Angle Estimated roll angle [deg]
- * @param Pitch Angle Estimated pitch angle [deg]
- * @param Yaw Angle Estimated yaw angle [deg]
+ * @param Roll Estimated roll angle [deg]
+ * @param Pitch Estimated pitch angle [deg]
+ * @param Yaw Estimated yaw angle [deg]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll Angle, float Pitch Angle, float Yaw Angle)
+						       uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll Angle);
-	_mav_put_float(buf, 8, Pitch Angle);
-	_mav_put_float(buf, 12, Yaw Angle);
+	_mav_put_float(buf, 4, Roll);
+	_mav_put_float(buf, 8, Pitch);
+	_mav_put_float(buf, 12, Yaw);
 	_mav_put_int16_t(buf, 16, p);
 	_mav_put_int16_t(buf, 18, q);
 	_mav_put_int16_t(buf, 20, r);
@@ -67,9 +67,9 @@ static inline uint16_t mavlink_msg_ekf_state_pack(uint8_t system_id, uint8_t com
 #else
 	mavlink_ekf_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.Roll Angle = Roll Angle;
-	packet.Pitch Angle = Pitch Angle;
-	packet.Yaw Angle = Yaw Angle;
+	packet.Roll = Roll;
+	packet.Pitch = Pitch;
+	packet.Yaw = Yaw;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
@@ -95,21 +95,21 @@ static inline uint16_t mavlink_msg_ekf_state_pack(uint8_t system_id, uint8_t com
  * @param p Estimated angular rate X axis (deg/sec)
  * @param q Estimated angular rate Y axis (deg/sec)
  * @param r Estimated angular rate Z axis (deg/sec)
- * @param Roll Angle Estimated roll angle [deg]
- * @param Pitch Angle Estimated pitch angle [deg]
- * @param Yaw Angle Estimated yaw angle [deg]
+ * @param Roll Estimated roll angle [deg]
+ * @param Pitch Estimated pitch angle [deg]
+ * @param Yaw Estimated yaw angle [deg]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int16_t p,int16_t q,int16_t r,float Roll Angle,float Pitch Angle,float Yaw Angle)
+						           uint32_t time_boot_ms,int16_t p,int16_t q,int16_t r,float Roll,float Pitch,float Yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll Angle);
-	_mav_put_float(buf, 8, Pitch Angle);
-	_mav_put_float(buf, 12, Yaw Angle);
+	_mav_put_float(buf, 4, Roll);
+	_mav_put_float(buf, 8, Pitch);
+	_mav_put_float(buf, 12, Yaw);
 	_mav_put_int16_t(buf, 16, p);
 	_mav_put_int16_t(buf, 18, q);
 	_mav_put_int16_t(buf, 20, r);
@@ -118,9 +118,9 @@ static inline uint16_t mavlink_msg_ekf_state_pack_chan(uint8_t system_id, uint8_
 #else
 	mavlink_ekf_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.Roll Angle = Roll Angle;
-	packet.Pitch Angle = Pitch Angle;
-	packet.Yaw Angle = Yaw Angle;
+	packet.Roll = Roll;
+	packet.Pitch = Pitch;
+	packet.Yaw = Yaw;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
@@ -146,7 +146,7 @@ static inline uint16_t mavlink_msg_ekf_state_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_ekf_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_state_t* ekf_state)
 {
-	return mavlink_msg_ekf_state_pack(system_id, component_id, msg, ekf_state->time_boot_ms, ekf_state->p, ekf_state->q, ekf_state->r, ekf_state->Roll Angle, ekf_state->Pitch Angle, ekf_state->Yaw Angle);
+	return mavlink_msg_ekf_state_pack(system_id, component_id, msg, ekf_state->time_boot_ms, ekf_state->p, ekf_state->q, ekf_state->r, ekf_state->Roll, ekf_state->Pitch, ekf_state->Yaw);
 }
 
 /**
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_ekf_state_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_ekf_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_state_t* ekf_state)
 {
-	return mavlink_msg_ekf_state_pack_chan(system_id, component_id, chan, msg, ekf_state->time_boot_ms, ekf_state->p, ekf_state->q, ekf_state->r, ekf_state->Roll Angle, ekf_state->Pitch Angle, ekf_state->Yaw Angle);
+	return mavlink_msg_ekf_state_pack_chan(system_id, component_id, chan, msg, ekf_state->time_boot_ms, ekf_state->p, ekf_state->q, ekf_state->r, ekf_state->Roll, ekf_state->Pitch, ekf_state->Yaw);
 }
 
 /**
@@ -171,20 +171,20 @@ static inline uint16_t mavlink_msg_ekf_state_encode_chan(uint8_t system_id, uint
  * @param p Estimated angular rate X axis (deg/sec)
  * @param q Estimated angular rate Y axis (deg/sec)
  * @param r Estimated angular rate Z axis (deg/sec)
- * @param Roll Angle Estimated roll angle [deg]
- * @param Pitch Angle Estimated pitch angle [deg]
- * @param Yaw Angle Estimated yaw angle [deg]
+ * @param Roll Estimated roll angle [deg]
+ * @param Pitch Estimated pitch angle [deg]
+ * @param Yaw Estimated yaw angle [deg]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ekf_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll Angle, float Pitch Angle, float Yaw Angle)
+static inline void mavlink_msg_ekf_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll Angle);
-	_mav_put_float(buf, 8, Pitch Angle);
-	_mav_put_float(buf, 12, Yaw Angle);
+	_mav_put_float(buf, 4, Roll);
+	_mav_put_float(buf, 8, Pitch);
+	_mav_put_float(buf, 12, Yaw);
 	_mav_put_int16_t(buf, 16, p);
 	_mav_put_int16_t(buf, 18, q);
 	_mav_put_int16_t(buf, 20, r);
@@ -197,9 +197,9 @@ static inline void mavlink_msg_ekf_state_send(mavlink_channel_t chan, uint32_t t
 #else
 	mavlink_ekf_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
-	packet.Roll Angle = Roll Angle;
-	packet.Pitch Angle = Pitch Angle;
-	packet.Yaw Angle = Yaw Angle;
+	packet.Roll = Roll;
+	packet.Pitch = Pitch;
+	packet.Yaw = Yaw;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
@@ -220,14 +220,14 @@ static inline void mavlink_msg_ekf_state_send(mavlink_channel_t chan, uint32_t t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ekf_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll Angle, float Pitch Angle, float Yaw Angle)
+static inline void mavlink_msg_ekf_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll Angle);
-	_mav_put_float(buf, 8, Pitch Angle);
-	_mav_put_float(buf, 12, Yaw Angle);
+	_mav_put_float(buf, 4, Roll);
+	_mav_put_float(buf, 8, Pitch);
+	_mav_put_float(buf, 12, Yaw);
 	_mav_put_int16_t(buf, 16, p);
 	_mav_put_int16_t(buf, 18, q);
 	_mav_put_int16_t(buf, 20, r);
@@ -240,9 +240,9 @@ static inline void mavlink_msg_ekf_state_send_buf(mavlink_message_t *msgbuf, mav
 #else
 	mavlink_ekf_state_t *packet = (mavlink_ekf_state_t *)msgbuf;
 	packet->time_boot_ms = time_boot_ms;
-	packet->Roll Angle = Roll Angle;
-	packet->Pitch Angle = Pitch Angle;
-	packet->Yaw Angle = Yaw Angle;
+	packet->Roll = Roll;
+	packet->Pitch = Pitch;
+	packet->Yaw = Yaw;
 	packet->p = p;
 	packet->q = q;
 	packet->r = r;
@@ -302,31 +302,31 @@ static inline int16_t mavlink_msg_ekf_state_get_r(const mavlink_message_t* msg)
 }
 
 /**
- * @brief Get field Roll Angle from ekf_state message
+ * @brief Get field Roll from ekf_state message
  *
  * @return Estimated roll angle [deg]
  */
-static inline float mavlink_msg_ekf_state_get_Roll Angle(const mavlink_message_t* msg)
+static inline float mavlink_msg_ekf_state_get_Roll(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  4);
 }
 
 /**
- * @brief Get field Pitch Angle from ekf_state message
+ * @brief Get field Pitch from ekf_state message
  *
  * @return Estimated pitch angle [deg]
  */
-static inline float mavlink_msg_ekf_state_get_Pitch Angle(const mavlink_message_t* msg)
+static inline float mavlink_msg_ekf_state_get_Pitch(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  8);
 }
 
 /**
- * @brief Get field Yaw Angle from ekf_state message
+ * @brief Get field Yaw from ekf_state message
  *
  * @return Estimated yaw angle [deg]
  */
-static inline float mavlink_msg_ekf_state_get_Yaw Angle(const mavlink_message_t* msg)
+static inline float mavlink_msg_ekf_state_get_Yaw(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
@@ -341,9 +341,9 @@ static inline void mavlink_msg_ekf_state_decode(const mavlink_message_t* msg, ma
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	ekf_state->time_boot_ms = mavlink_msg_ekf_state_get_time_boot_ms(msg);
-	ekf_state->Roll Angle = mavlink_msg_ekf_state_get_Roll Angle(msg);
-	ekf_state->Pitch Angle = mavlink_msg_ekf_state_get_Pitch Angle(msg);
-	ekf_state->Yaw Angle = mavlink_msg_ekf_state_get_Yaw Angle(msg);
+	ekf_state->Roll = mavlink_msg_ekf_state_get_Roll(msg);
+	ekf_state->Pitch = mavlink_msg_ekf_state_get_Pitch(msg);
+	ekf_state->Yaw = mavlink_msg_ekf_state_get_Yaw(msg);
 	ekf_state->p = mavlink_msg_ekf_state_get_p(msg);
 	ekf_state->q = mavlink_msg_ekf_state_get_q(msg);
 	ekf_state->r = mavlink_msg_ekf_state_get_r(msg);
