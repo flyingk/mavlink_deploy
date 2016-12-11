@@ -168,8 +168,12 @@ typedef enum MAV_MODE
 	MAV_MODE_AUTO_ARMED=132, /* System is allowed to be active, under autonomous control and navigation (the trajectory is decided onboard and not pre-programmed by MISSIONs) | */
 	MAV_MODE_GUIDED_ARMED=136, /* System is allowed to be active, under autonomous control, manual setpoint | */
 	MAV_MODE_STABILIZE_ARMED=144, /* System is allowed to be active, under assisted RC control. | */
+	MAV_MODE_HIL_AUTO_ARMED=164, /* System is allowed to be active, but runs the onboard simulation in auto mode | */
+	MAV_MODE_HIL_GUIDED_ARMED=168, /* System is allowed to be active, but runs the onboard simulation in guided mode | */
+	MAV_MODE_HIL_STABILIZE_ARMED=176, /* System is allowed to be active, but runs the onboard simulation with manual input and flight stabilisation | */
 	MAV_MODE_MANUAL_ARMED=192, /* System is allowed to be active, under manual (RC) control, no stabilization | */
-	MAV_MODE_ENUM_END=193, /*  | */
+	MAV_MODE_HIL_MANUAL_ARMED=224, /* System is allowed to be active, but runs the onboard simulation with manual control | */
+	MAV_MODE_ENUM_END=225, /*  | */
 } MAV_MODE;
 #endif
 
