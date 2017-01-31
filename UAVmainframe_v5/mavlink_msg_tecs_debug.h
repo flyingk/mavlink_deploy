@@ -7,30 +7,38 @@ typedef struct __mavlink_tecs_debug_t
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  float Alt_Dem; /*< Desired altitude [m]*/
  float Spd_Dem; /*< Desired Airspeed [m/s]*/
- float Alt; /*< Current altitude [m]*/
- float Spd; /*< Current airspeed [m/s]*/
+ float tecs_SPE_dem; /*< SPE_dem*/
+ float tecs_SKE_dem; /*< SKE_dem*/
+ float tecs_SEB_dem; /*< SEB_dem*/
+ float tecs_SPE_est; /*< SPE_est*/
+ float tecs_SKE_est; /*< SKE_est*/
+ float tecs_SEB_est; /*< SEB_est*/
  float Pitch_Dem; /*< Tecs output pitch demand [deg]*/
  float Thr_Dem; /*< Tecs output throttle demand [%]*/
 } mavlink_tecs_debug_t;
 
-#define MAVLINK_MSG_ID_TECS_DEBUG_LEN 28
-#define MAVLINK_MSG_ID_200_LEN 28
+#define MAVLINK_MSG_ID_TECS_DEBUG_LEN 44
+#define MAVLINK_MSG_ID_200_LEN 44
 
-#define MAVLINK_MSG_ID_TECS_DEBUG_CRC 76
-#define MAVLINK_MSG_ID_200_CRC 76
+#define MAVLINK_MSG_ID_TECS_DEBUG_CRC 130
+#define MAVLINK_MSG_ID_200_CRC 130
 
 
 
 #define MAVLINK_MESSAGE_INFO_TECS_DEBUG { \
 	"TECS_DEBUG", \
-	7, \
+	11, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_tecs_debug_t, time_boot_ms) }, \
          { "Alt_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_tecs_debug_t, Alt_Dem) }, \
          { "Spd_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_tecs_debug_t, Spd_Dem) }, \
-         { "Alt", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_tecs_debug_t, Alt) }, \
-         { "Spd", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_tecs_debug_t, Spd) }, \
-         { "Pitch_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_tecs_debug_t, Pitch_Dem) }, \
-         { "Thr_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_tecs_debug_t, Thr_Dem) }, \
+         { "tecs_SPE_dem", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_tecs_debug_t, tecs_SPE_dem) }, \
+         { "tecs_SKE_dem", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_tecs_debug_t, tecs_SKE_dem) }, \
+         { "tecs_SEB_dem", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_tecs_debug_t, tecs_SEB_dem) }, \
+         { "tecs_SPE_est", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_tecs_debug_t, tecs_SPE_est) }, \
+         { "tecs_SKE_est", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_tecs_debug_t, tecs_SKE_est) }, \
+         { "tecs_SEB_est", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_tecs_debug_t, tecs_SEB_est) }, \
+         { "Pitch_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_tecs_debug_t, Pitch_Dem) }, \
+         { "Thr_Dem", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_tecs_debug_t, Thr_Dem) }, \
          } \
 }
 
@@ -44,24 +52,32 @@ typedef struct __mavlink_tecs_debug_t
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Alt_Dem Desired altitude [m]
  * @param Spd_Dem Desired Airspeed [m/s]
- * @param Alt Current altitude [m]
- * @param Spd Current airspeed [m/s]
+ * @param tecs_SPE_dem SPE_dem
+ * @param tecs_SKE_dem SKE_dem
+ * @param tecs_SEB_dem SEB_dem
+ * @param tecs_SPE_est SPE_est
+ * @param tecs_SKE_est SKE_est
+ * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_tecs_debug_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float Alt, float Spd, float Pitch_Dem, float Thr_Dem)
+						       uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float tecs_SPE_dem, float tecs_SKE_dem, float tecs_SEB_dem, float tecs_SPE_est, float tecs_SKE_est, float tecs_SEB_est, float Pitch_Dem, float Thr_Dem)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_TECS_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_float(buf, 4, Alt_Dem);
 	_mav_put_float(buf, 8, Spd_Dem);
-	_mav_put_float(buf, 12, Alt);
-	_mav_put_float(buf, 16, Spd);
-	_mav_put_float(buf, 20, Pitch_Dem);
-	_mav_put_float(buf, 24, Thr_Dem);
+	_mav_put_float(buf, 12, tecs_SPE_dem);
+	_mav_put_float(buf, 16, tecs_SKE_dem);
+	_mav_put_float(buf, 20, tecs_SEB_dem);
+	_mav_put_float(buf, 24, tecs_SPE_est);
+	_mav_put_float(buf, 28, tecs_SKE_est);
+	_mav_put_float(buf, 32, tecs_SEB_est);
+	_mav_put_float(buf, 36, Pitch_Dem);
+	_mav_put_float(buf, 40, Thr_Dem);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TECS_DEBUG_LEN);
 #else
@@ -69,8 +85,12 @@ static inline uint16_t mavlink_msg_tecs_debug_pack(uint8_t system_id, uint8_t co
 	packet.time_boot_ms = time_boot_ms;
 	packet.Alt_Dem = Alt_Dem;
 	packet.Spd_Dem = Spd_Dem;
-	packet.Alt = Alt;
-	packet.Spd = Spd;
+	packet.tecs_SPE_dem = tecs_SPE_dem;
+	packet.tecs_SKE_dem = tecs_SKE_dem;
+	packet.tecs_SEB_dem = tecs_SEB_dem;
+	packet.tecs_SPE_est = tecs_SPE_est;
+	packet.tecs_SKE_est = tecs_SKE_est;
+	packet.tecs_SEB_est = tecs_SEB_est;
 	packet.Pitch_Dem = Pitch_Dem;
 	packet.Thr_Dem = Thr_Dem;
 
@@ -94,25 +114,33 @@ static inline uint16_t mavlink_msg_tecs_debug_pack(uint8_t system_id, uint8_t co
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Alt_Dem Desired altitude [m]
  * @param Spd_Dem Desired Airspeed [m/s]
- * @param Alt Current altitude [m]
- * @param Spd Current airspeed [m/s]
+ * @param tecs_SPE_dem SPE_dem
+ * @param tecs_SKE_dem SKE_dem
+ * @param tecs_SEB_dem SEB_dem
+ * @param tecs_SPE_est SPE_est
+ * @param tecs_SKE_est SKE_est
+ * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_tecs_debug_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float Alt_Dem,float Spd_Dem,float Alt,float Spd,float Pitch_Dem,float Thr_Dem)
+						           uint32_t time_boot_ms,float Alt_Dem,float Spd_Dem,float tecs_SPE_dem,float tecs_SKE_dem,float tecs_SEB_dem,float tecs_SPE_est,float tecs_SKE_est,float tecs_SEB_est,float Pitch_Dem,float Thr_Dem)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_TECS_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_float(buf, 4, Alt_Dem);
 	_mav_put_float(buf, 8, Spd_Dem);
-	_mav_put_float(buf, 12, Alt);
-	_mav_put_float(buf, 16, Spd);
-	_mav_put_float(buf, 20, Pitch_Dem);
-	_mav_put_float(buf, 24, Thr_Dem);
+	_mav_put_float(buf, 12, tecs_SPE_dem);
+	_mav_put_float(buf, 16, tecs_SKE_dem);
+	_mav_put_float(buf, 20, tecs_SEB_dem);
+	_mav_put_float(buf, 24, tecs_SPE_est);
+	_mav_put_float(buf, 28, tecs_SKE_est);
+	_mav_put_float(buf, 32, tecs_SEB_est);
+	_mav_put_float(buf, 36, Pitch_Dem);
+	_mav_put_float(buf, 40, Thr_Dem);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_TECS_DEBUG_LEN);
 #else
@@ -120,8 +148,12 @@ static inline uint16_t mavlink_msg_tecs_debug_pack_chan(uint8_t system_id, uint8
 	packet.time_boot_ms = time_boot_ms;
 	packet.Alt_Dem = Alt_Dem;
 	packet.Spd_Dem = Spd_Dem;
-	packet.Alt = Alt;
-	packet.Spd = Spd;
+	packet.tecs_SPE_dem = tecs_SPE_dem;
+	packet.tecs_SKE_dem = tecs_SKE_dem;
+	packet.tecs_SEB_dem = tecs_SEB_dem;
+	packet.tecs_SPE_est = tecs_SPE_est;
+	packet.tecs_SKE_est = tecs_SKE_est;
+	packet.tecs_SEB_est = tecs_SEB_est;
 	packet.Pitch_Dem = Pitch_Dem;
 	packet.Thr_Dem = Thr_Dem;
 
@@ -146,7 +178,7 @@ static inline uint16_t mavlink_msg_tecs_debug_pack_chan(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_tecs_debug_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_tecs_debug_t* tecs_debug)
 {
-	return mavlink_msg_tecs_debug_pack(system_id, component_id, msg, tecs_debug->time_boot_ms, tecs_debug->Alt_Dem, tecs_debug->Spd_Dem, tecs_debug->Alt, tecs_debug->Spd, tecs_debug->Pitch_Dem, tecs_debug->Thr_Dem);
+	return mavlink_msg_tecs_debug_pack(system_id, component_id, msg, tecs_debug->time_boot_ms, tecs_debug->Alt_Dem, tecs_debug->Spd_Dem, tecs_debug->tecs_SPE_dem, tecs_debug->tecs_SKE_dem, tecs_debug->tecs_SEB_dem, tecs_debug->tecs_SPE_est, tecs_debug->tecs_SKE_est, tecs_debug->tecs_SEB_est, tecs_debug->Pitch_Dem, tecs_debug->Thr_Dem);
 }
 
 /**
@@ -160,7 +192,7 @@ static inline uint16_t mavlink_msg_tecs_debug_encode(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_tecs_debug_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_tecs_debug_t* tecs_debug)
 {
-	return mavlink_msg_tecs_debug_pack_chan(system_id, component_id, chan, msg, tecs_debug->time_boot_ms, tecs_debug->Alt_Dem, tecs_debug->Spd_Dem, tecs_debug->Alt, tecs_debug->Spd, tecs_debug->Pitch_Dem, tecs_debug->Thr_Dem);
+	return mavlink_msg_tecs_debug_pack_chan(system_id, component_id, chan, msg, tecs_debug->time_boot_ms, tecs_debug->Alt_Dem, tecs_debug->Spd_Dem, tecs_debug->tecs_SPE_dem, tecs_debug->tecs_SKE_dem, tecs_debug->tecs_SEB_dem, tecs_debug->tecs_SPE_est, tecs_debug->tecs_SKE_est, tecs_debug->tecs_SEB_est, tecs_debug->Pitch_Dem, tecs_debug->Thr_Dem);
 }
 
 /**
@@ -170,24 +202,32 @@ static inline uint16_t mavlink_msg_tecs_debug_encode_chan(uint8_t system_id, uin
  * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Alt_Dem Desired altitude [m]
  * @param Spd_Dem Desired Airspeed [m/s]
- * @param Alt Current altitude [m]
- * @param Spd Current airspeed [m/s]
+ * @param tecs_SPE_dem SPE_dem
+ * @param tecs_SKE_dem SKE_dem
+ * @param tecs_SEB_dem SEB_dem
+ * @param tecs_SPE_est SPE_est
+ * @param tecs_SKE_est SKE_est
+ * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_tecs_debug_send(mavlink_channel_t chan, uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float Alt, float Spd, float Pitch_Dem, float Thr_Dem)
+static inline void mavlink_msg_tecs_debug_send(mavlink_channel_t chan, uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float tecs_SPE_dem, float tecs_SKE_dem, float tecs_SEB_dem, float tecs_SPE_est, float tecs_SKE_est, float tecs_SEB_est, float Pitch_Dem, float Thr_Dem)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_TECS_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_float(buf, 4, Alt_Dem);
 	_mav_put_float(buf, 8, Spd_Dem);
-	_mav_put_float(buf, 12, Alt);
-	_mav_put_float(buf, 16, Spd);
-	_mav_put_float(buf, 20, Pitch_Dem);
-	_mav_put_float(buf, 24, Thr_Dem);
+	_mav_put_float(buf, 12, tecs_SPE_dem);
+	_mav_put_float(buf, 16, tecs_SKE_dem);
+	_mav_put_float(buf, 20, tecs_SEB_dem);
+	_mav_put_float(buf, 24, tecs_SPE_est);
+	_mav_put_float(buf, 28, tecs_SKE_est);
+	_mav_put_float(buf, 32, tecs_SEB_est);
+	_mav_put_float(buf, 36, Pitch_Dem);
+	_mav_put_float(buf, 40, Thr_Dem);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TECS_DEBUG, buf, MAVLINK_MSG_ID_TECS_DEBUG_LEN, MAVLINK_MSG_ID_TECS_DEBUG_CRC);
@@ -199,8 +239,12 @@ static inline void mavlink_msg_tecs_debug_send(mavlink_channel_t chan, uint32_t 
 	packet.time_boot_ms = time_boot_ms;
 	packet.Alt_Dem = Alt_Dem;
 	packet.Spd_Dem = Spd_Dem;
-	packet.Alt = Alt;
-	packet.Spd = Spd;
+	packet.tecs_SPE_dem = tecs_SPE_dem;
+	packet.tecs_SKE_dem = tecs_SKE_dem;
+	packet.tecs_SEB_dem = tecs_SEB_dem;
+	packet.tecs_SPE_est = tecs_SPE_est;
+	packet.tecs_SKE_est = tecs_SKE_est;
+	packet.tecs_SEB_est = tecs_SEB_est;
 	packet.Pitch_Dem = Pitch_Dem;
 	packet.Thr_Dem = Thr_Dem;
 
@@ -220,17 +264,21 @@ static inline void mavlink_msg_tecs_debug_send(mavlink_channel_t chan, uint32_t 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_tecs_debug_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float Alt, float Spd, float Pitch_Dem, float Thr_Dem)
+static inline void mavlink_msg_tecs_debug_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float Alt_Dem, float Spd_Dem, float tecs_SPE_dem, float tecs_SKE_dem, float tecs_SEB_dem, float tecs_SPE_est, float tecs_SKE_est, float tecs_SEB_est, float Pitch_Dem, float Thr_Dem)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
 	_mav_put_float(buf, 4, Alt_Dem);
 	_mav_put_float(buf, 8, Spd_Dem);
-	_mav_put_float(buf, 12, Alt);
-	_mav_put_float(buf, 16, Spd);
-	_mav_put_float(buf, 20, Pitch_Dem);
-	_mav_put_float(buf, 24, Thr_Dem);
+	_mav_put_float(buf, 12, tecs_SPE_dem);
+	_mav_put_float(buf, 16, tecs_SKE_dem);
+	_mav_put_float(buf, 20, tecs_SEB_dem);
+	_mav_put_float(buf, 24, tecs_SPE_est);
+	_mav_put_float(buf, 28, tecs_SKE_est);
+	_mav_put_float(buf, 32, tecs_SEB_est);
+	_mav_put_float(buf, 36, Pitch_Dem);
+	_mav_put_float(buf, 40, Thr_Dem);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_TECS_DEBUG, buf, MAVLINK_MSG_ID_TECS_DEBUG_LEN, MAVLINK_MSG_ID_TECS_DEBUG_CRC);
@@ -242,8 +290,12 @@ static inline void mavlink_msg_tecs_debug_send_buf(mavlink_message_t *msgbuf, ma
 	packet->time_boot_ms = time_boot_ms;
 	packet->Alt_Dem = Alt_Dem;
 	packet->Spd_Dem = Spd_Dem;
-	packet->Alt = Alt;
-	packet->Spd = Spd;
+	packet->tecs_SPE_dem = tecs_SPE_dem;
+	packet->tecs_SKE_dem = tecs_SKE_dem;
+	packet->tecs_SEB_dem = tecs_SEB_dem;
+	packet->tecs_SPE_est = tecs_SPE_est;
+	packet->tecs_SKE_est = tecs_SKE_est;
+	packet->tecs_SEB_est = tecs_SEB_est;
 	packet->Pitch_Dem = Pitch_Dem;
 	packet->Thr_Dem = Thr_Dem;
 
@@ -292,23 +344,63 @@ static inline float mavlink_msg_tecs_debug_get_Spd_Dem(const mavlink_message_t* 
 }
 
 /**
- * @brief Get field Alt from tecs_debug message
+ * @brief Get field tecs_SPE_dem from tecs_debug message
  *
- * @return Current altitude [m]
+ * @return SPE_dem
  */
-static inline float mavlink_msg_tecs_debug_get_Alt(const mavlink_message_t* msg)
+static inline float mavlink_msg_tecs_debug_get_tecs_SPE_dem(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  12);
 }
 
 /**
- * @brief Get field Spd from tecs_debug message
+ * @brief Get field tecs_SKE_dem from tecs_debug message
  *
- * @return Current airspeed [m/s]
+ * @return SKE_dem
  */
-static inline float mavlink_msg_tecs_debug_get_Spd(const mavlink_message_t* msg)
+static inline float mavlink_msg_tecs_debug_get_tecs_SKE_dem(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
+}
+
+/**
+ * @brief Get field tecs_SEB_dem from tecs_debug message
+ *
+ * @return SEB_dem
+ */
+static inline float mavlink_msg_tecs_debug_get_tecs_SEB_dem(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  20);
+}
+
+/**
+ * @brief Get field tecs_SPE_est from tecs_debug message
+ *
+ * @return SPE_est
+ */
+static inline float mavlink_msg_tecs_debug_get_tecs_SPE_est(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  24);
+}
+
+/**
+ * @brief Get field tecs_SKE_est from tecs_debug message
+ *
+ * @return SKE_est
+ */
+static inline float mavlink_msg_tecs_debug_get_tecs_SKE_est(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  28);
+}
+
+/**
+ * @brief Get field tecs_SEB_est from tecs_debug message
+ *
+ * @return SEB_est
+ */
+static inline float mavlink_msg_tecs_debug_get_tecs_SEB_est(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  32);
 }
 
 /**
@@ -318,7 +410,7 @@ static inline float mavlink_msg_tecs_debug_get_Spd(const mavlink_message_t* msg)
  */
 static inline float mavlink_msg_tecs_debug_get_Pitch_Dem(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_float(msg,  36);
 }
 
 /**
@@ -328,7 +420,7 @@ static inline float mavlink_msg_tecs_debug_get_Pitch_Dem(const mavlink_message_t
  */
 static inline float mavlink_msg_tecs_debug_get_Thr_Dem(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  24);
+	return _MAV_RETURN_float(msg,  40);
 }
 
 /**
@@ -343,8 +435,12 @@ static inline void mavlink_msg_tecs_debug_decode(const mavlink_message_t* msg, m
 	tecs_debug->time_boot_ms = mavlink_msg_tecs_debug_get_time_boot_ms(msg);
 	tecs_debug->Alt_Dem = mavlink_msg_tecs_debug_get_Alt_Dem(msg);
 	tecs_debug->Spd_Dem = mavlink_msg_tecs_debug_get_Spd_Dem(msg);
-	tecs_debug->Alt = mavlink_msg_tecs_debug_get_Alt(msg);
-	tecs_debug->Spd = mavlink_msg_tecs_debug_get_Spd(msg);
+	tecs_debug->tecs_SPE_dem = mavlink_msg_tecs_debug_get_tecs_SPE_dem(msg);
+	tecs_debug->tecs_SKE_dem = mavlink_msg_tecs_debug_get_tecs_SKE_dem(msg);
+	tecs_debug->tecs_SEB_dem = mavlink_msg_tecs_debug_get_tecs_SEB_dem(msg);
+	tecs_debug->tecs_SPE_est = mavlink_msg_tecs_debug_get_tecs_SPE_est(msg);
+	tecs_debug->tecs_SKE_est = mavlink_msg_tecs_debug_get_tecs_SKE_est(msg);
+	tecs_debug->tecs_SEB_est = mavlink_msg_tecs_debug_get_tecs_SEB_est(msg);
 	tecs_debug->Pitch_Dem = mavlink_msg_tecs_debug_get_Pitch_Dem(msg);
 	tecs_debug->Thr_Dem = mavlink_msg_tecs_debug_get_Thr_Dem(msg);
 #else

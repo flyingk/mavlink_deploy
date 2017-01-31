@@ -1045,15 +1045,19 @@ static void mavlink_test_tecs_debug(uint8_t system_id, uint8_t component_id, mav
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_tecs_debug_t packet_in = {
-		963497464,45.0,73.0,101.0,129.0,157.0,185.0
+		963497464,45.0,73.0,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0
     };
 	mavlink_tecs_debug_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         	packet1.time_boot_ms = packet_in.time_boot_ms;
         	packet1.Alt_Dem = packet_in.Alt_Dem;
         	packet1.Spd_Dem = packet_in.Spd_Dem;
-        	packet1.Alt = packet_in.Alt;
-        	packet1.Spd = packet_in.Spd;
+        	packet1.tecs_SPE_dem = packet_in.tecs_SPE_dem;
+        	packet1.tecs_SKE_dem = packet_in.tecs_SKE_dem;
+        	packet1.tecs_SEB_dem = packet_in.tecs_SEB_dem;
+        	packet1.tecs_SPE_est = packet_in.tecs_SPE_est;
+        	packet1.tecs_SKE_est = packet_in.tecs_SKE_est;
+        	packet1.tecs_SEB_est = packet_in.tecs_SEB_est;
         	packet1.Pitch_Dem = packet_in.Pitch_Dem;
         	packet1.Thr_Dem = packet_in.Thr_Dem;
         
@@ -1065,12 +1069,12 @@ static void mavlink_test_tecs_debug(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_tecs_debug_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.Alt , packet1.Spd , packet1.Pitch_Dem , packet1.Thr_Dem );
+	mavlink_msg_tecs_debug_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.tecs_SPE_dem , packet1.tecs_SKE_dem , packet1.tecs_SEB_dem , packet1.tecs_SPE_est , packet1.tecs_SKE_est , packet1.tecs_SEB_est , packet1.Pitch_Dem , packet1.Thr_Dem );
 	mavlink_msg_tecs_debug_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_tecs_debug_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.Alt , packet1.Spd , packet1.Pitch_Dem , packet1.Thr_Dem );
+	mavlink_msg_tecs_debug_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.tecs_SPE_dem , packet1.tecs_SKE_dem , packet1.tecs_SEB_dem , packet1.tecs_SPE_est , packet1.tecs_SKE_est , packet1.tecs_SEB_est , packet1.Pitch_Dem , packet1.Thr_Dem );
 	mavlink_msg_tecs_debug_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1083,7 +1087,7 @@ static void mavlink_test_tecs_debug(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_tecs_debug_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.Alt , packet1.Spd , packet1.Pitch_Dem , packet1.Thr_Dem );
+	mavlink_msg_tecs_debug_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.Alt_Dem , packet1.Spd_Dem , packet1.tecs_SPE_dem , packet1.tecs_SKE_dem , packet1.tecs_SEB_dem , packet1.tecs_SPE_est , packet1.tecs_SKE_est , packet1.tecs_SEB_est , packet1.Pitch_Dem , packet1.Thr_Dem );
 	mavlink_msg_tecs_debug_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
