@@ -44,60 +44,39 @@ typedef enum UAVmainframe_MODE
 	UAVmainframe_MODE_PASSTHROUGH=2, /* (Bit 2) Vehicle is in manual control mode. RC control passed through UAVmainframe with relays engaged. | */
 	UAVmainframe_MODE_STABILISE=4, /* (Bit 3) Vehicle is in stabilise mode, low level attitude controllers engaged. | */
 	UAVmainframe_MODE_TECS=8, /* (Bit 4) Vehicle is in altitude/speed hold mode. | */
-	UAVmainframe_MODE_RETURN_HOME=16, /* (Bit 5) Vehicle is commanded to return to home position at specified altitude. | */
-	UAVmainframe_MODE_INPUT_OPEN_LOOP=32, /* (Bit 6) Vehicle is executing open loop test inputs automatically. | */
-	UAVmainframe_MODE_INPUT_CLOSED_LOOP=64, /* (Bit 7) Vehicle is executing closed loop test inputs automatically. | */
-	UAVmainframe_MODE_INPUT_PERFORMANCE=128, /* (Bit 8) Vehicle is executing performance test inputs automatically. | */
-	UAVmainframe_MODE_AUTO=256, /* (Bit 9) Vehicle is running in auto mode. For future use. | */
-	UAVmainframe_MODE_FLAG_SAFETY_ARMED=65536, /* (Bit 16) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_FLAG_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
-	UAVmainframe_MODE_ENUM_END=131073, /*  | */
+	UAVmainframe_MODE_AUTO=16, /* (Bit 5) Vehicle is running in auto mode with onboard guidance. | */
+	UAVmainframe_MODE_INPUT=32, /* (Bit 6) Vehicle is executing test inputs automatically. | */
+	UAVmainframe_MODE_FLAG_SAFETY_ARMED=16384, /* (Bit 15) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
+	UAVmainframe_MODE_FLAG_FLIGHT_SIM=32768, /* (Bit 16) UAVmainframe in flight sim mode | */
+	UAVmainframe_MODE_ENUM_END=32769, /*  | */
 } UAVmainframe_MODE;
 #endif
 
-/** @brief These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not. */
-#ifndef HAVE_ENUM_UAVmainframe_MODE_FLAG_DECODE_POSITION
-#define HAVE_ENUM_UAVmainframe_MODE_FLAG_DECODE_POSITION
-typedef enum UAVmainframe_MODE_FLAG_DECODE_POSITION
+/** @brief  */
+#ifndef HAVE_ENUM_UAVmainframe_AUTO_SUB_MODES
+#define HAVE_ENUM_UAVmainframe_AUTO_SUB_MODES
+typedef enum UAVmainframe_AUTO_SUB_MODES
 {
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_PREFLIGHT=0, /* Vehicle not armed and starting up. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_MANUAL=1, /* (Bit 1) Vehicle is in manual control mode. RC control direct feed through with relays disengaged. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_PASSTHROUGH=2, /* (Bit 2) Vehicle is in manual control mode. RC control passed through UAVmainframe with relays engaged. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_STABILISE=4, /* (Bit 3) Vehicle is in stabilise mode, low level attitude controllers engaged. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_TECS=8, /* (Bit 4) Vehicle is in altitude/speed hold mode. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_RETURN_HOME=16, /* (Bit 5) Vehicle is commanded to return to home position at specified altitude. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_INPUT_OPEN_LOOP=32, /* (Bit 6) Vehicle is executing open loop test inputs automatically. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_INPUT_CLOSED_LOOP=64, /* (Bit 7) Vehicle is executing closed loop test inputs automatically. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_INPUT_PERFORMANCE=128, /* (Bit 8) Vehicle is executing performance test inputs automatically. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_AUTO=256, /* (Bit 9) Vehicle is running in auto mode. For future use. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_SAFETY_ARMED=65536, /* (Bit 16) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_ENUM_END=131073, /*  | */
-} UAVmainframe_MODE_FLAG_DECODE_POSITION;
+	UAVmainframe_SUB_MODE_RETURN_HOME=1, /* (Bit 1) Vehicle is commanded to return to home position at specified altitude. | */
+	UAVmainframe_AUTO_SUB_MODES_ENUM_END=2, /*  | */
+} UAVmainframe_AUTO_SUB_MODES;
 #endif
 
 /** @brief  */
-#ifndef HAVE_ENUM_UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
-#define HAVE_ENUM_UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
-typedef enum UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
+#ifndef HAVE_ENUM_UAVmainframe_INPUT_SUB_MODES
+#define HAVE_ENUM_UAVmainframe_INPUT_SUB_MODES
+typedef enum UAVmainframe_INPUT_SUB_MODES
 {
-	UAVmainframe_SUB_MODE_FLAG_GLIDE=16777216, /* (Bit 24) Glide mode. | */
-	UAVmainframe_SUB_MODE_FLAG_ACCEL=33554432, /* (Bit 25) Constant altitude acceleration mode. | */
-	UAVmainframe_SUB_MODE_FLAG_TURN=67108864, /* (Bit 26) Constant altitude and speed turning mode. | */
-	UAVmainframe_PERFORMANCE_INPUT_SUB_MODES_ENUM_END=67108865, /*  | */
-} UAVmainframe_PERFORMANCE_INPUT_SUB_MODES;
-#endif
-
-/** @brief  */
-#ifndef HAVE_ENUM_UAVmainframe_STABILITY_INPUT_SUB_MODES
-#define HAVE_ENUM_UAVmainframe_STABILITY_INPUT_SUB_MODES
-typedef enum UAVmainframe_STABILITY_INPUT_SUB_MODES
-{
-	UAVmainframe_SUB_MODE_FLAG_ELEVATOR=16777216, /* (Bit 24) Elevator input. | */
-	UAVmainframe_SUB_MODE_FLAG_RUDDER=33554432, /* (Bit 25) Rudder input. | */
-	UAVmainframe_SUB_MODE_FLAG_AILERON=67108864, /* (Bit 26) Aileron input. | */
-	UAVmainframe_STABILITY_INPUT_SUB_MODES_ENUM_END=67108865, /*  | */
-} UAVmainframe_STABILITY_INPUT_SUB_MODES;
+	UAVmainframe_SUB_MODE_FLAG_ELEVATOR=1, /* (Bit 1) Elevator input. | */
+	UAVmainframe_SUB_MODE_FLAG_RUDDER=2, /* (Bit 2) Rudder input. | */
+	UAVmainframe_SUB_MODE_FLAG_AILERON=4, /* (Bit 3) Aileron input. | */
+	UAVmainframe_SUB_MODE_FLAG_THROTTLE=8, /* (Bit 4) Throttle input. | */
+	UAVmainframe_SUB_MODE_FLAG_GLIDE=16, /* (Bit 5) Glide mode. | */
+	UAVmainframe_SUB_MODE_FLAG_ACCEL=32, /* (Bit 6) Constant altitude acceleration mode. | */
+	UAVmainframe_SUB_MODE_FLAG_TURN=64, /* (Bit 7) Constant altitude and speed turning mode. | */
+	UAVmainframe_MODE_INPUT_CLOSED_LOOP=32768, /* (Bit 16) Vehicle is executing closed loop test inputs | */
+	UAVmainframe_INPUT_SUB_MODES_ENUM_END=32769, /*  | */
+} UAVmainframe_INPUT_SUB_MODES;
 #endif
 
 #include "../common/common.h"
