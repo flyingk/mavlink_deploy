@@ -50,7 +50,8 @@ typedef enum UAVmainframe_MODE
 	UAVmainframe_MODE_INPUT_PERFORMANCE=128, /* (Bit 8) Vehicle is executing performance test inputs automatically. | */
 	UAVmainframe_MODE_AUTO=256, /* (Bit 9) Vehicle is running in auto mode. For future use. | */
 	UAVmainframe_MODE_FLAG_SAFETY_ARMED=65536, /* (Bit 16) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_ENUM_END=65537, /*  | */
+	UAVmainframe_MODE_FLAG_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
+	UAVmainframe_MODE_ENUM_END=131073, /*  | */
 } UAVmainframe_MODE;
 #endif
 
@@ -70,8 +71,33 @@ typedef enum UAVmainframe_MODE_FLAG_DECODE_POSITION
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_INPUT_PERFORMANCE=128, /* (Bit 8) Vehicle is executing performance test inputs automatically. | */
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_AUTO=256, /* (Bit 9) Vehicle is running in auto mode. For future use. | */
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_SAFETY_ARMED=65536, /* (Bit 16) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_FLAG_DECODE_POSITION_ENUM_END=65537, /*  | */
+	UAVmainframe_MODE_FLAG_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
+	UAVmainframe_MODE_FLAG_DECODE_POSITION_ENUM_END=131073, /*  | */
 } UAVmainframe_MODE_FLAG_DECODE_POSITION;
+#endif
+
+/** @brief  */
+#ifndef HAVE_ENUM_UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
+#define HAVE_ENUM_UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
+typedef enum UAVmainframe_PERFORMANCE_INPUT_SUB_MODES
+{
+	UAVmainframe_SUB_MODE_FLAG_GLIDE=16777216, /* (Bit 24) Glide mode. | */
+	UAVmainframe_SUB_MODE_FLAG_ACCEL=33554432, /* (Bit 25) Constant altitude acceleration mode. | */
+	UAVmainframe_SUB_MODE_FLAG_TURN=67108864, /* (Bit 26) Constant altitude and speed turning mode. | */
+	UAVmainframe_PERFORMANCE_INPUT_SUB_MODES_ENUM_END=67108865, /*  | */
+} UAVmainframe_PERFORMANCE_INPUT_SUB_MODES;
+#endif
+
+/** @brief  */
+#ifndef HAVE_ENUM_UAVmainframe_STABILITY_INPUT_SUB_MODES
+#define HAVE_ENUM_UAVmainframe_STABILITY_INPUT_SUB_MODES
+typedef enum UAVmainframe_STABILITY_INPUT_SUB_MODES
+{
+	UAVmainframe_SUB_MODE_FLAG_ELEVATOR=16777216, /* (Bit 24) Elevator input. | */
+	UAVmainframe_SUB_MODE_FLAG_RUDDER=33554432, /* (Bit 25) Rudder input. | */
+	UAVmainframe_SUB_MODE_FLAG_AILERON=67108864, /* (Bit 26) Aileron input. | */
+	UAVmainframe_STABILITY_INPUT_SUB_MODES_ENUM_END=67108865, /*  | */
+} UAVmainframe_STABILITY_INPUT_SUB_MODES;
 #endif
 
 #include "../common/common.h"
