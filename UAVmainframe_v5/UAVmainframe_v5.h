@@ -71,7 +71,7 @@ typedef enum UAVmainframe_MODE_FLAG_DECODE_POSITION
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_INPUT_PERFORMANCE=128, /* (Bit 8) Vehicle is executing performance test inputs automatically. | */
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_AUTO=256, /* (Bit 9) Vehicle is running in auto mode. For future use. | */
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_SAFETY_ARMED=65536, /* (Bit 16) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_FLAG_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
+	UAVmainframe_MODE_FLAG_DECODE_POSITION_FLIGHT_SIM=131072, /* (Bit 17) UAVmainframe in flight sim mode | */
 	UAVmainframe_MODE_FLAG_DECODE_POSITION_ENUM_END=131073, /*  | */
 } UAVmainframe_MODE_FLAG_DECODE_POSITION;
 #endif
