@@ -7,28 +7,26 @@ typedef struct __mavlink_airdata_t
  uint32_t time_boot_ms; /*< Time since boot in msec*/
  float pressure_alt; /*< Altitude above ground in m*/
  float airspeed; /*< Airspeed in m/s*/
- float aoa; /*< Angle of attack in deg*/
- float aoa_cal; /*< Calibrated Angle of attack in deg*/
- float sideslip; /*< Sideslip in deg*/
+ float aoa; /*< True angle of attack in deg*/
+ float sideslip; /*< True angle of sideslip in deg*/
 } mavlink_airdata_t;
 
-#define MAVLINK_MSG_ID_AIRDATA_LEN 24
-#define MAVLINK_MSG_ID_181_LEN 24
+#define MAVLINK_MSG_ID_AIRDATA_LEN 20
+#define MAVLINK_MSG_ID_181_LEN 20
 
-#define MAVLINK_MSG_ID_AIRDATA_CRC 175
-#define MAVLINK_MSG_ID_181_CRC 175
+#define MAVLINK_MSG_ID_AIRDATA_CRC 130
+#define MAVLINK_MSG_ID_181_CRC 130
 
 
 
 #define MAVLINK_MESSAGE_INFO_AIRDATA { \
 	"AIRDATA", \
-	6, \
+	5, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_airdata_t, time_boot_ms) }, \
          { "pressure_alt", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_airdata_t, pressure_alt) }, \
          { "airspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_airdata_t, airspeed) }, \
          { "aoa", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_airdata_t, aoa) }, \
-         { "aoa_cal", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_airdata_t, aoa_cal) }, \
-         { "sideslip", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_airdata_t, sideslip) }, \
+         { "sideslip", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_airdata_t, sideslip) }, \
          } \
 }
 
@@ -42,13 +40,12 @@ typedef struct __mavlink_airdata_t
  * @param time_boot_ms Time since boot in msec
  * @param pressure_alt Altitude above ground in m
  * @param airspeed Airspeed in m/s
- * @param aoa Angle of attack in deg
- * @param aoa_cal Calibrated Angle of attack in deg
- * @param sideslip Sideslip in deg
+ * @param aoa True angle of attack in deg
+ * @param sideslip True angle of sideslip in deg
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_airdata_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float aoa_cal, float sideslip)
+						       uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float sideslip)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_LEN];
@@ -56,8 +53,7 @@ static inline uint16_t mavlink_msg_airdata_pack(uint8_t system_id, uint8_t compo
 	_mav_put_float(buf, 4, pressure_alt);
 	_mav_put_float(buf, 8, airspeed);
 	_mav_put_float(buf, 12, aoa);
-	_mav_put_float(buf, 16, aoa_cal);
-	_mav_put_float(buf, 20, sideslip);
+	_mav_put_float(buf, 16, sideslip);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRDATA_LEN);
 #else
@@ -66,7 +62,6 @@ static inline uint16_t mavlink_msg_airdata_pack(uint8_t system_id, uint8_t compo
 	packet.pressure_alt = pressure_alt;
 	packet.airspeed = airspeed;
 	packet.aoa = aoa;
-	packet.aoa_cal = aoa_cal;
 	packet.sideslip = sideslip;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRDATA_LEN);
@@ -89,14 +84,13 @@ static inline uint16_t mavlink_msg_airdata_pack(uint8_t system_id, uint8_t compo
  * @param time_boot_ms Time since boot in msec
  * @param pressure_alt Altitude above ground in m
  * @param airspeed Airspeed in m/s
- * @param aoa Angle of attack in deg
- * @param aoa_cal Calibrated Angle of attack in deg
- * @param sideslip Sideslip in deg
+ * @param aoa True angle of attack in deg
+ * @param sideslip True angle of sideslip in deg
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_airdata_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float pressure_alt,float airspeed,float aoa,float aoa_cal,float sideslip)
+						           uint32_t time_boot_ms,float pressure_alt,float airspeed,float aoa,float sideslip)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_LEN];
@@ -104,8 +98,7 @@ static inline uint16_t mavlink_msg_airdata_pack_chan(uint8_t system_id, uint8_t 
 	_mav_put_float(buf, 4, pressure_alt);
 	_mav_put_float(buf, 8, airspeed);
 	_mav_put_float(buf, 12, aoa);
-	_mav_put_float(buf, 16, aoa_cal);
-	_mav_put_float(buf, 20, sideslip);
+	_mav_put_float(buf, 16, sideslip);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRDATA_LEN);
 #else
@@ -114,7 +107,6 @@ static inline uint16_t mavlink_msg_airdata_pack_chan(uint8_t system_id, uint8_t 
 	packet.pressure_alt = pressure_alt;
 	packet.airspeed = airspeed;
 	packet.aoa = aoa;
-	packet.aoa_cal = aoa_cal;
 	packet.sideslip = sideslip;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_AIRDATA_LEN);
@@ -138,7 +130,7 @@ static inline uint16_t mavlink_msg_airdata_pack_chan(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_airdata_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airdata_t* airdata)
 {
-	return mavlink_msg_airdata_pack(system_id, component_id, msg, airdata->time_boot_ms, airdata->pressure_alt, airdata->airspeed, airdata->aoa, airdata->aoa_cal, airdata->sideslip);
+	return mavlink_msg_airdata_pack(system_id, component_id, msg, airdata->time_boot_ms, airdata->pressure_alt, airdata->airspeed, airdata->aoa, airdata->sideslip);
 }
 
 /**
@@ -152,7 +144,7 @@ static inline uint16_t mavlink_msg_airdata_encode(uint8_t system_id, uint8_t com
  */
 static inline uint16_t mavlink_msg_airdata_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airdata_t* airdata)
 {
-	return mavlink_msg_airdata_pack_chan(system_id, component_id, chan, msg, airdata->time_boot_ms, airdata->pressure_alt, airdata->airspeed, airdata->aoa, airdata->aoa_cal, airdata->sideslip);
+	return mavlink_msg_airdata_pack_chan(system_id, component_id, chan, msg, airdata->time_boot_ms, airdata->pressure_alt, airdata->airspeed, airdata->aoa, airdata->sideslip);
 }
 
 /**
@@ -162,13 +154,12 @@ static inline uint16_t mavlink_msg_airdata_encode_chan(uint8_t system_id, uint8_
  * @param time_boot_ms Time since boot in msec
  * @param pressure_alt Altitude above ground in m
  * @param airspeed Airspeed in m/s
- * @param aoa Angle of attack in deg
- * @param aoa_cal Calibrated Angle of attack in deg
- * @param sideslip Sideslip in deg
+ * @param aoa True angle of attack in deg
+ * @param sideslip True angle of sideslip in deg
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_airdata_send(mavlink_channel_t chan, uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float aoa_cal, float sideslip)
+static inline void mavlink_msg_airdata_send(mavlink_channel_t chan, uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float sideslip)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_LEN];
@@ -176,8 +167,7 @@ static inline void mavlink_msg_airdata_send(mavlink_channel_t chan, uint32_t tim
 	_mav_put_float(buf, 4, pressure_alt);
 	_mav_put_float(buf, 8, airspeed);
 	_mav_put_float(buf, 12, aoa);
-	_mav_put_float(buf, 16, aoa_cal);
-	_mav_put_float(buf, 20, sideslip);
+	_mav_put_float(buf, 16, sideslip);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRDATA, buf, MAVLINK_MSG_ID_AIRDATA_LEN, MAVLINK_MSG_ID_AIRDATA_CRC);
@@ -190,7 +180,6 @@ static inline void mavlink_msg_airdata_send(mavlink_channel_t chan, uint32_t tim
 	packet.pressure_alt = pressure_alt;
 	packet.airspeed = airspeed;
 	packet.aoa = aoa;
-	packet.aoa_cal = aoa_cal;
 	packet.sideslip = sideslip;
 
 #if MAVLINK_CRC_EXTRA
@@ -209,7 +198,7 @@ static inline void mavlink_msg_airdata_send(mavlink_channel_t chan, uint32_t tim
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_airdata_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float aoa_cal, float sideslip)
+static inline void mavlink_msg_airdata_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float pressure_alt, float airspeed, float aoa, float sideslip)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -217,8 +206,7 @@ static inline void mavlink_msg_airdata_send_buf(mavlink_message_t *msgbuf, mavli
 	_mav_put_float(buf, 4, pressure_alt);
 	_mav_put_float(buf, 8, airspeed);
 	_mav_put_float(buf, 12, aoa);
-	_mav_put_float(buf, 16, aoa_cal);
-	_mav_put_float(buf, 20, sideslip);
+	_mav_put_float(buf, 16, sideslip);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRDATA, buf, MAVLINK_MSG_ID_AIRDATA_LEN, MAVLINK_MSG_ID_AIRDATA_CRC);
@@ -231,7 +219,6 @@ static inline void mavlink_msg_airdata_send_buf(mavlink_message_t *msgbuf, mavli
 	packet->pressure_alt = pressure_alt;
 	packet->airspeed = airspeed;
 	packet->aoa = aoa;
-	packet->aoa_cal = aoa_cal;
 	packet->sideslip = sideslip;
 
 #if MAVLINK_CRC_EXTRA
@@ -281,7 +268,7 @@ static inline float mavlink_msg_airdata_get_airspeed(const mavlink_message_t* ms
 /**
  * @brief Get field aoa from airdata message
  *
- * @return Angle of attack in deg
+ * @return True angle of attack in deg
  */
 static inline float mavlink_msg_airdata_get_aoa(const mavlink_message_t* msg)
 {
@@ -289,23 +276,13 @@ static inline float mavlink_msg_airdata_get_aoa(const mavlink_message_t* msg)
 }
 
 /**
- * @brief Get field aoa_cal from airdata message
- *
- * @return Calibrated Angle of attack in deg
- */
-static inline float mavlink_msg_airdata_get_aoa_cal(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  16);
-}
-
-/**
  * @brief Get field sideslip from airdata message
  *
- * @return Sideslip in deg
+ * @return True angle of sideslip in deg
  */
 static inline float mavlink_msg_airdata_get_sideslip(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_float(msg,  16);
 }
 
 /**
@@ -321,7 +298,6 @@ static inline void mavlink_msg_airdata_decode(const mavlink_message_t* msg, mavl
 	airdata->pressure_alt = mavlink_msg_airdata_get_pressure_alt(msg);
 	airdata->airspeed = mavlink_msg_airdata_get_airspeed(msg);
 	airdata->aoa = mavlink_msg_airdata_get_aoa(msg);
-	airdata->aoa_cal = mavlink_msg_airdata_get_aoa_cal(msg);
 	airdata->sideslip = mavlink_msg_airdata_get_sideslip(msg);
 #else
 	memcpy(airdata, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_AIRDATA_LEN);
