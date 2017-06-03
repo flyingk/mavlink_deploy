@@ -46,9 +46,7 @@ typedef enum UAVmainframe_MODE
 	UAVmainframe_MODE_TECS=8, /* (Bit 4) Vehicle is in altitude/speed hold mode. | */
 	UAVmainframe_MODE_AUTO=16, /* (Bit 5) Vehicle is running in auto mode with onboard guidance. | */
 	UAVmainframe_MODE_INPUT=32, /* (Bit 6) Vehicle is executing test inputs automatically. | */
-	UAVmainframe_MODE_FLAG_SAFETY_ARMED=16384, /* (Bit 15) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
-	UAVmainframe_MODE_FLAG_FLIGHT_SIM=32768, /* (Bit 16) UAVmainframe in flight sim mode | */
-	UAVmainframe_MODE_ENUM_END=32769, /*  | */
+	UAVmainframe_MODE_ENUM_END=33, /*  | */
 } UAVmainframe_MODE;
 #endif
 
@@ -74,9 +72,20 @@ typedef enum UAVmainframe_INPUT_SUB_MODES
 	UAVmainframe_SUB_MODE_FLAG_GLIDE=16, /* (Bit 5) Glide mode. | */
 	UAVmainframe_SUB_MODE_FLAG_ACCEL=32, /* (Bit 6) Constant altitude acceleration mode. | */
 	UAVmainframe_SUB_MODE_FLAG_TURN=64, /* (Bit 7) Constant altitude and speed turning mode. | */
-	UAVmainframe_MODE_INPUT_CLOSED_LOOP=32768, /* (Bit 16) Vehicle is executing closed loop test inputs | */
-	UAVmainframe_INPUT_SUB_MODES_ENUM_END=32769, /*  | */
+	UAVmainframe_INPUT_SUB_MODES_ENUM_END=65, /*  | */
 } UAVmainframe_INPUT_SUB_MODES;
+#endif
+
+/** @brief  */
+#ifndef HAVE_ENUM_UAVmainframe_MODE_FLAGS
+#define HAVE_ENUM_UAVmainframe_MODE_FLAGS
+typedef enum UAVmainframe_MODE_FLAGS
+{
+	UAVmainframe_MODE_FLAG_SAFETY_ARMED=1, /* (Bit 1) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
+	UAVmainframe_MODE_FLAG_FLIGHT_SIM=2, /* (Bit 2) UAVmainframe in flight sim mode | */
+	UAVmainframe_MODE_FLAG_INPUT_CLOSED_LOOP=4, /* (Bit 3) Vehicle is executing closed loop test inputs | */
+	UAVmainframe_MODE_FLAGS_ENUM_END=5, /*  | */
+} UAVmainframe_MODE_FLAGS;
 #endif
 
 #include "../common/common.h"
