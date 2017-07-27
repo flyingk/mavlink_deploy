@@ -55,7 +55,8 @@ typedef enum UAVmainframe_MODE
 #define HAVE_ENUM_UAVmainframe_AUTO_SUB_MODES
 typedef enum UAVmainframe_AUTO_SUB_MODES
 {
-	UAVmainframe_SUB_MODE_RETURN_HOME=1, /* (Bit 1) Vehicle is commanded to return to home position at specified altitude. | */
+	UAVmainframe_AUTO_SUB_MODE_DEFAULT=0, /* Vehicle is in undefined auto mode. | */
+	UAVmainframe_AUTO_SUB_MODE_RETURN_HOME=1, /* (Bit 1) Vehicle is commanded to return to home position at specified altitude. | */
 	UAVmainframe_AUTO_SUB_MODES_ENUM_END=2, /*  | */
 } UAVmainframe_AUTO_SUB_MODES;
 #endif
@@ -65,15 +66,26 @@ typedef enum UAVmainframe_AUTO_SUB_MODES
 #define HAVE_ENUM_UAVmainframe_INPUT_SUB_MODES
 typedef enum UAVmainframe_INPUT_SUB_MODES
 {
-	UAVmainframe_SUB_MODE_FLAG_ELEVATOR=1, /* (Bit 1) Elevator input. | */
-	UAVmainframe_SUB_MODE_FLAG_RUDDER=2, /* (Bit 2) Rudder input. | */
-	UAVmainframe_SUB_MODE_FLAG_AILERON=4, /* (Bit 3) Aileron input. | */
-	UAVmainframe_SUB_MODE_FLAG_THROTTLE=8, /* (Bit 4) Throttle input. | */
-	UAVmainframe_SUB_MODE_FLAG_GLIDE=16, /* (Bit 5) Glide mode. | */
-	UAVmainframe_SUB_MODE_FLAG_ACCEL=32, /* (Bit 6) Constant altitude acceleration mode. | */
-	UAVmainframe_SUB_MODE_FLAG_TURN=64, /* (Bit 7) Constant altitude and speed turning mode. | */
-	UAVmainframe_INPUT_SUB_MODES_ENUM_END=65, /*  | */
+	UAVmainframe_INPUT_SUB_MODE_DEFAULT=0, /* Undefined input. | */
+	UAVmainframe_INPUT_SUB_MODE_ELEVATOR=1, /* (Bit 1) Elevator input. | */
+	UAVmainframe_INPUT_SUB_MODE_RUDDER=2, /* (Bit 2) Rudder input. | */
+	UAVmainframe_INPUT_SUB_MODE_AILERON=4, /* (Bit 3) Aileron input. | */
+	UAVmainframe_INPUT_SUB_MODE_THROTTLE=8, /* (Bit 4) Throttle input. | */
+	UAVmainframe_INPUT_SUB_MODES_ENUM_END=9, /*  | */
 } UAVmainframe_INPUT_SUB_MODES;
+#endif
+
+/** @brief  */
+#ifndef HAVE_ENUM_UAVmainframe_TECS_INPUT_SUB_MODES
+#define HAVE_ENUM_UAVmainframe_TECS_INPUT_SUB_MODES
+typedef enum UAVmainframe_TECS_INPUT_SUB_MODES
+{
+	UAVmainframe_TECS_INPUT_SUB_MODE_DEFAULT=0, /* Undefined TECS input. | */
+	UAVmainframe_TECS_INPUT_SUB_MODE_GLIDE=1, /* (Bit 1) Glide mode. | */
+	UAVmainframe_TECS_INPUT_SUB_MODE_ACCEL=2, /* (Bit 2) Constant altitude acceleration mode. | */
+	UAVmainframe_TECS_INPUT_SUB_MODE_TURN=4, /* (Bit 3) Constant altitude and speed turning mode. | */
+	UAVmainframe_TECS_INPUT_SUB_MODES_ENUM_END=5, /*  | */
+} UAVmainframe_TECS_INPUT_SUB_MODES;
 #endif
 
 /** @brief  */
@@ -81,10 +93,12 @@ typedef enum UAVmainframe_INPUT_SUB_MODES
 #define HAVE_ENUM_UAVmainframe_MODE_FLAGS
 typedef enum UAVmainframe_MODE_FLAGS
 {
+	UAVmainframe_MODE_FLAG_SAFETY_DISARMED=0, /* UAVmainframe safety set to disarmed. | */
 	UAVmainframe_MODE_FLAG_SAFETY_ARMED=1, /* (Bit 1) UAVmainframe safety set to armed. Motors are enabled / running / can start. Ready to fly. | */
 	UAVmainframe_MODE_FLAG_FLIGHT_SIM=2, /* (Bit 2) UAVmainframe in flight sim mode | */
 	UAVmainframe_MODE_FLAG_INPUT_CLOSED_LOOP=4, /* (Bit 3) Vehicle is executing closed loop test inputs | */
-	UAVmainframe_MODE_FLAGS_ENUM_END=5, /*  | */
+	UAVmainframe_MODE_FLAG_TECS_INPUT_SETUP=8, /* (Bit 4) Vehicle is in performance test setup mode | */
+	UAVmainframe_MODE_FLAGS_ENUM_END=9, /*  | */
 } UAVmainframe_MODE_FLAGS;
 #endif
 
