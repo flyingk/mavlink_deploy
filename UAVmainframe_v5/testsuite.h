@@ -183,7 +183,7 @@ static void mavlink_test_control_feedback(uint8_t system_id, uint8_t component_i
         	packet1.elevator = packet_in.elevator;
         	packet1.rudder = packet_in.rudder;
         	packet1.aileron = packet_in.aileron;
-        	packet1.ctrl_aux_1 = packet_in.ctrl_aux_1;
+        	packet1.Thrust_1 = packet_in.Thrust_1;
         	packet1.ctrl_aux_2 = packet_in.ctrl_aux_2;
         	packet1.ctrl_aux_3 = packet_in.ctrl_aux_3;
         
@@ -195,12 +195,12 @@ static void mavlink_test_control_feedback(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_control_feedback_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.ctrl_aux_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
+	mavlink_msg_control_feedback_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.Thrust_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
 	mavlink_msg_control_feedback_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_control_feedback_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.ctrl_aux_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
+	mavlink_msg_control_feedback_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.Thrust_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
 	mavlink_msg_control_feedback_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -213,7 +213,7 @@ static void mavlink_test_control_feedback(uint8_t system_id, uint8_t component_i
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_control_feedback_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.ctrl_aux_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
+	mavlink_msg_control_feedback_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.elevator , packet1.rudder , packet1.aileron , packet1.Thrust_1 , packet1.ctrl_aux_2 , packet1.ctrl_aux_3 );
 	mavlink_msg_control_feedback_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }

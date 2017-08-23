@@ -8,7 +8,7 @@ typedef struct __mavlink_control_feedback_t
  float elevator; /*< Elevator angle in deg*/
  float rudder; /*< Rudder angle in deg*/
  float aileron; /*< Aileron angle in deg*/
- float ctrl_aux_1; /*< Aux channel 1 in deg*/
+ float Thrust_1; /*< Thrust engine 1 in kg*/
  float ctrl_aux_2; /*< Aux channel 2 in deg*/
  float ctrl_aux_3; /*< Aux channel 3 in deg*/
 } mavlink_control_feedback_t;
@@ -16,8 +16,8 @@ typedef struct __mavlink_control_feedback_t
 #define MAVLINK_MSG_ID_CONTROL_FEEDBACK_LEN 28
 #define MAVLINK_MSG_ID_183_LEN 28
 
-#define MAVLINK_MSG_ID_CONTROL_FEEDBACK_CRC 140
-#define MAVLINK_MSG_ID_183_CRC 140
+#define MAVLINK_MSG_ID_CONTROL_FEEDBACK_CRC 64
+#define MAVLINK_MSG_ID_183_CRC 64
 
 
 
@@ -28,7 +28,7 @@ typedef struct __mavlink_control_feedback_t
          { "elevator", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_control_feedback_t, elevator) }, \
          { "rudder", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_control_feedback_t, rudder) }, \
          { "aileron", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_control_feedback_t, aileron) }, \
-         { "ctrl_aux_1", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_control_feedback_t, ctrl_aux_1) }, \
+         { "Thrust_1", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_control_feedback_t, Thrust_1) }, \
          { "ctrl_aux_2", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_control_feedback_t, ctrl_aux_2) }, \
          { "ctrl_aux_3", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_control_feedback_t, ctrl_aux_3) }, \
          } \
@@ -45,13 +45,13 @@ typedef struct __mavlink_control_feedback_t
  * @param elevator Elevator angle in deg
  * @param rudder Rudder angle in deg
  * @param aileron Aileron angle in deg
- * @param ctrl_aux_1 Aux channel 1 in deg
+ * @param Thrust_1 Thrust engine 1 in kg
  * @param ctrl_aux_2 Aux channel 2 in deg
  * @param ctrl_aux_3 Aux channel 3 in deg
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_control_feedback_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, float elevator, float rudder, float aileron, float ctrl_aux_1, float ctrl_aux_2, float ctrl_aux_3)
+						       uint32_t time_boot_ms, float elevator, float rudder, float aileron, float Thrust_1, float ctrl_aux_2, float ctrl_aux_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_CONTROL_FEEDBACK_LEN];
@@ -59,7 +59,7 @@ static inline uint16_t mavlink_msg_control_feedback_pack(uint8_t system_id, uint
 	_mav_put_float(buf, 4, elevator);
 	_mav_put_float(buf, 8, rudder);
 	_mav_put_float(buf, 12, aileron);
-	_mav_put_float(buf, 16, ctrl_aux_1);
+	_mav_put_float(buf, 16, Thrust_1);
 	_mav_put_float(buf, 20, ctrl_aux_2);
 	_mav_put_float(buf, 24, ctrl_aux_3);
 
@@ -70,7 +70,7 @@ static inline uint16_t mavlink_msg_control_feedback_pack(uint8_t system_id, uint
 	packet.elevator = elevator;
 	packet.rudder = rudder;
 	packet.aileron = aileron;
-	packet.ctrl_aux_1 = ctrl_aux_1;
+	packet.Thrust_1 = Thrust_1;
 	packet.ctrl_aux_2 = ctrl_aux_2;
 	packet.ctrl_aux_3 = ctrl_aux_3;
 
@@ -95,14 +95,14 @@ static inline uint16_t mavlink_msg_control_feedback_pack(uint8_t system_id, uint
  * @param elevator Elevator angle in deg
  * @param rudder Rudder angle in deg
  * @param aileron Aileron angle in deg
- * @param ctrl_aux_1 Aux channel 1 in deg
+ * @param Thrust_1 Thrust engine 1 in kg
  * @param ctrl_aux_2 Aux channel 2 in deg
  * @param ctrl_aux_3 Aux channel 3 in deg
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_control_feedback_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float elevator,float rudder,float aileron,float ctrl_aux_1,float ctrl_aux_2,float ctrl_aux_3)
+						           uint32_t time_boot_ms,float elevator,float rudder,float aileron,float Thrust_1,float ctrl_aux_2,float ctrl_aux_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_CONTROL_FEEDBACK_LEN];
@@ -110,7 +110,7 @@ static inline uint16_t mavlink_msg_control_feedback_pack_chan(uint8_t system_id,
 	_mav_put_float(buf, 4, elevator);
 	_mav_put_float(buf, 8, rudder);
 	_mav_put_float(buf, 12, aileron);
-	_mav_put_float(buf, 16, ctrl_aux_1);
+	_mav_put_float(buf, 16, Thrust_1);
 	_mav_put_float(buf, 20, ctrl_aux_2);
 	_mav_put_float(buf, 24, ctrl_aux_3);
 
@@ -121,7 +121,7 @@ static inline uint16_t mavlink_msg_control_feedback_pack_chan(uint8_t system_id,
 	packet.elevator = elevator;
 	packet.rudder = rudder;
 	packet.aileron = aileron;
-	packet.ctrl_aux_1 = ctrl_aux_1;
+	packet.Thrust_1 = Thrust_1;
 	packet.ctrl_aux_2 = ctrl_aux_2;
 	packet.ctrl_aux_3 = ctrl_aux_3;
 
@@ -146,7 +146,7 @@ static inline uint16_t mavlink_msg_control_feedback_pack_chan(uint8_t system_id,
  */
 static inline uint16_t mavlink_msg_control_feedback_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_control_feedback_t* control_feedback)
 {
-	return mavlink_msg_control_feedback_pack(system_id, component_id, msg, control_feedback->time_boot_ms, control_feedback->elevator, control_feedback->rudder, control_feedback->aileron, control_feedback->ctrl_aux_1, control_feedback->ctrl_aux_2, control_feedback->ctrl_aux_3);
+	return mavlink_msg_control_feedback_pack(system_id, component_id, msg, control_feedback->time_boot_ms, control_feedback->elevator, control_feedback->rudder, control_feedback->aileron, control_feedback->Thrust_1, control_feedback->ctrl_aux_2, control_feedback->ctrl_aux_3);
 }
 
 /**
@@ -160,7 +160,7 @@ static inline uint16_t mavlink_msg_control_feedback_encode(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_control_feedback_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_control_feedback_t* control_feedback)
 {
-	return mavlink_msg_control_feedback_pack_chan(system_id, component_id, chan, msg, control_feedback->time_boot_ms, control_feedback->elevator, control_feedback->rudder, control_feedback->aileron, control_feedback->ctrl_aux_1, control_feedback->ctrl_aux_2, control_feedback->ctrl_aux_3);
+	return mavlink_msg_control_feedback_pack_chan(system_id, component_id, chan, msg, control_feedback->time_boot_ms, control_feedback->elevator, control_feedback->rudder, control_feedback->aileron, control_feedback->Thrust_1, control_feedback->ctrl_aux_2, control_feedback->ctrl_aux_3);
 }
 
 /**
@@ -171,13 +171,13 @@ static inline uint16_t mavlink_msg_control_feedback_encode_chan(uint8_t system_i
  * @param elevator Elevator angle in deg
  * @param rudder Rudder angle in deg
  * @param aileron Aileron angle in deg
- * @param ctrl_aux_1 Aux channel 1 in deg
+ * @param Thrust_1 Thrust engine 1 in kg
  * @param ctrl_aux_2 Aux channel 2 in deg
  * @param ctrl_aux_3 Aux channel 3 in deg
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_control_feedback_send(mavlink_channel_t chan, uint32_t time_boot_ms, float elevator, float rudder, float aileron, float ctrl_aux_1, float ctrl_aux_2, float ctrl_aux_3)
+static inline void mavlink_msg_control_feedback_send(mavlink_channel_t chan, uint32_t time_boot_ms, float elevator, float rudder, float aileron, float Thrust_1, float ctrl_aux_2, float ctrl_aux_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_CONTROL_FEEDBACK_LEN];
@@ -185,7 +185,7 @@ static inline void mavlink_msg_control_feedback_send(mavlink_channel_t chan, uin
 	_mav_put_float(buf, 4, elevator);
 	_mav_put_float(buf, 8, rudder);
 	_mav_put_float(buf, 12, aileron);
-	_mav_put_float(buf, 16, ctrl_aux_1);
+	_mav_put_float(buf, 16, Thrust_1);
 	_mav_put_float(buf, 20, ctrl_aux_2);
 	_mav_put_float(buf, 24, ctrl_aux_3);
 
@@ -200,7 +200,7 @@ static inline void mavlink_msg_control_feedback_send(mavlink_channel_t chan, uin
 	packet.elevator = elevator;
 	packet.rudder = rudder;
 	packet.aileron = aileron;
-	packet.ctrl_aux_1 = ctrl_aux_1;
+	packet.Thrust_1 = Thrust_1;
 	packet.ctrl_aux_2 = ctrl_aux_2;
 	packet.ctrl_aux_3 = ctrl_aux_3;
 
@@ -220,7 +220,7 @@ static inline void mavlink_msg_control_feedback_send(mavlink_channel_t chan, uin
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_control_feedback_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float elevator, float rudder, float aileron, float ctrl_aux_1, float ctrl_aux_2, float ctrl_aux_3)
+static inline void mavlink_msg_control_feedback_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float elevator, float rudder, float aileron, float Thrust_1, float ctrl_aux_2, float ctrl_aux_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -228,7 +228,7 @@ static inline void mavlink_msg_control_feedback_send_buf(mavlink_message_t *msgb
 	_mav_put_float(buf, 4, elevator);
 	_mav_put_float(buf, 8, rudder);
 	_mav_put_float(buf, 12, aileron);
-	_mav_put_float(buf, 16, ctrl_aux_1);
+	_mav_put_float(buf, 16, Thrust_1);
 	_mav_put_float(buf, 20, ctrl_aux_2);
 	_mav_put_float(buf, 24, ctrl_aux_3);
 
@@ -243,7 +243,7 @@ static inline void mavlink_msg_control_feedback_send_buf(mavlink_message_t *msgb
 	packet->elevator = elevator;
 	packet->rudder = rudder;
 	packet->aileron = aileron;
-	packet->ctrl_aux_1 = ctrl_aux_1;
+	packet->Thrust_1 = Thrust_1;
 	packet->ctrl_aux_2 = ctrl_aux_2;
 	packet->ctrl_aux_3 = ctrl_aux_3;
 
@@ -302,11 +302,11 @@ static inline float mavlink_msg_control_feedback_get_aileron(const mavlink_messa
 }
 
 /**
- * @brief Get field ctrl_aux_1 from control_feedback message
+ * @brief Get field Thrust_1 from control_feedback message
  *
- * @return Aux channel 1 in deg
+ * @return Thrust engine 1 in kg
  */
-static inline float mavlink_msg_control_feedback_get_ctrl_aux_1(const mavlink_message_t* msg)
+static inline float mavlink_msg_control_feedback_get_Thrust_1(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  16);
 }
@@ -344,7 +344,7 @@ static inline void mavlink_msg_control_feedback_decode(const mavlink_message_t* 
 	control_feedback->elevator = mavlink_msg_control_feedback_get_elevator(msg);
 	control_feedback->rudder = mavlink_msg_control_feedback_get_rudder(msg);
 	control_feedback->aileron = mavlink_msg_control_feedback_get_aileron(msg);
-	control_feedback->ctrl_aux_1 = mavlink_msg_control_feedback_get_ctrl_aux_1(msg);
+	control_feedback->Thrust_1 = mavlink_msg_control_feedback_get_Thrust_1(msg);
 	control_feedback->ctrl_aux_2 = mavlink_msg_control_feedback_get_ctrl_aux_2(msg);
 	control_feedback->ctrl_aux_3 = mavlink_msg_control_feedback_get_ctrl_aux_3(msg);
 #else
