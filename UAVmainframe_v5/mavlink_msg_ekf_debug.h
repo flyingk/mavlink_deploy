@@ -5,38 +5,32 @@
 typedef struct __mavlink_ekf_debug_t
 {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- float GX_bias; /*< Estimated gyro x bias [deg/s]*/
- float GY_bias; /*< Estimated gyro y bias [deg/s]*/
- float GZ_bias; /*< Estimated gyro z bias [deg/s]*/
- float AX_error; /*< Measurement error ax [g]*/
- float AY_error; /*< Measurement error ay [g]*/
- float AZ_error; /*< Measurement error az [g]*/
- float MX_error; /*< Measurement error mx [Gauss]*/
- float MY_error; /*< Measurement error my [Gauss]*/
- float MZ_error; /*< Measurement error mz [Gauss]*/
+ int16_t GX_bias; /*< Estimated gyro x bias [deg/s]*/
+ int16_t GY_bias; /*< Estimated gyro y bias [deg/s]*/
+ int16_t GZ_bias; /*< Estimated gyro z bias [deg/s]*/
+ int16_t AX_bias; /*< Estimated ax bias [g]*/
+ int16_t AY_bias; /*< Estimated ay bias [g]*/
+ int16_t AZ_bias; /*< Estimated az bias [g]*/
 } mavlink_ekf_debug_t;
 
-#define MAVLINK_MSG_ID_EKF_DEBUG_LEN 40
-#define MAVLINK_MSG_ID_199_LEN 40
+#define MAVLINK_MSG_ID_EKF_DEBUG_LEN 16
+#define MAVLINK_MSG_ID_199_LEN 16
 
-#define MAVLINK_MSG_ID_EKF_DEBUG_CRC 46
-#define MAVLINK_MSG_ID_199_CRC 46
+#define MAVLINK_MSG_ID_EKF_DEBUG_CRC 199
+#define MAVLINK_MSG_ID_199_CRC 199
 
 
 
 #define MAVLINK_MESSAGE_INFO_EKF_DEBUG { \
 	"EKF_DEBUG", \
-	10, \
+	7, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_ekf_debug_t, time_boot_ms) }, \
-         { "GX_bias", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_ekf_debug_t, GX_bias) }, \
-         { "GY_bias", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_ekf_debug_t, GY_bias) }, \
-         { "GZ_bias", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_ekf_debug_t, GZ_bias) }, \
-         { "AX_error", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_ekf_debug_t, AX_error) }, \
-         { "AY_error", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_ekf_debug_t, AY_error) }, \
-         { "AZ_error", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_ekf_debug_t, AZ_error) }, \
-         { "MX_error", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_ekf_debug_t, MX_error) }, \
-         { "MY_error", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_ekf_debug_t, MY_error) }, \
-         { "MZ_error", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_ekf_debug_t, MZ_error) }, \
+         { "GX_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_ekf_debug_t, GX_bias) }, \
+         { "GY_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_ekf_debug_t, GY_bias) }, \
+         { "GZ_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_ekf_debug_t, GZ_bias) }, \
+         { "AX_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_ekf_debug_t, AX_bias) }, \
+         { "AY_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_ekf_debug_t, AY_bias) }, \
+         { "AZ_bias", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_ekf_debug_t, AZ_bias) }, \
          } \
 }
 
@@ -51,29 +45,23 @@ typedef struct __mavlink_ekf_debug_t
  * @param GX_bias Estimated gyro x bias [deg/s]
  * @param GY_bias Estimated gyro y bias [deg/s]
  * @param GZ_bias Estimated gyro z bias [deg/s]
- * @param AX_error Measurement error ax [g]
- * @param AY_error Measurement error ay [g]
- * @param AZ_error Measurement error az [g]
- * @param MX_error Measurement error mx [Gauss]
- * @param MY_error Measurement error my [Gauss]
- * @param MZ_error Measurement error mz [Gauss]
+ * @param AX_bias Estimated ax bias [g]
+ * @param AY_bias Estimated ay bias [g]
+ * @param AZ_bias Estimated az bias [g]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_debug_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, float GX_bias, float GY_bias, float GZ_bias, float AX_error, float AY_error, float AZ_error, float MX_error, float MY_error, float MZ_error)
+						       uint32_t time_boot_ms, int16_t GX_bias, int16_t GY_bias, int16_t GZ_bias, int16_t AX_bias, int16_t AY_bias, int16_t AZ_bias)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, GX_bias);
-	_mav_put_float(buf, 8, GY_bias);
-	_mav_put_float(buf, 12, GZ_bias);
-	_mav_put_float(buf, 16, AX_error);
-	_mav_put_float(buf, 20, AY_error);
-	_mav_put_float(buf, 24, AZ_error);
-	_mav_put_float(buf, 28, MX_error);
-	_mav_put_float(buf, 32, MY_error);
-	_mav_put_float(buf, 36, MZ_error);
+	_mav_put_int16_t(buf, 4, GX_bias);
+	_mav_put_int16_t(buf, 6, GY_bias);
+	_mav_put_int16_t(buf, 8, GZ_bias);
+	_mav_put_int16_t(buf, 10, AX_bias);
+	_mav_put_int16_t(buf, 12, AY_bias);
+	_mav_put_int16_t(buf, 14, AZ_bias);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EKF_DEBUG_LEN);
 #else
@@ -82,12 +70,9 @@ static inline uint16_t mavlink_msg_ekf_debug_pack(uint8_t system_id, uint8_t com
 	packet.GX_bias = GX_bias;
 	packet.GY_bias = GY_bias;
 	packet.GZ_bias = GZ_bias;
-	packet.AX_error = AX_error;
-	packet.AY_error = AY_error;
-	packet.AZ_error = AZ_error;
-	packet.MX_error = MX_error;
-	packet.MY_error = MY_error;
-	packet.MZ_error = MZ_error;
+	packet.AX_bias = AX_bias;
+	packet.AY_bias = AY_bias;
+	packet.AZ_bias = AZ_bias;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EKF_DEBUG_LEN);
 #endif
@@ -110,30 +95,24 @@ static inline uint16_t mavlink_msg_ekf_debug_pack(uint8_t system_id, uint8_t com
  * @param GX_bias Estimated gyro x bias [deg/s]
  * @param GY_bias Estimated gyro y bias [deg/s]
  * @param GZ_bias Estimated gyro z bias [deg/s]
- * @param AX_error Measurement error ax [g]
- * @param AY_error Measurement error ay [g]
- * @param AZ_error Measurement error az [g]
- * @param MX_error Measurement error mx [Gauss]
- * @param MY_error Measurement error my [Gauss]
- * @param MZ_error Measurement error mz [Gauss]
+ * @param AX_bias Estimated ax bias [g]
+ * @param AY_bias Estimated ay bias [g]
+ * @param AZ_bias Estimated az bias [g]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_debug_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,float GX_bias,float GY_bias,float GZ_bias,float AX_error,float AY_error,float AZ_error,float MX_error,float MY_error,float MZ_error)
+						           uint32_t time_boot_ms,int16_t GX_bias,int16_t GY_bias,int16_t GZ_bias,int16_t AX_bias,int16_t AY_bias,int16_t AZ_bias)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, GX_bias);
-	_mav_put_float(buf, 8, GY_bias);
-	_mav_put_float(buf, 12, GZ_bias);
-	_mav_put_float(buf, 16, AX_error);
-	_mav_put_float(buf, 20, AY_error);
-	_mav_put_float(buf, 24, AZ_error);
-	_mav_put_float(buf, 28, MX_error);
-	_mav_put_float(buf, 32, MY_error);
-	_mav_put_float(buf, 36, MZ_error);
+	_mav_put_int16_t(buf, 4, GX_bias);
+	_mav_put_int16_t(buf, 6, GY_bias);
+	_mav_put_int16_t(buf, 8, GZ_bias);
+	_mav_put_int16_t(buf, 10, AX_bias);
+	_mav_put_int16_t(buf, 12, AY_bias);
+	_mav_put_int16_t(buf, 14, AZ_bias);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EKF_DEBUG_LEN);
 #else
@@ -142,12 +121,9 @@ static inline uint16_t mavlink_msg_ekf_debug_pack_chan(uint8_t system_id, uint8_
 	packet.GX_bias = GX_bias;
 	packet.GY_bias = GY_bias;
 	packet.GZ_bias = GZ_bias;
-	packet.AX_error = AX_error;
-	packet.AY_error = AY_error;
-	packet.AZ_error = AZ_error;
-	packet.MX_error = MX_error;
-	packet.MY_error = MY_error;
-	packet.MZ_error = MZ_error;
+	packet.AX_bias = AX_bias;
+	packet.AY_bias = AY_bias;
+	packet.AZ_bias = AZ_bias;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EKF_DEBUG_LEN);
 #endif
@@ -170,7 +146,7 @@ static inline uint16_t mavlink_msg_ekf_debug_pack_chan(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_ekf_debug_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_debug_t* ekf_debug)
 {
-	return mavlink_msg_ekf_debug_pack(system_id, component_id, msg, ekf_debug->time_boot_ms, ekf_debug->GX_bias, ekf_debug->GY_bias, ekf_debug->GZ_bias, ekf_debug->AX_error, ekf_debug->AY_error, ekf_debug->AZ_error, ekf_debug->MX_error, ekf_debug->MY_error, ekf_debug->MZ_error);
+	return mavlink_msg_ekf_debug_pack(system_id, component_id, msg, ekf_debug->time_boot_ms, ekf_debug->GX_bias, ekf_debug->GY_bias, ekf_debug->GZ_bias, ekf_debug->AX_bias, ekf_debug->AY_bias, ekf_debug->AZ_bias);
 }
 
 /**
@@ -184,7 +160,7 @@ static inline uint16_t mavlink_msg_ekf_debug_encode(uint8_t system_id, uint8_t c
  */
 static inline uint16_t mavlink_msg_ekf_debug_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_debug_t* ekf_debug)
 {
-	return mavlink_msg_ekf_debug_pack_chan(system_id, component_id, chan, msg, ekf_debug->time_boot_ms, ekf_debug->GX_bias, ekf_debug->GY_bias, ekf_debug->GZ_bias, ekf_debug->AX_error, ekf_debug->AY_error, ekf_debug->AZ_error, ekf_debug->MX_error, ekf_debug->MY_error, ekf_debug->MZ_error);
+	return mavlink_msg_ekf_debug_pack_chan(system_id, component_id, chan, msg, ekf_debug->time_boot_ms, ekf_debug->GX_bias, ekf_debug->GY_bias, ekf_debug->GZ_bias, ekf_debug->AX_bias, ekf_debug->AY_bias, ekf_debug->AZ_bias);
 }
 
 /**
@@ -195,29 +171,23 @@ static inline uint16_t mavlink_msg_ekf_debug_encode_chan(uint8_t system_id, uint
  * @param GX_bias Estimated gyro x bias [deg/s]
  * @param GY_bias Estimated gyro y bias [deg/s]
  * @param GZ_bias Estimated gyro z bias [deg/s]
- * @param AX_error Measurement error ax [g]
- * @param AY_error Measurement error ay [g]
- * @param AZ_error Measurement error az [g]
- * @param MX_error Measurement error mx [Gauss]
- * @param MY_error Measurement error my [Gauss]
- * @param MZ_error Measurement error mz [Gauss]
+ * @param AX_bias Estimated ax bias [g]
+ * @param AY_bias Estimated ay bias [g]
+ * @param AZ_bias Estimated az bias [g]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ekf_debug_send(mavlink_channel_t chan, uint32_t time_boot_ms, float GX_bias, float GY_bias, float GZ_bias, float AX_error, float AY_error, float AZ_error, float MX_error, float MY_error, float MZ_error)
+static inline void mavlink_msg_ekf_debug_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t GX_bias, int16_t GY_bias, int16_t GZ_bias, int16_t AX_bias, int16_t AY_bias, int16_t AZ_bias)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_DEBUG_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, GX_bias);
-	_mav_put_float(buf, 8, GY_bias);
-	_mav_put_float(buf, 12, GZ_bias);
-	_mav_put_float(buf, 16, AX_error);
-	_mav_put_float(buf, 20, AY_error);
-	_mav_put_float(buf, 24, AZ_error);
-	_mav_put_float(buf, 28, MX_error);
-	_mav_put_float(buf, 32, MY_error);
-	_mav_put_float(buf, 36, MZ_error);
+	_mav_put_int16_t(buf, 4, GX_bias);
+	_mav_put_int16_t(buf, 6, GY_bias);
+	_mav_put_int16_t(buf, 8, GZ_bias);
+	_mav_put_int16_t(buf, 10, AX_bias);
+	_mav_put_int16_t(buf, 12, AY_bias);
+	_mav_put_int16_t(buf, 14, AZ_bias);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_DEBUG, buf, MAVLINK_MSG_ID_EKF_DEBUG_LEN, MAVLINK_MSG_ID_EKF_DEBUG_CRC);
@@ -230,12 +200,9 @@ static inline void mavlink_msg_ekf_debug_send(mavlink_channel_t chan, uint32_t t
 	packet.GX_bias = GX_bias;
 	packet.GY_bias = GY_bias;
 	packet.GZ_bias = GZ_bias;
-	packet.AX_error = AX_error;
-	packet.AY_error = AY_error;
-	packet.AZ_error = AZ_error;
-	packet.MX_error = MX_error;
-	packet.MY_error = MY_error;
-	packet.MZ_error = MZ_error;
+	packet.AX_bias = AX_bias;
+	packet.AY_bias = AY_bias;
+	packet.AZ_bias = AZ_bias;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_DEBUG, (const char *)&packet, MAVLINK_MSG_ID_EKF_DEBUG_LEN, MAVLINK_MSG_ID_EKF_DEBUG_CRC);
@@ -253,20 +220,17 @@ static inline void mavlink_msg_ekf_debug_send(mavlink_channel_t chan, uint32_t t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ekf_debug_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, float GX_bias, float GY_bias, float GZ_bias, float AX_error, float AY_error, float AZ_error, float MX_error, float MY_error, float MZ_error)
+static inline void mavlink_msg_ekf_debug_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t GX_bias, int16_t GY_bias, int16_t GZ_bias, int16_t AX_bias, int16_t AY_bias, int16_t AZ_bias)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, GX_bias);
-	_mav_put_float(buf, 8, GY_bias);
-	_mav_put_float(buf, 12, GZ_bias);
-	_mav_put_float(buf, 16, AX_error);
-	_mav_put_float(buf, 20, AY_error);
-	_mav_put_float(buf, 24, AZ_error);
-	_mav_put_float(buf, 28, MX_error);
-	_mav_put_float(buf, 32, MY_error);
-	_mav_put_float(buf, 36, MZ_error);
+	_mav_put_int16_t(buf, 4, GX_bias);
+	_mav_put_int16_t(buf, 6, GY_bias);
+	_mav_put_int16_t(buf, 8, GZ_bias);
+	_mav_put_int16_t(buf, 10, AX_bias);
+	_mav_put_int16_t(buf, 12, AY_bias);
+	_mav_put_int16_t(buf, 14, AZ_bias);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_DEBUG, buf, MAVLINK_MSG_ID_EKF_DEBUG_LEN, MAVLINK_MSG_ID_EKF_DEBUG_CRC);
@@ -279,12 +243,9 @@ static inline void mavlink_msg_ekf_debug_send_buf(mavlink_message_t *msgbuf, mav
 	packet->GX_bias = GX_bias;
 	packet->GY_bias = GY_bias;
 	packet->GZ_bias = GZ_bias;
-	packet->AX_error = AX_error;
-	packet->AY_error = AY_error;
-	packet->AZ_error = AZ_error;
-	packet->MX_error = MX_error;
-	packet->MY_error = MY_error;
-	packet->MZ_error = MZ_error;
+	packet->AX_bias = AX_bias;
+	packet->AY_bias = AY_bias;
+	packet->AZ_bias = AZ_bias;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_DEBUG, (const char *)packet, MAVLINK_MSG_ID_EKF_DEBUG_LEN, MAVLINK_MSG_ID_EKF_DEBUG_CRC);
@@ -315,9 +276,9 @@ static inline uint32_t mavlink_msg_ekf_debug_get_time_boot_ms(const mavlink_mess
  *
  * @return Estimated gyro x bias [deg/s]
  */
-static inline float mavlink_msg_ekf_debug_get_GX_bias(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_GX_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  4);
+	return _MAV_RETURN_int16_t(msg,  4);
 }
 
 /**
@@ -325,9 +286,9 @@ static inline float mavlink_msg_ekf_debug_get_GX_bias(const mavlink_message_t* m
  *
  * @return Estimated gyro y bias [deg/s]
  */
-static inline float mavlink_msg_ekf_debug_get_GY_bias(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_GY_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  8);
+	return _MAV_RETURN_int16_t(msg,  6);
 }
 
 /**
@@ -335,69 +296,39 @@ static inline float mavlink_msg_ekf_debug_get_GY_bias(const mavlink_message_t* m
  *
  * @return Estimated gyro z bias [deg/s]
  */
-static inline float mavlink_msg_ekf_debug_get_GZ_bias(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_GZ_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  12);
+	return _MAV_RETURN_int16_t(msg,  8);
 }
 
 /**
- * @brief Get field AX_error from ekf_debug message
+ * @brief Get field AX_bias from ekf_debug message
  *
- * @return Measurement error ax [g]
+ * @return Estimated ax bias [g]
  */
-static inline float mavlink_msg_ekf_debug_get_AX_error(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_AX_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  16);
+	return _MAV_RETURN_int16_t(msg,  10);
 }
 
 /**
- * @brief Get field AY_error from ekf_debug message
+ * @brief Get field AY_bias from ekf_debug message
  *
- * @return Measurement error ay [g]
+ * @return Estimated ay bias [g]
  */
-static inline float mavlink_msg_ekf_debug_get_AY_error(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_AY_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_int16_t(msg,  12);
 }
 
 /**
- * @brief Get field AZ_error from ekf_debug message
+ * @brief Get field AZ_bias from ekf_debug message
  *
- * @return Measurement error az [g]
+ * @return Estimated az bias [g]
  */
-static inline float mavlink_msg_ekf_debug_get_AZ_error(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_debug_get_AZ_bias(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  24);
-}
-
-/**
- * @brief Get field MX_error from ekf_debug message
- *
- * @return Measurement error mx [Gauss]
- */
-static inline float mavlink_msg_ekf_debug_get_MX_error(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  28);
-}
-
-/**
- * @brief Get field MY_error from ekf_debug message
- *
- * @return Measurement error my [Gauss]
- */
-static inline float mavlink_msg_ekf_debug_get_MY_error(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  32);
-}
-
-/**
- * @brief Get field MZ_error from ekf_debug message
- *
- * @return Measurement error mz [Gauss]
- */
-static inline float mavlink_msg_ekf_debug_get_MZ_error(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  36);
+	return _MAV_RETURN_int16_t(msg,  14);
 }
 
 /**
@@ -413,12 +344,9 @@ static inline void mavlink_msg_ekf_debug_decode(const mavlink_message_t* msg, ma
 	ekf_debug->GX_bias = mavlink_msg_ekf_debug_get_GX_bias(msg);
 	ekf_debug->GY_bias = mavlink_msg_ekf_debug_get_GY_bias(msg);
 	ekf_debug->GZ_bias = mavlink_msg_ekf_debug_get_GZ_bias(msg);
-	ekf_debug->AX_error = mavlink_msg_ekf_debug_get_AX_error(msg);
-	ekf_debug->AY_error = mavlink_msg_ekf_debug_get_AY_error(msg);
-	ekf_debug->AZ_error = mavlink_msg_ekf_debug_get_AZ_error(msg);
-	ekf_debug->MX_error = mavlink_msg_ekf_debug_get_MX_error(msg);
-	ekf_debug->MY_error = mavlink_msg_ekf_debug_get_MY_error(msg);
-	ekf_debug->MZ_error = mavlink_msg_ekf_debug_get_MZ_error(msg);
+	ekf_debug->AX_bias = mavlink_msg_ekf_debug_get_AX_bias(msg);
+	ekf_debug->AY_bias = mavlink_msg_ekf_debug_get_AY_bias(msg);
+	ekf_debug->AZ_bias = mavlink_msg_ekf_debug_get_AZ_bias(msg);
 #else
 	memcpy(ekf_debug, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_EKF_DEBUG_LEN);
 #endif
