@@ -1003,7 +1003,7 @@ static void mavlink_test_ekf_debug(uint8_t system_id, uint8_t component_id, mavl
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
 	mavlink_ekf_debug_t packet_in = {
-		963497464,17443,17547,17651,17755,17859,17963
+		963497464,17443,17547,17651,17755,17859,17963,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003
     };
 	mavlink_ekf_debug_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -1014,6 +1014,16 @@ static void mavlink_test_ekf_debug(uint8_t system_id, uint8_t component_id, mavl
         	packet1.AX_bias = packet_in.AX_bias;
         	packet1.AY_bias = packet_in.AY_bias;
         	packet1.AZ_bias = packet_in.AZ_bias;
+        	packet1.MX_bias = packet_in.MX_bias;
+        	packet1.MY_bias = packet_in.MY_bias;
+        	packet1.MZ_bias = packet_in.MZ_bias;
+        	packet1.Vair_bias = packet_in.Vair_bias;
+        	packet1.AoA_bias = packet_in.AoA_bias;
+        	packet1.CW_bias = packet_in.CW_bias;
+        	packet1.Alt_bias = packet_in.Alt_bias;
+        	packet1.Vair_scale = packet_in.Vair_scale;
+        	packet1.AoA_scale = packet_in.AoA_scale;
+        	packet1.CW_scale = packet_in.CW_scale;
         
         
 
@@ -1023,12 +1033,12 @@ static void mavlink_test_ekf_debug(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_debug_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias );
+	mavlink_msg_ekf_debug_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias , packet1.MX_bias , packet1.MY_bias , packet1.MZ_bias , packet1.Vair_bias , packet1.AoA_bias , packet1.CW_bias , packet1.Alt_bias , packet1.Vair_scale , packet1.AoA_scale , packet1.CW_scale );
 	mavlink_msg_ekf_debug_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_debug_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias );
+	mavlink_msg_ekf_debug_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias , packet1.MX_bias , packet1.MY_bias , packet1.MZ_bias , packet1.Vair_bias , packet1.AoA_bias , packet1.CW_bias , packet1.Alt_bias , packet1.Vair_scale , packet1.AoA_scale , packet1.CW_scale );
 	mavlink_msg_ekf_debug_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1041,8 +1051,63 @@ static void mavlink_test_ekf_debug(uint8_t system_id, uint8_t component_id, mavl
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-	mavlink_msg_ekf_debug_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias );
+	mavlink_msg_ekf_debug_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.GX_bias , packet1.GY_bias , packet1.GZ_bias , packet1.AX_bias , packet1.AY_bias , packet1.AZ_bias , packet1.MX_bias , packet1.MY_bias , packet1.MZ_bias , packet1.Vair_bias , packet1.AoA_bias , packet1.CW_bias , packet1.Alt_bias , packet1.Vair_scale , packet1.AoA_scale , packet1.CW_scale );
 	mavlink_msg_ekf_debug_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
+static void mavlink_test_ekf_residual(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_ekf_residual_t packet_in = {
+		17235,17339,17443,17547,17651,17755,17859,17963,18067,18171,18275,18379,18483
+    };
+	mavlink_ekf_residual_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.Pn = packet_in.Pn;
+        	packet1.Pe = packet_in.Pe;
+        	packet1.Pd = packet_in.Pd;
+        	packet1.Vn = packet_in.Vn;
+        	packet1.Ve = packet_in.Ve;
+        	packet1.Vd = packet_in.Vd;
+        	packet1.Vair = packet_in.Vair;
+        	packet1.AoA = packet_in.AoA;
+        	packet1.CW = packet_in.CW;
+        	packet1.Alt = packet_in.Alt;
+        	packet1.Mx = packet_in.Mx;
+        	packet1.My = packet_in.My;
+        	packet1.Mz = packet_in.Mz;
+        
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_ekf_residual_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_ekf_residual_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_ekf_residual_pack(system_id, component_id, &msg , packet1.Pn , packet1.Pe , packet1.Pd , packet1.Vn , packet1.Ve , packet1.Vd , packet1.Vair , packet1.AoA , packet1.CW , packet1.Alt , packet1.Mx , packet1.My , packet1.Mz );
+	mavlink_msg_ekf_residual_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_ekf_residual_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Pn , packet1.Pe , packet1.Pd , packet1.Vn , packet1.Ve , packet1.Vd , packet1.Vair , packet1.AoA , packet1.CW , packet1.Alt , packet1.Mx , packet1.My , packet1.Mz );
+	mavlink_msg_ekf_residual_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_ekf_residual_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_ekf_residual_send(MAVLINK_COMM_1 , packet1.Pn , packet1.Pe , packet1.Pd , packet1.Vn , packet1.Ve , packet1.Vd , packet1.Vair , packet1.AoA , packet1.CW , packet1.Alt , packet1.Mx , packet1.My , packet1.Mz );
+	mavlink_msg_ekf_residual_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
@@ -1214,6 +1279,7 @@ static void mavlink_test_UAVmainframe_v5(uint8_t system_id, uint8_t component_id
 	mavlink_test_pid_tune(system_id, component_id, last_msg);
 	mavlink_test_vehicle_state(system_id, component_id, last_msg);
 	mavlink_test_ekf_debug(system_id, component_id, last_msg);
+	mavlink_test_ekf_residual(system_id, component_id, last_msg);
 	mavlink_test_tecs_debug(system_id, component_id, last_msg);
 	mavlink_test_mr_debug(system_id, component_id, last_msg);
 	mavlink_test_thrust_sensor(system_id, component_id, last_msg);

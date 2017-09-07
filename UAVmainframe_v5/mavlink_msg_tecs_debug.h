@@ -1,6 +1,6 @@
 // MESSAGE TECS_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_TECS_DEBUG 200
+#define MAVLINK_MSG_ID_TECS_DEBUG 201
 
 typedef struct __mavlink_tecs_debug_t
 {
@@ -18,10 +18,10 @@ typedef struct __mavlink_tecs_debug_t
 } mavlink_tecs_debug_t;
 
 #define MAVLINK_MSG_ID_TECS_DEBUG_LEN 44
-#define MAVLINK_MSG_ID_200_LEN 44
+#define MAVLINK_MSG_ID_201_LEN 44
 
 #define MAVLINK_MSG_ID_TECS_DEBUG_CRC 130
-#define MAVLINK_MSG_ID_200_CRC 130
+#define MAVLINK_MSG_ID_201_CRC 130
 
 
 

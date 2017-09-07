@@ -1,6 +1,6 @@
 // MESSAGE MR_DEBUG PACKING
 
-#define MAVLINK_MSG_ID_MR_DEBUG 201
+#define MAVLINK_MSG_ID_MR_DEBUG 202
 
 typedef struct __mavlink_mr_debug_t
 {
@@ -14,10 +14,10 @@ typedef struct __mavlink_mr_debug_t
 } mavlink_mr_debug_t;
 
 #define MAVLINK_MSG_ID_MR_DEBUG_LEN 16
-#define MAVLINK_MSG_ID_201_LEN 16
+#define MAVLINK_MSG_ID_202_LEN 16
 
 #define MAVLINK_MSG_ID_MR_DEBUG_CRC 248
-#define MAVLINK_MSG_ID_201_CRC 248
+#define MAVLINK_MSG_ID_202_CRC 248
 
 
 
