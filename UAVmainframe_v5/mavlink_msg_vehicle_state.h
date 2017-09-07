@@ -5,30 +5,30 @@
 typedef struct __mavlink_vehicle_state_t
 {
  uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
+ float u; /*< Estimated body axis x-vel (m/sec)*/
+ float v; /*< Estimated body axis y-vel (m/sec)*/
+ float w; /*< Estimated body axis z-vel (m/sec)*/
  float Roll; /*< Estimated roll angle [deg]*/
  float Pitch; /*< Estimated pitch angle [deg]*/
  float Yaw; /*< Estimated yaw angle [deg]*/
+ float Wn; /*< Estimated Wn (m/s)*/
+ float We; /*< Estimated We (m/s)*/
  float Vair; /*< Estimated airspeed [m/s]*/
  float AoA; /*< Estimated aoa [deg]*/
  float CW; /*< Estimated sideslip [deg]*/
  int16_t N; /*< Estimated Pn (m)*/
  int16_t E; /*< Estimated Pe (m)*/
  int16_t D; /*< Estimated Pd (m)*/
- int16_t u; /*< Estimated body axis x-vel (m/sec)*/
- int16_t v; /*< Estimated body axis y-vel (m/sec)*/
- int16_t w; /*< Estimated body axis z-vel (m/sec)*/
  int16_t p; /*< Estimated angular rate X axis (deg/sec)*/
  int16_t q; /*< Estimated angular rate Y axis (deg/sec)*/
  int16_t r; /*< Estimated angular rate Z axis (deg/sec)*/
- int16_t Wn; /*< Estimated Wn (m/s)*/
- int16_t We; /*< Estimated We (m/s)*/
 } mavlink_vehicle_state_t;
 
-#define MAVLINK_MSG_ID_VEHICLE_STATE_LEN 50
-#define MAVLINK_MSG_ID_198_LEN 50
+#define MAVLINK_MSG_ID_VEHICLE_STATE_LEN 60
+#define MAVLINK_MSG_ID_198_LEN 60
 
-#define MAVLINK_MSG_ID_VEHICLE_STATE_CRC 146
-#define MAVLINK_MSG_ID_198_CRC 146
+#define MAVLINK_MSG_ID_VEHICLE_STATE_CRC 58
+#define MAVLINK_MSG_ID_198_CRC 58
 
 
 
@@ -36,23 +36,23 @@ typedef struct __mavlink_vehicle_state_t
 	"VEHICLE_STATE", \
 	18, \
 	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_vehicle_state_t, time_boot_ms) }, \
-         { "Roll", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_vehicle_state_t, Roll) }, \
-         { "Pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_vehicle_state_t, Pitch) }, \
-         { "Yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_vehicle_state_t, Yaw) }, \
-         { "Vair", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_vehicle_state_t, Vair) }, \
-         { "AoA", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_vehicle_state_t, AoA) }, \
-         { "CW", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_vehicle_state_t, CW) }, \
-         { "N", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_vehicle_state_t, N) }, \
-         { "E", NULL, MAVLINK_TYPE_INT16_T, 0, 30, offsetof(mavlink_vehicle_state_t, E) }, \
-         { "D", NULL, MAVLINK_TYPE_INT16_T, 0, 32, offsetof(mavlink_vehicle_state_t, D) }, \
-         { "u", NULL, MAVLINK_TYPE_INT16_T, 0, 34, offsetof(mavlink_vehicle_state_t, u) }, \
-         { "v", NULL, MAVLINK_TYPE_INT16_T, 0, 36, offsetof(mavlink_vehicle_state_t, v) }, \
-         { "w", NULL, MAVLINK_TYPE_INT16_T, 0, 38, offsetof(mavlink_vehicle_state_t, w) }, \
-         { "p", NULL, MAVLINK_TYPE_INT16_T, 0, 40, offsetof(mavlink_vehicle_state_t, p) }, \
-         { "q", NULL, MAVLINK_TYPE_INT16_T, 0, 42, offsetof(mavlink_vehicle_state_t, q) }, \
-         { "r", NULL, MAVLINK_TYPE_INT16_T, 0, 44, offsetof(mavlink_vehicle_state_t, r) }, \
-         { "Wn", NULL, MAVLINK_TYPE_INT16_T, 0, 46, offsetof(mavlink_vehicle_state_t, Wn) }, \
-         { "We", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_vehicle_state_t, We) }, \
+         { "u", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_vehicle_state_t, u) }, \
+         { "v", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_vehicle_state_t, v) }, \
+         { "w", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_vehicle_state_t, w) }, \
+         { "Roll", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_vehicle_state_t, Roll) }, \
+         { "Pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_vehicle_state_t, Pitch) }, \
+         { "Yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_vehicle_state_t, Yaw) }, \
+         { "Wn", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_vehicle_state_t, Wn) }, \
+         { "We", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_vehicle_state_t, We) }, \
+         { "Vair", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_vehicle_state_t, Vair) }, \
+         { "AoA", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_vehicle_state_t, AoA) }, \
+         { "CW", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_vehicle_state_t, CW) }, \
+         { "N", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_vehicle_state_t, N) }, \
+         { "E", NULL, MAVLINK_TYPE_INT16_T, 0, 50, offsetof(mavlink_vehicle_state_t, E) }, \
+         { "D", NULL, MAVLINK_TYPE_INT16_T, 0, 52, offsetof(mavlink_vehicle_state_t, D) }, \
+         { "p", NULL, MAVLINK_TYPE_INT16_T, 0, 54, offsetof(mavlink_vehicle_state_t, p) }, \
+         { "q", NULL, MAVLINK_TYPE_INT16_T, 0, 56, offsetof(mavlink_vehicle_state_t, q) }, \
+         { "r", NULL, MAVLINK_TYPE_INT16_T, 0, 58, offsetof(mavlink_vehicle_state_t, r) }, \
          } \
 }
 
@@ -84,50 +84,50 @@ typedef struct __mavlink_vehicle_state_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, int16_t u, int16_t v, int16_t w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, int16_t Wn, int16_t We, float Vair, float AoA, float CW)
+						       uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll);
-	_mav_put_float(buf, 8, Pitch);
-	_mav_put_float(buf, 12, Yaw);
-	_mav_put_float(buf, 16, Vair);
-	_mav_put_float(buf, 20, AoA);
-	_mav_put_float(buf, 24, CW);
-	_mav_put_int16_t(buf, 28, N);
-	_mav_put_int16_t(buf, 30, E);
-	_mav_put_int16_t(buf, 32, D);
-	_mav_put_int16_t(buf, 34, u);
-	_mav_put_int16_t(buf, 36, v);
-	_mav_put_int16_t(buf, 38, w);
-	_mav_put_int16_t(buf, 40, p);
-	_mav_put_int16_t(buf, 42, q);
-	_mav_put_int16_t(buf, 44, r);
-	_mav_put_int16_t(buf, 46, Wn);
-	_mav_put_int16_t(buf, 48, We);
+	_mav_put_float(buf, 4, u);
+	_mav_put_float(buf, 8, v);
+	_mav_put_float(buf, 12, w);
+	_mav_put_float(buf, 16, Roll);
+	_mav_put_float(buf, 20, Pitch);
+	_mav_put_float(buf, 24, Yaw);
+	_mav_put_float(buf, 28, Wn);
+	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 36, Vair);
+	_mav_put_float(buf, 40, AoA);
+	_mav_put_float(buf, 44, CW);
+	_mav_put_int16_t(buf, 48, N);
+	_mav_put_int16_t(buf, 50, E);
+	_mav_put_int16_t(buf, 52, D);
+	_mav_put_int16_t(buf, 54, p);
+	_mav_put_int16_t(buf, 56, q);
+	_mav_put_int16_t(buf, 58, r);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VEHICLE_STATE_LEN);
 #else
 	mavlink_vehicle_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
+	packet.u = u;
+	packet.v = v;
+	packet.w = w;
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
+	packet.Wn = Wn;
+	packet.We = We;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
 	packet.N = N;
 	packet.E = E;
 	packet.D = D;
-	packet.u = u;
-	packet.v = v;
-	packet.w = w;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
-	packet.Wn = Wn;
-	packet.We = We;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_VEHICLE_STATE_LEN);
 #endif
@@ -168,50 +168,50 @@ static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_vehicle_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int16_t N,int16_t E,int16_t D,int16_t u,int16_t v,int16_t w,int16_t p,int16_t q,int16_t r,float Roll,float Pitch,float Yaw,int16_t Wn,int16_t We,float Vair,float AoA,float CW)
+						           uint32_t time_boot_ms,int16_t N,int16_t E,int16_t D,float u,float v,float w,int16_t p,int16_t q,int16_t r,float Roll,float Pitch,float Yaw,float Wn,float We,float Vair,float AoA,float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll);
-	_mav_put_float(buf, 8, Pitch);
-	_mav_put_float(buf, 12, Yaw);
-	_mav_put_float(buf, 16, Vair);
-	_mav_put_float(buf, 20, AoA);
-	_mav_put_float(buf, 24, CW);
-	_mav_put_int16_t(buf, 28, N);
-	_mav_put_int16_t(buf, 30, E);
-	_mav_put_int16_t(buf, 32, D);
-	_mav_put_int16_t(buf, 34, u);
-	_mav_put_int16_t(buf, 36, v);
-	_mav_put_int16_t(buf, 38, w);
-	_mav_put_int16_t(buf, 40, p);
-	_mav_put_int16_t(buf, 42, q);
-	_mav_put_int16_t(buf, 44, r);
-	_mav_put_int16_t(buf, 46, Wn);
-	_mav_put_int16_t(buf, 48, We);
+	_mav_put_float(buf, 4, u);
+	_mav_put_float(buf, 8, v);
+	_mav_put_float(buf, 12, w);
+	_mav_put_float(buf, 16, Roll);
+	_mav_put_float(buf, 20, Pitch);
+	_mav_put_float(buf, 24, Yaw);
+	_mav_put_float(buf, 28, Wn);
+	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 36, Vair);
+	_mav_put_float(buf, 40, AoA);
+	_mav_put_float(buf, 44, CW);
+	_mav_put_int16_t(buf, 48, N);
+	_mav_put_int16_t(buf, 50, E);
+	_mav_put_int16_t(buf, 52, D);
+	_mav_put_int16_t(buf, 54, p);
+	_mav_put_int16_t(buf, 56, q);
+	_mav_put_int16_t(buf, 58, r);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VEHICLE_STATE_LEN);
 #else
 	mavlink_vehicle_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
+	packet.u = u;
+	packet.v = v;
+	packet.w = w;
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
+	packet.Wn = Wn;
+	packet.We = We;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
 	packet.N = N;
 	packet.E = E;
 	packet.D = D;
-	packet.u = u;
-	packet.v = v;
-	packet.w = w;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
-	packet.Wn = Wn;
-	packet.We = We;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_VEHICLE_STATE_LEN);
 #endif
@@ -276,28 +276,28 @@ static inline uint16_t mavlink_msg_vehicle_state_encode_chan(uint8_t system_id, 
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, int16_t u, int16_t v, int16_t w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, int16_t Wn, int16_t We, float Vair, float AoA, float CW)
+static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll);
-	_mav_put_float(buf, 8, Pitch);
-	_mav_put_float(buf, 12, Yaw);
-	_mav_put_float(buf, 16, Vair);
-	_mav_put_float(buf, 20, AoA);
-	_mav_put_float(buf, 24, CW);
-	_mav_put_int16_t(buf, 28, N);
-	_mav_put_int16_t(buf, 30, E);
-	_mav_put_int16_t(buf, 32, D);
-	_mav_put_int16_t(buf, 34, u);
-	_mav_put_int16_t(buf, 36, v);
-	_mav_put_int16_t(buf, 38, w);
-	_mav_put_int16_t(buf, 40, p);
-	_mav_put_int16_t(buf, 42, q);
-	_mav_put_int16_t(buf, 44, r);
-	_mav_put_int16_t(buf, 46, Wn);
-	_mav_put_int16_t(buf, 48, We);
+	_mav_put_float(buf, 4, u);
+	_mav_put_float(buf, 8, v);
+	_mav_put_float(buf, 12, w);
+	_mav_put_float(buf, 16, Roll);
+	_mav_put_float(buf, 20, Pitch);
+	_mav_put_float(buf, 24, Yaw);
+	_mav_put_float(buf, 28, Wn);
+	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 36, Vair);
+	_mav_put_float(buf, 40, AoA);
+	_mav_put_float(buf, 44, CW);
+	_mav_put_int16_t(buf, 48, N);
+	_mav_put_int16_t(buf, 50, E);
+	_mav_put_int16_t(buf, 52, D);
+	_mav_put_int16_t(buf, 54, p);
+	_mav_put_int16_t(buf, 56, q);
+	_mav_put_int16_t(buf, 58, r);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VEHICLE_STATE, buf, MAVLINK_MSG_ID_VEHICLE_STATE_LEN, MAVLINK_MSG_ID_VEHICLE_STATE_CRC);
@@ -307,23 +307,23 @@ static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32
 #else
 	mavlink_vehicle_state_t packet;
 	packet.time_boot_ms = time_boot_ms;
+	packet.u = u;
+	packet.v = v;
+	packet.w = w;
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
+	packet.Wn = Wn;
+	packet.We = We;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
 	packet.N = N;
 	packet.E = E;
 	packet.D = D;
-	packet.u = u;
-	packet.v = v;
-	packet.w = w;
 	packet.p = p;
 	packet.q = q;
 	packet.r = r;
-	packet.Wn = Wn;
-	packet.We = We;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VEHICLE_STATE, (const char *)&packet, MAVLINK_MSG_ID_VEHICLE_STATE_LEN, MAVLINK_MSG_ID_VEHICLE_STATE_CRC);
@@ -341,28 +341,28 @@ static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, int16_t u, int16_t v, int16_t w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, int16_t Wn, int16_t We, float Vair, float AoA, float CW)
+static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
 	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_float(buf, 4, Roll);
-	_mav_put_float(buf, 8, Pitch);
-	_mav_put_float(buf, 12, Yaw);
-	_mav_put_float(buf, 16, Vair);
-	_mav_put_float(buf, 20, AoA);
-	_mav_put_float(buf, 24, CW);
-	_mav_put_int16_t(buf, 28, N);
-	_mav_put_int16_t(buf, 30, E);
-	_mav_put_int16_t(buf, 32, D);
-	_mav_put_int16_t(buf, 34, u);
-	_mav_put_int16_t(buf, 36, v);
-	_mav_put_int16_t(buf, 38, w);
-	_mav_put_int16_t(buf, 40, p);
-	_mav_put_int16_t(buf, 42, q);
-	_mav_put_int16_t(buf, 44, r);
-	_mav_put_int16_t(buf, 46, Wn);
-	_mav_put_int16_t(buf, 48, We);
+	_mav_put_float(buf, 4, u);
+	_mav_put_float(buf, 8, v);
+	_mav_put_float(buf, 12, w);
+	_mav_put_float(buf, 16, Roll);
+	_mav_put_float(buf, 20, Pitch);
+	_mav_put_float(buf, 24, Yaw);
+	_mav_put_float(buf, 28, Wn);
+	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 36, Vair);
+	_mav_put_float(buf, 40, AoA);
+	_mav_put_float(buf, 44, CW);
+	_mav_put_int16_t(buf, 48, N);
+	_mav_put_int16_t(buf, 50, E);
+	_mav_put_int16_t(buf, 52, D);
+	_mav_put_int16_t(buf, 54, p);
+	_mav_put_int16_t(buf, 56, q);
+	_mav_put_int16_t(buf, 58, r);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VEHICLE_STATE, buf, MAVLINK_MSG_ID_VEHICLE_STATE_LEN, MAVLINK_MSG_ID_VEHICLE_STATE_CRC);
@@ -372,23 +372,23 @@ static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf,
 #else
 	mavlink_vehicle_state_t *packet = (mavlink_vehicle_state_t *)msgbuf;
 	packet->time_boot_ms = time_boot_ms;
+	packet->u = u;
+	packet->v = v;
+	packet->w = w;
 	packet->Roll = Roll;
 	packet->Pitch = Pitch;
 	packet->Yaw = Yaw;
+	packet->Wn = Wn;
+	packet->We = We;
 	packet->Vair = Vair;
 	packet->AoA = AoA;
 	packet->CW = CW;
 	packet->N = N;
 	packet->E = E;
 	packet->D = D;
-	packet->u = u;
-	packet->v = v;
-	packet->w = w;
 	packet->p = p;
 	packet->q = q;
 	packet->r = r;
-	packet->Wn = Wn;
-	packet->We = We;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VEHICLE_STATE, (const char *)packet, MAVLINK_MSG_ID_VEHICLE_STATE_LEN, MAVLINK_MSG_ID_VEHICLE_STATE_CRC);
@@ -421,7 +421,7 @@ static inline uint32_t mavlink_msg_vehicle_state_get_time_boot_ms(const mavlink_
  */
 static inline int16_t mavlink_msg_vehicle_state_get_N(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  28);
+	return _MAV_RETURN_int16_t(msg,  48);
 }
 
 /**
@@ -431,7 +431,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_N(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_vehicle_state_get_E(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  30);
+	return _MAV_RETURN_int16_t(msg,  50);
 }
 
 /**
@@ -441,7 +441,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_E(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_vehicle_state_get_D(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  32);
+	return _MAV_RETURN_int16_t(msg,  52);
 }
 
 /**
@@ -449,9 +449,9 @@ static inline int16_t mavlink_msg_vehicle_state_get_D(const mavlink_message_t* m
  *
  * @return Estimated body axis x-vel (m/sec)
  */
-static inline int16_t mavlink_msg_vehicle_state_get_u(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_u(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  34);
+	return _MAV_RETURN_float(msg,  4);
 }
 
 /**
@@ -459,9 +459,9 @@ static inline int16_t mavlink_msg_vehicle_state_get_u(const mavlink_message_t* m
  *
  * @return Estimated body axis y-vel (m/sec)
  */
-static inline int16_t mavlink_msg_vehicle_state_get_v(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_v(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  36);
+	return _MAV_RETURN_float(msg,  8);
 }
 
 /**
@@ -469,9 +469,9 @@ static inline int16_t mavlink_msg_vehicle_state_get_v(const mavlink_message_t* m
  *
  * @return Estimated body axis z-vel (m/sec)
  */
-static inline int16_t mavlink_msg_vehicle_state_get_w(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_w(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  38);
+	return _MAV_RETURN_float(msg,  12);
 }
 
 /**
@@ -481,7 +481,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_w(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_vehicle_state_get_p(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  40);
+	return _MAV_RETURN_int16_t(msg,  54);
 }
 
 /**
@@ -491,7 +491,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_p(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_vehicle_state_get_q(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  42);
+	return _MAV_RETURN_int16_t(msg,  56);
 }
 
 /**
@@ -501,7 +501,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_q(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_vehicle_state_get_r(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  44);
+	return _MAV_RETURN_int16_t(msg,  58);
 }
 
 /**
@@ -511,7 +511,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_r(const mavlink_message_t* m
  */
 static inline float mavlink_msg_vehicle_state_get_Roll(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  4);
+	return _MAV_RETURN_float(msg,  16);
 }
 
 /**
@@ -521,7 +521,7 @@ static inline float mavlink_msg_vehicle_state_get_Roll(const mavlink_message_t* 
  */
 static inline float mavlink_msg_vehicle_state_get_Pitch(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  8);
+	return _MAV_RETURN_float(msg,  20);
 }
 
 /**
@@ -531,7 +531,7 @@ static inline float mavlink_msg_vehicle_state_get_Pitch(const mavlink_message_t*
  */
 static inline float mavlink_msg_vehicle_state_get_Yaw(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  12);
+	return _MAV_RETURN_float(msg,  24);
 }
 
 /**
@@ -539,9 +539,9 @@ static inline float mavlink_msg_vehicle_state_get_Yaw(const mavlink_message_t* m
  *
  * @return Estimated Wn (m/s)
  */
-static inline int16_t mavlink_msg_vehicle_state_get_Wn(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_Wn(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  46);
+	return _MAV_RETURN_float(msg,  28);
 }
 
 /**
@@ -549,9 +549,9 @@ static inline int16_t mavlink_msg_vehicle_state_get_Wn(const mavlink_message_t* 
  *
  * @return Estimated We (m/s)
  */
-static inline int16_t mavlink_msg_vehicle_state_get_We(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_We(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  48);
+	return _MAV_RETURN_float(msg,  32);
 }
 
 /**
@@ -561,7 +561,7 @@ static inline int16_t mavlink_msg_vehicle_state_get_We(const mavlink_message_t* 
  */
 static inline float mavlink_msg_vehicle_state_get_Vair(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  16);
+	return _MAV_RETURN_float(msg,  36);
 }
 
 /**
@@ -571,7 +571,7 @@ static inline float mavlink_msg_vehicle_state_get_Vair(const mavlink_message_t* 
  */
 static inline float mavlink_msg_vehicle_state_get_AoA(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_float(msg,  40);
 }
 
 /**
@@ -581,7 +581,7 @@ static inline float mavlink_msg_vehicle_state_get_AoA(const mavlink_message_t* m
  */
 static inline float mavlink_msg_vehicle_state_get_CW(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  24);
+	return _MAV_RETURN_float(msg,  44);
 }
 
 /**
@@ -594,23 +594,23 @@ static inline void mavlink_msg_vehicle_state_decode(const mavlink_message_t* msg
 {
 #if MAVLINK_NEED_BYTE_SWAP
 	vehicle_state->time_boot_ms = mavlink_msg_vehicle_state_get_time_boot_ms(msg);
+	vehicle_state->u = mavlink_msg_vehicle_state_get_u(msg);
+	vehicle_state->v = mavlink_msg_vehicle_state_get_v(msg);
+	vehicle_state->w = mavlink_msg_vehicle_state_get_w(msg);
 	vehicle_state->Roll = mavlink_msg_vehicle_state_get_Roll(msg);
 	vehicle_state->Pitch = mavlink_msg_vehicle_state_get_Pitch(msg);
 	vehicle_state->Yaw = mavlink_msg_vehicle_state_get_Yaw(msg);
+	vehicle_state->Wn = mavlink_msg_vehicle_state_get_Wn(msg);
+	vehicle_state->We = mavlink_msg_vehicle_state_get_We(msg);
 	vehicle_state->Vair = mavlink_msg_vehicle_state_get_Vair(msg);
 	vehicle_state->AoA = mavlink_msg_vehicle_state_get_AoA(msg);
 	vehicle_state->CW = mavlink_msg_vehicle_state_get_CW(msg);
 	vehicle_state->N = mavlink_msg_vehicle_state_get_N(msg);
 	vehicle_state->E = mavlink_msg_vehicle_state_get_E(msg);
 	vehicle_state->D = mavlink_msg_vehicle_state_get_D(msg);
-	vehicle_state->u = mavlink_msg_vehicle_state_get_u(msg);
-	vehicle_state->v = mavlink_msg_vehicle_state_get_v(msg);
-	vehicle_state->w = mavlink_msg_vehicle_state_get_w(msg);
 	vehicle_state->p = mavlink_msg_vehicle_state_get_p(msg);
 	vehicle_state->q = mavlink_msg_vehicle_state_get_q(msg);
 	vehicle_state->r = mavlink_msg_vehicle_state_get_r(msg);
-	vehicle_state->Wn = mavlink_msg_vehicle_state_get_Wn(msg);
-	vehicle_state->We = mavlink_msg_vehicle_state_get_We(msg);
 #else
 	memcpy(vehicle_state, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_VEHICLE_STATE_LEN);
 #endif
