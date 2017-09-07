@@ -4,6 +4,7 @@
 
 typedef struct __mavlink_ekf_residual_t
 {
+ uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
  int16_t Pn; /*< Estimated Pn (m)*/
  int16_t Pe; /*< Estimated Pe (m)*/
  int16_t Pd; /*< Estimated Pd (m)*/
@@ -19,30 +20,31 @@ typedef struct __mavlink_ekf_residual_t
  int16_t Mz; /*< Estimated Pd (m)*/
 } mavlink_ekf_residual_t;
 
-#define MAVLINK_MSG_ID_EKF_Residual_LEN 26
-#define MAVLINK_MSG_ID_200_LEN 26
+#define MAVLINK_MSG_ID_EKF_Residual_LEN 30
+#define MAVLINK_MSG_ID_200_LEN 30
 
-#define MAVLINK_MSG_ID_EKF_Residual_CRC 241
-#define MAVLINK_MSG_ID_200_CRC 241
+#define MAVLINK_MSG_ID_EKF_Residual_CRC 195
+#define MAVLINK_MSG_ID_200_CRC 195
 
 
 
 #define MAVLINK_MESSAGE_INFO_EKF_Residual { \
 	"EKF_Residual", \
-	13, \
-	{  { "Pn", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_ekf_residual_t, Pn) }, \
-         { "Pe", NULL, MAVLINK_TYPE_INT16_T, 0, 2, offsetof(mavlink_ekf_residual_t, Pe) }, \
-         { "Pd", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_ekf_residual_t, Pd) }, \
-         { "Vn", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_ekf_residual_t, Vn) }, \
-         { "Ve", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_ekf_residual_t, Ve) }, \
-         { "Vd", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_ekf_residual_t, Vd) }, \
-         { "Vair", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_ekf_residual_t, Vair) }, \
-         { "AoA", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_ekf_residual_t, AoA) }, \
-         { "CW", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_ekf_residual_t, CW) }, \
-         { "Alt", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_ekf_residual_t, Alt) }, \
-         { "Mx", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_ekf_residual_t, Mx) }, \
-         { "My", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_ekf_residual_t, My) }, \
-         { "Mz", NULL, MAVLINK_TYPE_INT16_T, 0, 24, offsetof(mavlink_ekf_residual_t, Mz) }, \
+	14, \
+	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_ekf_residual_t, time_boot_ms) }, \
+         { "Pn", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_ekf_residual_t, Pn) }, \
+         { "Pe", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_ekf_residual_t, Pe) }, \
+         { "Pd", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_ekf_residual_t, Pd) }, \
+         { "Vn", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_ekf_residual_t, Vn) }, \
+         { "Ve", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_ekf_residual_t, Ve) }, \
+         { "Vd", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_ekf_residual_t, Vd) }, \
+         { "Vair", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_ekf_residual_t, Vair) }, \
+         { "AoA", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_ekf_residual_t, AoA) }, \
+         { "CW", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_ekf_residual_t, CW) }, \
+         { "Alt", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_ekf_residual_t, Alt) }, \
+         { "Mx", NULL, MAVLINK_TYPE_INT16_T, 0, 24, offsetof(mavlink_ekf_residual_t, Mx) }, \
+         { "My", NULL, MAVLINK_TYPE_INT16_T, 0, 26, offsetof(mavlink_ekf_residual_t, My) }, \
+         { "Mz", NULL, MAVLINK_TYPE_INT16_T, 0, 28, offsetof(mavlink_ekf_residual_t, Mz) }, \
          } \
 }
 
@@ -53,6 +55,7 @@ typedef struct __mavlink_ekf_residual_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
+ * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Pn Estimated Pn (m)
  * @param Pe Estimated Pe (m)
  * @param Pd Estimated Pd (m)
@@ -69,27 +72,29 @@ typedef struct __mavlink_ekf_residual_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
+						       uint32_t time_boot_ms, int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
-	_mav_put_int16_t(buf, 0, Pn);
-	_mav_put_int16_t(buf, 2, Pe);
-	_mav_put_int16_t(buf, 4, Pd);
-	_mav_put_int16_t(buf, 6, Vn);
-	_mav_put_int16_t(buf, 8, Ve);
-	_mav_put_int16_t(buf, 10, Vd);
-	_mav_put_int16_t(buf, 12, Vair);
-	_mav_put_int16_t(buf, 14, AoA);
-	_mav_put_int16_t(buf, 16, CW);
-	_mav_put_int16_t(buf, 18, Alt);
-	_mav_put_int16_t(buf, 20, Mx);
-	_mav_put_int16_t(buf, 22, My);
-	_mav_put_int16_t(buf, 24, Mz);
+	_mav_put_uint32_t(buf, 0, time_boot_ms);
+	_mav_put_int16_t(buf, 4, Pn);
+	_mav_put_int16_t(buf, 6, Pe);
+	_mav_put_int16_t(buf, 8, Pd);
+	_mav_put_int16_t(buf, 10, Vn);
+	_mav_put_int16_t(buf, 12, Ve);
+	_mav_put_int16_t(buf, 14, Vd);
+	_mav_put_int16_t(buf, 16, Vair);
+	_mav_put_int16_t(buf, 18, AoA);
+	_mav_put_int16_t(buf, 20, CW);
+	_mav_put_int16_t(buf, 22, Alt);
+	_mav_put_int16_t(buf, 24, Mx);
+	_mav_put_int16_t(buf, 26, My);
+	_mav_put_int16_t(buf, 28, Mz);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EKF_Residual_LEN);
 #else
 	mavlink_ekf_residual_t packet;
+	packet.time_boot_ms = time_boot_ms;
 	packet.Pn = Pn;
 	packet.Pe = Pe;
 	packet.Pd = Pd;
@@ -121,6 +126,7 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
+ * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Pn Estimated Pn (m)
  * @param Pe Estimated Pe (m)
  * @param Pd Estimated Pd (m)
@@ -138,27 +144,29 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           int16_t Pn,int16_t Pe,int16_t Pd,int16_t Vn,int16_t Ve,int16_t Vd,int16_t Vair,int16_t AoA,int16_t CW,int16_t Alt,int16_t Mx,int16_t My,int16_t Mz)
+						           uint32_t time_boot_ms,int16_t Pn,int16_t Pe,int16_t Pd,int16_t Vn,int16_t Ve,int16_t Vd,int16_t Vair,int16_t AoA,int16_t CW,int16_t Alt,int16_t Mx,int16_t My,int16_t Mz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
-	_mav_put_int16_t(buf, 0, Pn);
-	_mav_put_int16_t(buf, 2, Pe);
-	_mav_put_int16_t(buf, 4, Pd);
-	_mav_put_int16_t(buf, 6, Vn);
-	_mav_put_int16_t(buf, 8, Ve);
-	_mav_put_int16_t(buf, 10, Vd);
-	_mav_put_int16_t(buf, 12, Vair);
-	_mav_put_int16_t(buf, 14, AoA);
-	_mav_put_int16_t(buf, 16, CW);
-	_mav_put_int16_t(buf, 18, Alt);
-	_mav_put_int16_t(buf, 20, Mx);
-	_mav_put_int16_t(buf, 22, My);
-	_mav_put_int16_t(buf, 24, Mz);
+	_mav_put_uint32_t(buf, 0, time_boot_ms);
+	_mav_put_int16_t(buf, 4, Pn);
+	_mav_put_int16_t(buf, 6, Pe);
+	_mav_put_int16_t(buf, 8, Pd);
+	_mav_put_int16_t(buf, 10, Vn);
+	_mav_put_int16_t(buf, 12, Ve);
+	_mav_put_int16_t(buf, 14, Vd);
+	_mav_put_int16_t(buf, 16, Vair);
+	_mav_put_int16_t(buf, 18, AoA);
+	_mav_put_int16_t(buf, 20, CW);
+	_mav_put_int16_t(buf, 22, Alt);
+	_mav_put_int16_t(buf, 24, Mx);
+	_mav_put_int16_t(buf, 26, My);
+	_mav_put_int16_t(buf, 28, Mz);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EKF_Residual_LEN);
 #else
 	mavlink_ekf_residual_t packet;
+	packet.time_boot_ms = time_boot_ms;
 	packet.Pn = Pn;
 	packet.Pe = Pe;
 	packet.Pd = Pd;
@@ -194,7 +202,7 @@ static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_ekf_residual_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_residual_t* ekf_residual)
 {
-	return mavlink_msg_ekf_residual_pack(system_id, component_id, msg, ekf_residual->Pn, ekf_residual->Pe, ekf_residual->Pd, ekf_residual->Vn, ekf_residual->Ve, ekf_residual->Vd, ekf_residual->Vair, ekf_residual->AoA, ekf_residual->CW, ekf_residual->Alt, ekf_residual->Mx, ekf_residual->My, ekf_residual->Mz);
+	return mavlink_msg_ekf_residual_pack(system_id, component_id, msg, ekf_residual->time_boot_ms, ekf_residual->Pn, ekf_residual->Pe, ekf_residual->Pd, ekf_residual->Vn, ekf_residual->Ve, ekf_residual->Vd, ekf_residual->Vair, ekf_residual->AoA, ekf_residual->CW, ekf_residual->Alt, ekf_residual->Mx, ekf_residual->My, ekf_residual->Mz);
 }
 
 /**
@@ -208,13 +216,14 @@ static inline uint16_t mavlink_msg_ekf_residual_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_ekf_residual_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_residual_t* ekf_residual)
 {
-	return mavlink_msg_ekf_residual_pack_chan(system_id, component_id, chan, msg, ekf_residual->Pn, ekf_residual->Pe, ekf_residual->Pd, ekf_residual->Vn, ekf_residual->Ve, ekf_residual->Vd, ekf_residual->Vair, ekf_residual->AoA, ekf_residual->CW, ekf_residual->Alt, ekf_residual->Mx, ekf_residual->My, ekf_residual->Mz);
+	return mavlink_msg_ekf_residual_pack_chan(system_id, component_id, chan, msg, ekf_residual->time_boot_ms, ekf_residual->Pn, ekf_residual->Pe, ekf_residual->Pd, ekf_residual->Vn, ekf_residual->Ve, ekf_residual->Vd, ekf_residual->Vair, ekf_residual->AoA, ekf_residual->CW, ekf_residual->Alt, ekf_residual->Mx, ekf_residual->My, ekf_residual->Mz);
 }
 
 /**
  * @brief Send a ekf_residual message
  * @param chan MAVLink channel to send the message
  *
+ * @param time_boot_ms Timestamp (milliseconds since system boot)
  * @param Pn Estimated Pn (m)
  * @param Pe Estimated Pe (m)
  * @param Pd Estimated Pd (m)
@@ -231,23 +240,24 @@ static inline uint16_t mavlink_msg_ekf_residual_encode_chan(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
+static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
-	_mav_put_int16_t(buf, 0, Pn);
-	_mav_put_int16_t(buf, 2, Pe);
-	_mav_put_int16_t(buf, 4, Pd);
-	_mav_put_int16_t(buf, 6, Vn);
-	_mav_put_int16_t(buf, 8, Ve);
-	_mav_put_int16_t(buf, 10, Vd);
-	_mav_put_int16_t(buf, 12, Vair);
-	_mav_put_int16_t(buf, 14, AoA);
-	_mav_put_int16_t(buf, 16, CW);
-	_mav_put_int16_t(buf, 18, Alt);
-	_mav_put_int16_t(buf, 20, Mx);
-	_mav_put_int16_t(buf, 22, My);
-	_mav_put_int16_t(buf, 24, Mz);
+	_mav_put_uint32_t(buf, 0, time_boot_ms);
+	_mav_put_int16_t(buf, 4, Pn);
+	_mav_put_int16_t(buf, 6, Pe);
+	_mav_put_int16_t(buf, 8, Pd);
+	_mav_put_int16_t(buf, 10, Vn);
+	_mav_put_int16_t(buf, 12, Ve);
+	_mav_put_int16_t(buf, 14, Vd);
+	_mav_put_int16_t(buf, 16, Vair);
+	_mav_put_int16_t(buf, 18, AoA);
+	_mav_put_int16_t(buf, 20, CW);
+	_mav_put_int16_t(buf, 22, Alt);
+	_mav_put_int16_t(buf, 24, Mx);
+	_mav_put_int16_t(buf, 26, My);
+	_mav_put_int16_t(buf, 28, Mz);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_Residual, buf, MAVLINK_MSG_ID_EKF_Residual_LEN, MAVLINK_MSG_ID_EKF_Residual_CRC);
@@ -256,6 +266,7 @@ static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, int16_t
 #endif
 #else
 	mavlink_ekf_residual_t packet;
+	packet.time_boot_ms = time_boot_ms;
 	packet.Pn = Pn;
 	packet.Pe = Pe;
 	packet.Pd = Pd;
@@ -286,23 +297,24 @@ static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, int16_t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
+static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t Pn, int16_t Pe, int16_t Pd, int16_t Vn, int16_t Ve, int16_t Vd, int16_t Vair, int16_t AoA, int16_t CW, int16_t Alt, int16_t Mx, int16_t My, int16_t Mz)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
-	_mav_put_int16_t(buf, 0, Pn);
-	_mav_put_int16_t(buf, 2, Pe);
-	_mav_put_int16_t(buf, 4, Pd);
-	_mav_put_int16_t(buf, 6, Vn);
-	_mav_put_int16_t(buf, 8, Ve);
-	_mav_put_int16_t(buf, 10, Vd);
-	_mav_put_int16_t(buf, 12, Vair);
-	_mav_put_int16_t(buf, 14, AoA);
-	_mav_put_int16_t(buf, 16, CW);
-	_mav_put_int16_t(buf, 18, Alt);
-	_mav_put_int16_t(buf, 20, Mx);
-	_mav_put_int16_t(buf, 22, My);
-	_mav_put_int16_t(buf, 24, Mz);
+	_mav_put_uint32_t(buf, 0, time_boot_ms);
+	_mav_put_int16_t(buf, 4, Pn);
+	_mav_put_int16_t(buf, 6, Pe);
+	_mav_put_int16_t(buf, 8, Pd);
+	_mav_put_int16_t(buf, 10, Vn);
+	_mav_put_int16_t(buf, 12, Ve);
+	_mav_put_int16_t(buf, 14, Vd);
+	_mav_put_int16_t(buf, 16, Vair);
+	_mav_put_int16_t(buf, 18, AoA);
+	_mav_put_int16_t(buf, 20, CW);
+	_mav_put_int16_t(buf, 22, Alt);
+	_mav_put_int16_t(buf, 24, Mx);
+	_mav_put_int16_t(buf, 26, My);
+	_mav_put_int16_t(buf, 28, Mz);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EKF_Residual, buf, MAVLINK_MSG_ID_EKF_Residual_LEN, MAVLINK_MSG_ID_EKF_Residual_CRC);
@@ -311,6 +323,7 @@ static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, 
 #endif
 #else
 	mavlink_ekf_residual_t *packet = (mavlink_ekf_residual_t *)msgbuf;
+	packet->time_boot_ms = time_boot_ms;
 	packet->Pn = Pn;
 	packet->Pe = Pe;
 	packet->Pd = Pd;
@@ -340,13 +353,23 @@ static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, 
 
 
 /**
+ * @brief Get field time_boot_ms from ekf_residual message
+ *
+ * @return Timestamp (milliseconds since system boot)
+ */
+static inline uint32_t mavlink_msg_ekf_residual_get_time_boot_ms(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint32_t(msg,  0);
+}
+
+/**
  * @brief Get field Pn from ekf_residual message
  *
  * @return Estimated Pn (m)
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Pn(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  0);
+	return _MAV_RETURN_int16_t(msg,  4);
 }
 
 /**
@@ -356,7 +379,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Pn(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Pe(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  2);
+	return _MAV_RETURN_int16_t(msg,  6);
 }
 
 /**
@@ -366,7 +389,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Pe(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Pd(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  4);
+	return _MAV_RETURN_int16_t(msg,  8);
 }
 
 /**
@@ -376,7 +399,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Pd(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Vn(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  6);
+	return _MAV_RETURN_int16_t(msg,  10);
 }
 
 /**
@@ -386,7 +409,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Vn(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Ve(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  8);
+	return _MAV_RETURN_int16_t(msg,  12);
 }
 
 /**
@@ -396,7 +419,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Ve(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Vd(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  10);
+	return _MAV_RETURN_int16_t(msg,  14);
 }
 
 /**
@@ -406,7 +429,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Vd(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Vair(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  12);
+	return _MAV_RETURN_int16_t(msg,  16);
 }
 
 /**
@@ -416,7 +439,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Vair(const mavlink_message_t*
  */
 static inline int16_t mavlink_msg_ekf_residual_get_AoA(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  14);
+	return _MAV_RETURN_int16_t(msg,  18);
 }
 
 /**
@@ -426,7 +449,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_AoA(const mavlink_message_t* 
  */
 static inline int16_t mavlink_msg_ekf_residual_get_CW(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  16);
+	return _MAV_RETURN_int16_t(msg,  20);
 }
 
 /**
@@ -436,7 +459,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_CW(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Alt(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  18);
+	return _MAV_RETURN_int16_t(msg,  22);
 }
 
 /**
@@ -446,7 +469,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Alt(const mavlink_message_t* 
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Mx(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  20);
+	return _MAV_RETURN_int16_t(msg,  24);
 }
 
 /**
@@ -456,7 +479,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Mx(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_My(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  22);
+	return _MAV_RETURN_int16_t(msg,  26);
 }
 
 /**
@@ -466,7 +489,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_My(const mavlink_message_t* m
  */
 static inline int16_t mavlink_msg_ekf_residual_get_Mz(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  24);
+	return _MAV_RETURN_int16_t(msg,  28);
 }
 
 /**
@@ -478,6 +501,7 @@ static inline int16_t mavlink_msg_ekf_residual_get_Mz(const mavlink_message_t* m
 static inline void mavlink_msg_ekf_residual_decode(const mavlink_message_t* msg, mavlink_ekf_residual_t* ekf_residual)
 {
 #if MAVLINK_NEED_BYTE_SWAP
+	ekf_residual->time_boot_ms = mavlink_msg_ekf_residual_get_time_boot_ms(msg);
 	ekf_residual->Pn = mavlink_msg_ekf_residual_get_Pn(msg);
 	ekf_residual->Pe = mavlink_msg_ekf_residual_get_Pe(msg);
 	ekf_residual->Pd = mavlink_msg_ekf_residual_get_Pd(msg);
