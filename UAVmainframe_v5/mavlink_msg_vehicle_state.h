@@ -11,8 +11,8 @@ typedef struct __mavlink_vehicle_state_t
  float Roll; /*< Estimated roll angle [deg]*/
  float Pitch; /*< Estimated pitch angle [deg]*/
  float Yaw; /*< Estimated yaw angle [deg]*/
- float Wn; /*< Estimated Wn (m/s)*/
- float We; /*< Estimated We (m/s)*/
+ float W_spd; /*< Estimated Wind speed (m/s)*/
+ float W_dir; /*< Estimated Wind direction (deg)*/
  float Vair; /*< Estimated airspeed [m/s]*/
  float AoA; /*< Estimated aoa [deg]*/
  float CW; /*< Estimated sideslip [deg]*/
@@ -27,8 +27,8 @@ typedef struct __mavlink_vehicle_state_t
 #define MAVLINK_MSG_ID_VEHICLE_STATE_LEN 60
 #define MAVLINK_MSG_ID_198_LEN 60
 
-#define MAVLINK_MSG_ID_VEHICLE_STATE_CRC 58
-#define MAVLINK_MSG_ID_198_CRC 58
+#define MAVLINK_MSG_ID_VEHICLE_STATE_CRC 47
+#define MAVLINK_MSG_ID_198_CRC 47
 
 
 
@@ -42,8 +42,8 @@ typedef struct __mavlink_vehicle_state_t
          { "Roll", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_vehicle_state_t, Roll) }, \
          { "Pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_vehicle_state_t, Pitch) }, \
          { "Yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_vehicle_state_t, Yaw) }, \
-         { "Wn", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_vehicle_state_t, Wn) }, \
-         { "We", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_vehicle_state_t, We) }, \
+         { "W_spd", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_vehicle_state_t, W_spd) }, \
+         { "W_dir", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_vehicle_state_t, W_dir) }, \
          { "Vair", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_vehicle_state_t, Vair) }, \
          { "AoA", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_vehicle_state_t, AoA) }, \
          { "CW", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_vehicle_state_t, CW) }, \
@@ -76,15 +76,15 @@ typedef struct __mavlink_vehicle_state_t
  * @param Roll Estimated roll angle [deg]
  * @param Pitch Estimated pitch angle [deg]
  * @param Yaw Estimated yaw angle [deg]
- * @param Wn Estimated Wn (m/s)
- * @param We Estimated We (m/s)
+ * @param W_spd Estimated Wind speed (m/s)
+ * @param W_dir Estimated Wind direction (deg)
  * @param Vair Estimated airspeed [m/s]
  * @param AoA Estimated aoa [deg]
  * @param CW Estimated sideslip [deg]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
+						       uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float W_spd, float W_dir, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
@@ -95,8 +95,8 @@ static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t
 	_mav_put_float(buf, 16, Roll);
 	_mav_put_float(buf, 20, Pitch);
 	_mav_put_float(buf, 24, Yaw);
-	_mav_put_float(buf, 28, Wn);
-	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 28, W_spd);
+	_mav_put_float(buf, 32, W_dir);
 	_mav_put_float(buf, 36, Vair);
 	_mav_put_float(buf, 40, AoA);
 	_mav_put_float(buf, 44, CW);
@@ -117,8 +117,8 @@ static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
-	packet.Wn = Wn;
-	packet.We = We;
+	packet.W_spd = W_spd;
+	packet.W_dir = W_dir;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
@@ -159,8 +159,8 @@ static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t
  * @param Roll Estimated roll angle [deg]
  * @param Pitch Estimated pitch angle [deg]
  * @param Yaw Estimated yaw angle [deg]
- * @param Wn Estimated Wn (m/s)
- * @param We Estimated We (m/s)
+ * @param W_spd Estimated Wind speed (m/s)
+ * @param W_dir Estimated Wind direction (deg)
  * @param Vair Estimated airspeed [m/s]
  * @param AoA Estimated aoa [deg]
  * @param CW Estimated sideslip [deg]
@@ -168,7 +168,7 @@ static inline uint16_t mavlink_msg_vehicle_state_pack(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_vehicle_state_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int16_t N,int16_t E,int16_t D,float u,float v,float w,int16_t p,int16_t q,int16_t r,float Roll,float Pitch,float Yaw,float Wn,float We,float Vair,float AoA,float CW)
+						           uint32_t time_boot_ms,int16_t N,int16_t E,int16_t D,float u,float v,float w,int16_t p,int16_t q,int16_t r,float Roll,float Pitch,float Yaw,float W_spd,float W_dir,float Vair,float AoA,float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
@@ -179,8 +179,8 @@ static inline uint16_t mavlink_msg_vehicle_state_pack_chan(uint8_t system_id, ui
 	_mav_put_float(buf, 16, Roll);
 	_mav_put_float(buf, 20, Pitch);
 	_mav_put_float(buf, 24, Yaw);
-	_mav_put_float(buf, 28, Wn);
-	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 28, W_spd);
+	_mav_put_float(buf, 32, W_dir);
 	_mav_put_float(buf, 36, Vair);
 	_mav_put_float(buf, 40, AoA);
 	_mav_put_float(buf, 44, CW);
@@ -201,8 +201,8 @@ static inline uint16_t mavlink_msg_vehicle_state_pack_chan(uint8_t system_id, ui
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
-	packet.Wn = Wn;
-	packet.We = We;
+	packet.W_spd = W_spd;
+	packet.W_dir = W_dir;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
@@ -234,7 +234,7 @@ static inline uint16_t mavlink_msg_vehicle_state_pack_chan(uint8_t system_id, ui
  */
 static inline uint16_t mavlink_msg_vehicle_state_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_vehicle_state_t* vehicle_state)
 {
-	return mavlink_msg_vehicle_state_pack(system_id, component_id, msg, vehicle_state->time_boot_ms, vehicle_state->N, vehicle_state->E, vehicle_state->D, vehicle_state->u, vehicle_state->v, vehicle_state->w, vehicle_state->p, vehicle_state->q, vehicle_state->r, vehicle_state->Roll, vehicle_state->Pitch, vehicle_state->Yaw, vehicle_state->Wn, vehicle_state->We, vehicle_state->Vair, vehicle_state->AoA, vehicle_state->CW);
+	return mavlink_msg_vehicle_state_pack(system_id, component_id, msg, vehicle_state->time_boot_ms, vehicle_state->N, vehicle_state->E, vehicle_state->D, vehicle_state->u, vehicle_state->v, vehicle_state->w, vehicle_state->p, vehicle_state->q, vehicle_state->r, vehicle_state->Roll, vehicle_state->Pitch, vehicle_state->Yaw, vehicle_state->W_spd, vehicle_state->W_dir, vehicle_state->Vair, vehicle_state->AoA, vehicle_state->CW);
 }
 
 /**
@@ -248,7 +248,7 @@ static inline uint16_t mavlink_msg_vehicle_state_encode(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_vehicle_state_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_vehicle_state_t* vehicle_state)
 {
-	return mavlink_msg_vehicle_state_pack_chan(system_id, component_id, chan, msg, vehicle_state->time_boot_ms, vehicle_state->N, vehicle_state->E, vehicle_state->D, vehicle_state->u, vehicle_state->v, vehicle_state->w, vehicle_state->p, vehicle_state->q, vehicle_state->r, vehicle_state->Roll, vehicle_state->Pitch, vehicle_state->Yaw, vehicle_state->Wn, vehicle_state->We, vehicle_state->Vair, vehicle_state->AoA, vehicle_state->CW);
+	return mavlink_msg_vehicle_state_pack_chan(system_id, component_id, chan, msg, vehicle_state->time_boot_ms, vehicle_state->N, vehicle_state->E, vehicle_state->D, vehicle_state->u, vehicle_state->v, vehicle_state->w, vehicle_state->p, vehicle_state->q, vehicle_state->r, vehicle_state->Roll, vehicle_state->Pitch, vehicle_state->Yaw, vehicle_state->W_spd, vehicle_state->W_dir, vehicle_state->Vair, vehicle_state->AoA, vehicle_state->CW);
 }
 
 /**
@@ -268,15 +268,15 @@ static inline uint16_t mavlink_msg_vehicle_state_encode_chan(uint8_t system_id, 
  * @param Roll Estimated roll angle [deg]
  * @param Pitch Estimated pitch angle [deg]
  * @param Yaw Estimated yaw angle [deg]
- * @param Wn Estimated Wn (m/s)
- * @param We Estimated We (m/s)
+ * @param W_spd Estimated Wind speed (m/s)
+ * @param W_dir Estimated Wind direction (deg)
  * @param Vair Estimated airspeed [m/s]
  * @param AoA Estimated aoa [deg]
  * @param CW Estimated sideslip [deg]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
+static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float W_spd, float W_dir, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VEHICLE_STATE_LEN];
@@ -287,8 +287,8 @@ static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32
 	_mav_put_float(buf, 16, Roll);
 	_mav_put_float(buf, 20, Pitch);
 	_mav_put_float(buf, 24, Yaw);
-	_mav_put_float(buf, 28, Wn);
-	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 28, W_spd);
+	_mav_put_float(buf, 32, W_dir);
 	_mav_put_float(buf, 36, Vair);
 	_mav_put_float(buf, 40, AoA);
 	_mav_put_float(buf, 44, CW);
@@ -313,8 +313,8 @@ static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32
 	packet.Roll = Roll;
 	packet.Pitch = Pitch;
 	packet.Yaw = Yaw;
-	packet.Wn = Wn;
-	packet.We = We;
+	packet.W_spd = W_spd;
+	packet.W_dir = W_dir;
 	packet.Vair = Vair;
 	packet.AoA = AoA;
 	packet.CW = CW;
@@ -341,7 +341,7 @@ static inline void mavlink_msg_vehicle_state_send(mavlink_channel_t chan, uint32
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float Wn, float We, float Vair, float AoA, float CW)
+static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t N, int16_t E, int16_t D, float u, float v, float w, int16_t p, int16_t q, int16_t r, float Roll, float Pitch, float Yaw, float W_spd, float W_dir, float Vair, float AoA, float CW)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -352,8 +352,8 @@ static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf,
 	_mav_put_float(buf, 16, Roll);
 	_mav_put_float(buf, 20, Pitch);
 	_mav_put_float(buf, 24, Yaw);
-	_mav_put_float(buf, 28, Wn);
-	_mav_put_float(buf, 32, We);
+	_mav_put_float(buf, 28, W_spd);
+	_mav_put_float(buf, 32, W_dir);
 	_mav_put_float(buf, 36, Vair);
 	_mav_put_float(buf, 40, AoA);
 	_mav_put_float(buf, 44, CW);
@@ -378,8 +378,8 @@ static inline void mavlink_msg_vehicle_state_send_buf(mavlink_message_t *msgbuf,
 	packet->Roll = Roll;
 	packet->Pitch = Pitch;
 	packet->Yaw = Yaw;
-	packet->Wn = Wn;
-	packet->We = We;
+	packet->W_spd = W_spd;
+	packet->W_dir = W_dir;
 	packet->Vair = Vair;
 	packet->AoA = AoA;
 	packet->CW = CW;
@@ -535,21 +535,21 @@ static inline float mavlink_msg_vehicle_state_get_Yaw(const mavlink_message_t* m
 }
 
 /**
- * @brief Get field Wn from vehicle_state message
+ * @brief Get field W_spd from vehicle_state message
  *
- * @return Estimated Wn (m/s)
+ * @return Estimated Wind speed (m/s)
  */
-static inline float mavlink_msg_vehicle_state_get_Wn(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_W_spd(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
 
 /**
- * @brief Get field We from vehicle_state message
+ * @brief Get field W_dir from vehicle_state message
  *
- * @return Estimated We (m/s)
+ * @return Estimated Wind direction (deg)
  */
-static inline float mavlink_msg_vehicle_state_get_We(const mavlink_message_t* msg)
+static inline float mavlink_msg_vehicle_state_get_W_dir(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  32);
 }
@@ -600,8 +600,8 @@ static inline void mavlink_msg_vehicle_state_decode(const mavlink_message_t* msg
 	vehicle_state->Roll = mavlink_msg_vehicle_state_get_Roll(msg);
 	vehicle_state->Pitch = mavlink_msg_vehicle_state_get_Pitch(msg);
 	vehicle_state->Yaw = mavlink_msg_vehicle_state_get_Yaw(msg);
-	vehicle_state->Wn = mavlink_msg_vehicle_state_get_Wn(msg);
-	vehicle_state->We = mavlink_msg_vehicle_state_get_We(msg);
+	vehicle_state->W_spd = mavlink_msg_vehicle_state_get_W_spd(msg);
+	vehicle_state->W_dir = mavlink_msg_vehicle_state_get_W_dir(msg);
 	vehicle_state->Vair = mavlink_msg_vehicle_state_get_Vair(msg);
 	vehicle_state->AoA = mavlink_msg_vehicle_state_get_AoA(msg);
 	vehicle_state->CW = mavlink_msg_vehicle_state_get_CW(msg);

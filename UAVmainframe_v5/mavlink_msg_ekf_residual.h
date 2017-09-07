@@ -8,10 +8,10 @@ typedef struct __mavlink_ekf_residual_t
  int16_t Pn__cm; /*< Pn (m)*/
  int16_t Pe__cm; /*< Pe (m)*/
  int16_t Pd__cm; /*< Pd (m)*/
- int16_t Vn__cm_s; /*< Vn (m)*/
- int16_t Ve__cm_s; /*< Ve (m)*/
- int16_t Vd__cm_s; /*< Vd (m)*/
- int16_t Vair__cm_s; /*< Estimated Pn (m)*/
+ int16_t Vn__cmps; /*< Vn (m)*/
+ int16_t Ve__cmps; /*< Ve (m)*/
+ int16_t Vd__cmps; /*< Vd (m)*/
+ int16_t Vair__cmps; /*< Estimated Pn (m)*/
  int16_t AoA__mdeg; /*< Estimated Pe (m)*/
  int16_t CW__mdeg; /*< Estimated Pd (m)*/
  int16_t Alt__cm; /*< Estimated Pn (m)*/
@@ -23,8 +23,8 @@ typedef struct __mavlink_ekf_residual_t
 #define MAVLINK_MSG_ID_EKF_Residual_LEN 30
 #define MAVLINK_MSG_ID_200_LEN 30
 
-#define MAVLINK_MSG_ID_EKF_Residual_CRC 67
-#define MAVLINK_MSG_ID_200_CRC 67
+#define MAVLINK_MSG_ID_EKF_Residual_CRC 117
+#define MAVLINK_MSG_ID_200_CRC 117
 
 
 
@@ -35,10 +35,10 @@ typedef struct __mavlink_ekf_residual_t
          { "Pn__cm", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_ekf_residual_t, Pn__cm) }, \
          { "Pe__cm", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_ekf_residual_t, Pe__cm) }, \
          { "Pd__cm", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_ekf_residual_t, Pd__cm) }, \
-         { "Vn__cm_s", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_ekf_residual_t, Vn__cm_s) }, \
-         { "Ve__cm_s", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_ekf_residual_t, Ve__cm_s) }, \
-         { "Vd__cm_s", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_ekf_residual_t, Vd__cm_s) }, \
-         { "Vair__cm_s", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_ekf_residual_t, Vair__cm_s) }, \
+         { "Vn__cmps", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_ekf_residual_t, Vn__cmps) }, \
+         { "Ve__cmps", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_ekf_residual_t, Ve__cmps) }, \
+         { "Vd__cmps", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_ekf_residual_t, Vd__cmps) }, \
+         { "Vair__cmps", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_ekf_residual_t, Vair__cmps) }, \
          { "AoA__mdeg", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_ekf_residual_t, AoA__mdeg) }, \
          { "CW__mdeg", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_ekf_residual_t, CW__mdeg) }, \
          { "Alt__cm", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_ekf_residual_t, Alt__cm) }, \
@@ -59,10 +59,10 @@ typedef struct __mavlink_ekf_residual_t
  * @param Pn__cm Pn (m)
  * @param Pe__cm Pe (m)
  * @param Pd__cm Pd (m)
- * @param Vn__cm_s Vn (m)
- * @param Ve__cm_s Ve (m)
- * @param Vd__cm_s Vd (m)
- * @param Vair__cm_s Estimated Pn (m)
+ * @param Vn__cmps Vn (m)
+ * @param Ve__cmps Ve (m)
+ * @param Vd__cmps Vd (m)
+ * @param Vair__cmps Estimated Pn (m)
  * @param AoA__mdeg Estimated Pe (m)
  * @param CW__mdeg Estimated Pd (m)
  * @param Alt__cm Estimated Pn (m)
@@ -72,7 +72,7 @@ typedef struct __mavlink_ekf_residual_t
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cm_s, int16_t Ve__cm_s, int16_t Vd__cm_s, int16_t Vair__cm_s, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
+						       uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cmps, int16_t Ve__cmps, int16_t Vd__cmps, int16_t Vair__cmps, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
@@ -80,10 +80,10 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
 	_mav_put_int16_t(buf, 4, Pn__cm);
 	_mav_put_int16_t(buf, 6, Pe__cm);
 	_mav_put_int16_t(buf, 8, Pd__cm);
-	_mav_put_int16_t(buf, 10, Vn__cm_s);
-	_mav_put_int16_t(buf, 12, Ve__cm_s);
-	_mav_put_int16_t(buf, 14, Vd__cm_s);
-	_mav_put_int16_t(buf, 16, Vair__cm_s);
+	_mav_put_int16_t(buf, 10, Vn__cmps);
+	_mav_put_int16_t(buf, 12, Ve__cmps);
+	_mav_put_int16_t(buf, 14, Vd__cmps);
+	_mav_put_int16_t(buf, 16, Vair__cmps);
 	_mav_put_int16_t(buf, 18, AoA__mdeg);
 	_mav_put_int16_t(buf, 20, CW__mdeg);
 	_mav_put_int16_t(buf, 22, Alt__cm);
@@ -98,10 +98,10 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
 	packet.Pn__cm = Pn__cm;
 	packet.Pe__cm = Pe__cm;
 	packet.Pd__cm = Pd__cm;
-	packet.Vn__cm_s = Vn__cm_s;
-	packet.Ve__cm_s = Ve__cm_s;
-	packet.Vd__cm_s = Vd__cm_s;
-	packet.Vair__cm_s = Vair__cm_s;
+	packet.Vn__cmps = Vn__cmps;
+	packet.Ve__cmps = Ve__cmps;
+	packet.Vd__cmps = Vd__cmps;
+	packet.Vair__cmps = Vair__cmps;
 	packet.AoA__mdeg = AoA__mdeg;
 	packet.CW__mdeg = CW__mdeg;
 	packet.Alt__cm = Alt__cm;
@@ -130,10 +130,10 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
  * @param Pn__cm Pn (m)
  * @param Pe__cm Pe (m)
  * @param Pd__cm Pd (m)
- * @param Vn__cm_s Vn (m)
- * @param Ve__cm_s Ve (m)
- * @param Vd__cm_s Vd (m)
- * @param Vair__cm_s Estimated Pn (m)
+ * @param Vn__cmps Vn (m)
+ * @param Ve__cmps Ve (m)
+ * @param Vd__cmps Vd (m)
+ * @param Vair__cmps Estimated Pn (m)
  * @param AoA__mdeg Estimated Pe (m)
  * @param CW__mdeg Estimated Pd (m)
  * @param Alt__cm Estimated Pn (m)
@@ -144,7 +144,7 @@ static inline uint16_t mavlink_msg_ekf_residual_pack(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int16_t Pn__cm,int16_t Pe__cm,int16_t Pd__cm,int16_t Vn__cm_s,int16_t Ve__cm_s,int16_t Vd__cm_s,int16_t Vair__cm_s,int16_t AoA__mdeg,int16_t CW__mdeg,int16_t Alt__cm,int16_t Mx__mG,int16_t My__mG,int16_t Mz__mG)
+						           uint32_t time_boot_ms,int16_t Pn__cm,int16_t Pe__cm,int16_t Pd__cm,int16_t Vn__cmps,int16_t Ve__cmps,int16_t Vd__cmps,int16_t Vair__cmps,int16_t AoA__mdeg,int16_t CW__mdeg,int16_t Alt__cm,int16_t Mx__mG,int16_t My__mG,int16_t Mz__mG)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
@@ -152,10 +152,10 @@ static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uin
 	_mav_put_int16_t(buf, 4, Pn__cm);
 	_mav_put_int16_t(buf, 6, Pe__cm);
 	_mav_put_int16_t(buf, 8, Pd__cm);
-	_mav_put_int16_t(buf, 10, Vn__cm_s);
-	_mav_put_int16_t(buf, 12, Ve__cm_s);
-	_mav_put_int16_t(buf, 14, Vd__cm_s);
-	_mav_put_int16_t(buf, 16, Vair__cm_s);
+	_mav_put_int16_t(buf, 10, Vn__cmps);
+	_mav_put_int16_t(buf, 12, Ve__cmps);
+	_mav_put_int16_t(buf, 14, Vd__cmps);
+	_mav_put_int16_t(buf, 16, Vair__cmps);
 	_mav_put_int16_t(buf, 18, AoA__mdeg);
 	_mav_put_int16_t(buf, 20, CW__mdeg);
 	_mav_put_int16_t(buf, 22, Alt__cm);
@@ -170,10 +170,10 @@ static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uin
 	packet.Pn__cm = Pn__cm;
 	packet.Pe__cm = Pe__cm;
 	packet.Pd__cm = Pd__cm;
-	packet.Vn__cm_s = Vn__cm_s;
-	packet.Ve__cm_s = Ve__cm_s;
-	packet.Vd__cm_s = Vd__cm_s;
-	packet.Vair__cm_s = Vair__cm_s;
+	packet.Vn__cmps = Vn__cmps;
+	packet.Ve__cmps = Ve__cmps;
+	packet.Vd__cmps = Vd__cmps;
+	packet.Vair__cmps = Vair__cmps;
 	packet.AoA__mdeg = AoA__mdeg;
 	packet.CW__mdeg = CW__mdeg;
 	packet.Alt__cm = Alt__cm;
@@ -202,7 +202,7 @@ static inline uint16_t mavlink_msg_ekf_residual_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_ekf_residual_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ekf_residual_t* ekf_residual)
 {
-	return mavlink_msg_ekf_residual_pack(system_id, component_id, msg, ekf_residual->time_boot_ms, ekf_residual->Pn__cm, ekf_residual->Pe__cm, ekf_residual->Pd__cm, ekf_residual->Vn__cm_s, ekf_residual->Ve__cm_s, ekf_residual->Vd__cm_s, ekf_residual->Vair__cm_s, ekf_residual->AoA__mdeg, ekf_residual->CW__mdeg, ekf_residual->Alt__cm, ekf_residual->Mx__mG, ekf_residual->My__mG, ekf_residual->Mz__mG);
+	return mavlink_msg_ekf_residual_pack(system_id, component_id, msg, ekf_residual->time_boot_ms, ekf_residual->Pn__cm, ekf_residual->Pe__cm, ekf_residual->Pd__cm, ekf_residual->Vn__cmps, ekf_residual->Ve__cmps, ekf_residual->Vd__cmps, ekf_residual->Vair__cmps, ekf_residual->AoA__mdeg, ekf_residual->CW__mdeg, ekf_residual->Alt__cm, ekf_residual->Mx__mG, ekf_residual->My__mG, ekf_residual->Mz__mG);
 }
 
 /**
@@ -216,7 +216,7 @@ static inline uint16_t mavlink_msg_ekf_residual_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_ekf_residual_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ekf_residual_t* ekf_residual)
 {
-	return mavlink_msg_ekf_residual_pack_chan(system_id, component_id, chan, msg, ekf_residual->time_boot_ms, ekf_residual->Pn__cm, ekf_residual->Pe__cm, ekf_residual->Pd__cm, ekf_residual->Vn__cm_s, ekf_residual->Ve__cm_s, ekf_residual->Vd__cm_s, ekf_residual->Vair__cm_s, ekf_residual->AoA__mdeg, ekf_residual->CW__mdeg, ekf_residual->Alt__cm, ekf_residual->Mx__mG, ekf_residual->My__mG, ekf_residual->Mz__mG);
+	return mavlink_msg_ekf_residual_pack_chan(system_id, component_id, chan, msg, ekf_residual->time_boot_ms, ekf_residual->Pn__cm, ekf_residual->Pe__cm, ekf_residual->Pd__cm, ekf_residual->Vn__cmps, ekf_residual->Ve__cmps, ekf_residual->Vd__cmps, ekf_residual->Vair__cmps, ekf_residual->AoA__mdeg, ekf_residual->CW__mdeg, ekf_residual->Alt__cm, ekf_residual->Mx__mG, ekf_residual->My__mG, ekf_residual->Mz__mG);
 }
 
 /**
@@ -227,10 +227,10 @@ static inline uint16_t mavlink_msg_ekf_residual_encode_chan(uint8_t system_id, u
  * @param Pn__cm Pn (m)
  * @param Pe__cm Pe (m)
  * @param Pd__cm Pd (m)
- * @param Vn__cm_s Vn (m)
- * @param Ve__cm_s Ve (m)
- * @param Vd__cm_s Vd (m)
- * @param Vair__cm_s Estimated Pn (m)
+ * @param Vn__cmps Vn (m)
+ * @param Ve__cmps Ve (m)
+ * @param Vd__cmps Vd (m)
+ * @param Vair__cmps Estimated Pn (m)
  * @param AoA__mdeg Estimated Pe (m)
  * @param CW__mdeg Estimated Pd (m)
  * @param Alt__cm Estimated Pn (m)
@@ -240,7 +240,7 @@ static inline uint16_t mavlink_msg_ekf_residual_encode_chan(uint8_t system_id, u
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cm_s, int16_t Ve__cm_s, int16_t Vd__cm_s, int16_t Vair__cm_s, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
+static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cmps, int16_t Ve__cmps, int16_t Vd__cmps, int16_t Vair__cmps, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_EKF_Residual_LEN];
@@ -248,10 +248,10 @@ static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_
 	_mav_put_int16_t(buf, 4, Pn__cm);
 	_mav_put_int16_t(buf, 6, Pe__cm);
 	_mav_put_int16_t(buf, 8, Pd__cm);
-	_mav_put_int16_t(buf, 10, Vn__cm_s);
-	_mav_put_int16_t(buf, 12, Ve__cm_s);
-	_mav_put_int16_t(buf, 14, Vd__cm_s);
-	_mav_put_int16_t(buf, 16, Vair__cm_s);
+	_mav_put_int16_t(buf, 10, Vn__cmps);
+	_mav_put_int16_t(buf, 12, Ve__cmps);
+	_mav_put_int16_t(buf, 14, Vd__cmps);
+	_mav_put_int16_t(buf, 16, Vair__cmps);
 	_mav_put_int16_t(buf, 18, AoA__mdeg);
 	_mav_put_int16_t(buf, 20, CW__mdeg);
 	_mav_put_int16_t(buf, 22, Alt__cm);
@@ -270,10 +270,10 @@ static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_
 	packet.Pn__cm = Pn__cm;
 	packet.Pe__cm = Pe__cm;
 	packet.Pd__cm = Pd__cm;
-	packet.Vn__cm_s = Vn__cm_s;
-	packet.Ve__cm_s = Ve__cm_s;
-	packet.Vd__cm_s = Vd__cm_s;
-	packet.Vair__cm_s = Vair__cm_s;
+	packet.Vn__cmps = Vn__cmps;
+	packet.Ve__cmps = Ve__cmps;
+	packet.Vd__cmps = Vd__cmps;
+	packet.Vair__cmps = Vair__cmps;
 	packet.AoA__mdeg = AoA__mdeg;
 	packet.CW__mdeg = CW__mdeg;
 	packet.Alt__cm = Alt__cm;
@@ -297,7 +297,7 @@ static inline void mavlink_msg_ekf_residual_send(mavlink_channel_t chan, uint32_
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cm_s, int16_t Ve__cm_s, int16_t Vd__cm_s, int16_t Vair__cm_s, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
+static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t Pn__cm, int16_t Pe__cm, int16_t Pd__cm, int16_t Vn__cmps, int16_t Ve__cmps, int16_t Vd__cmps, int16_t Vair__cmps, int16_t AoA__mdeg, int16_t CW__mdeg, int16_t Alt__cm, int16_t Mx__mG, int16_t My__mG, int16_t Mz__mG)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
@@ -305,10 +305,10 @@ static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, 
 	_mav_put_int16_t(buf, 4, Pn__cm);
 	_mav_put_int16_t(buf, 6, Pe__cm);
 	_mav_put_int16_t(buf, 8, Pd__cm);
-	_mav_put_int16_t(buf, 10, Vn__cm_s);
-	_mav_put_int16_t(buf, 12, Ve__cm_s);
-	_mav_put_int16_t(buf, 14, Vd__cm_s);
-	_mav_put_int16_t(buf, 16, Vair__cm_s);
+	_mav_put_int16_t(buf, 10, Vn__cmps);
+	_mav_put_int16_t(buf, 12, Ve__cmps);
+	_mav_put_int16_t(buf, 14, Vd__cmps);
+	_mav_put_int16_t(buf, 16, Vair__cmps);
 	_mav_put_int16_t(buf, 18, AoA__mdeg);
 	_mav_put_int16_t(buf, 20, CW__mdeg);
 	_mav_put_int16_t(buf, 22, Alt__cm);
@@ -327,10 +327,10 @@ static inline void mavlink_msg_ekf_residual_send_buf(mavlink_message_t *msgbuf, 
 	packet->Pn__cm = Pn__cm;
 	packet->Pe__cm = Pe__cm;
 	packet->Pd__cm = Pd__cm;
-	packet->Vn__cm_s = Vn__cm_s;
-	packet->Ve__cm_s = Ve__cm_s;
-	packet->Vd__cm_s = Vd__cm_s;
-	packet->Vair__cm_s = Vair__cm_s;
+	packet->Vn__cmps = Vn__cmps;
+	packet->Ve__cmps = Ve__cmps;
+	packet->Vd__cmps = Vd__cmps;
+	packet->Vair__cmps = Vair__cmps;
 	packet->AoA__mdeg = AoA__mdeg;
 	packet->CW__mdeg = CW__mdeg;
 	packet->Alt__cm = Alt__cm;
@@ -393,41 +393,41 @@ static inline int16_t mavlink_msg_ekf_residual_get_Pd__cm(const mavlink_message_
 }
 
 /**
- * @brief Get field Vn__cm_s from ekf_residual message
+ * @brief Get field Vn__cmps from ekf_residual message
  *
  * @return Vn (m)
  */
-static inline int16_t mavlink_msg_ekf_residual_get_Vn__cm_s(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_residual_get_Vn__cmps(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  10);
 }
 
 /**
- * @brief Get field Ve__cm_s from ekf_residual message
+ * @brief Get field Ve__cmps from ekf_residual message
  *
  * @return Ve (m)
  */
-static inline int16_t mavlink_msg_ekf_residual_get_Ve__cm_s(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_residual_get_Ve__cmps(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  12);
 }
 
 /**
- * @brief Get field Vd__cm_s from ekf_residual message
+ * @brief Get field Vd__cmps from ekf_residual message
  *
  * @return Vd (m)
  */
-static inline int16_t mavlink_msg_ekf_residual_get_Vd__cm_s(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_residual_get_Vd__cmps(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  14);
 }
 
 /**
- * @brief Get field Vair__cm_s from ekf_residual message
+ * @brief Get field Vair__cmps from ekf_residual message
  *
  * @return Estimated Pn (m)
  */
-static inline int16_t mavlink_msg_ekf_residual_get_Vair__cm_s(const mavlink_message_t* msg)
+static inline int16_t mavlink_msg_ekf_residual_get_Vair__cmps(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_int16_t(msg,  16);
 }
@@ -505,10 +505,10 @@ static inline void mavlink_msg_ekf_residual_decode(const mavlink_message_t* msg,
 	ekf_residual->Pn__cm = mavlink_msg_ekf_residual_get_Pn__cm(msg);
 	ekf_residual->Pe__cm = mavlink_msg_ekf_residual_get_Pe__cm(msg);
 	ekf_residual->Pd__cm = mavlink_msg_ekf_residual_get_Pd__cm(msg);
-	ekf_residual->Vn__cm_s = mavlink_msg_ekf_residual_get_Vn__cm_s(msg);
-	ekf_residual->Ve__cm_s = mavlink_msg_ekf_residual_get_Ve__cm_s(msg);
-	ekf_residual->Vd__cm_s = mavlink_msg_ekf_residual_get_Vd__cm_s(msg);
-	ekf_residual->Vair__cm_s = mavlink_msg_ekf_residual_get_Vair__cm_s(msg);
+	ekf_residual->Vn__cmps = mavlink_msg_ekf_residual_get_Vn__cmps(msg);
+	ekf_residual->Ve__cmps = mavlink_msg_ekf_residual_get_Ve__cmps(msg);
+	ekf_residual->Vd__cmps = mavlink_msg_ekf_residual_get_Vd__cmps(msg);
+	ekf_residual->Vair__cmps = mavlink_msg_ekf_residual_get_Vair__cmps(msg);
 	ekf_residual->AoA__mdeg = mavlink_msg_ekf_residual_get_AoA__mdeg(msg);
 	ekf_residual->CW__mdeg = mavlink_msg_ekf_residual_get_CW__mdeg(msg);
 	ekf_residual->Alt__cm = mavlink_msg_ekf_residual_get_Alt__cm(msg);
