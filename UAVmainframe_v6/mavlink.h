@@ -1,5 +1,5 @@
 /** @file
- *	@brief MAVLink comm protocol built from UAVmainframeX.xml
+ *	@brief MAVLink comm protocol built from UAVmainframe_v6.xml
  *	@see http://mavlink.org
  */
 #ifndef MAVLINK_H
@@ -22,6 +22,6 @@
 #endif
 
 #include "version.h"
-#include "UAVmainframeX.h"
+#include "UAVmainframe_v6.h"
 
 #endif // MAVLINK_H
