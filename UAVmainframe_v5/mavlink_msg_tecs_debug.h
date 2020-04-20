@@ -9,11 +9,11 @@ typedef struct __mavlink_tecs_debug_t
  float Spd_Dem; /*< Desired Airspeed [m/s]*/
  float tecs_SPE_dem; /*< SPE_dem*/
  float tecs_SKE_dem; /*< SKE_dem*/
- float tecs_STE_dem; /*< SKE_dem*/
+ float tecs_STE_dem; /*< STE_dem*/
  float tecs_SEB_dem; /*< SEB_dem*/
  float tecs_SPE_est; /*< SPE_est*/
  float tecs_SKE_est; /*< SKE_est*/
- float tecs_STE_est; /*< SKE_est*/
+ float tecs_STE_est; /*< STE_est*/
  float tecs_SEB_est; /*< SEB_est*/
  float Pitch_Dem; /*< Tecs output pitch demand [deg]*/
  float Thr_Dem; /*< Tecs output throttle demand [%]*/
@@ -58,11 +58,11 @@ typedef struct __mavlink_tecs_debug_t
  * @param Spd_Dem Desired Airspeed [m/s]
  * @param tecs_SPE_dem SPE_dem
  * @param tecs_SKE_dem SKE_dem
- * @param tecs_STE_dem SKE_dem
+ * @param tecs_STE_dem STE_dem
  * @param tecs_SEB_dem SEB_dem
  * @param tecs_SPE_est SPE_est
  * @param tecs_SKE_est SKE_est
- * @param tecs_STE_est SKE_est
+ * @param tecs_STE_est STE_est
  * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
@@ -126,11 +126,11 @@ static inline uint16_t mavlink_msg_tecs_debug_pack(uint8_t system_id, uint8_t co
  * @param Spd_Dem Desired Airspeed [m/s]
  * @param tecs_SPE_dem SPE_dem
  * @param tecs_SKE_dem SKE_dem
- * @param tecs_STE_dem SKE_dem
+ * @param tecs_STE_dem STE_dem
  * @param tecs_SEB_dem SEB_dem
  * @param tecs_SPE_est SPE_est
  * @param tecs_SKE_est SKE_est
- * @param tecs_STE_est SKE_est
+ * @param tecs_STE_est STE_est
  * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
@@ -220,11 +220,11 @@ static inline uint16_t mavlink_msg_tecs_debug_encode_chan(uint8_t system_id, uin
  * @param Spd_Dem Desired Airspeed [m/s]
  * @param tecs_SPE_dem SPE_dem
  * @param tecs_SKE_dem SKE_dem
- * @param tecs_STE_dem SKE_dem
+ * @param tecs_STE_dem STE_dem
  * @param tecs_SEB_dem SEB_dem
  * @param tecs_SPE_est SPE_est
  * @param tecs_SKE_est SKE_est
- * @param tecs_STE_est SKE_est
+ * @param tecs_STE_est STE_est
  * @param tecs_SEB_est SEB_est
  * @param Pitch_Dem Tecs output pitch demand [deg]
  * @param Thr_Dem Tecs output throttle demand [%]
@@ -392,7 +392,7 @@ static inline float mavlink_msg_tecs_debug_get_tecs_SKE_dem(const mavlink_messag
 /**
  * @brief Get field tecs_STE_dem from tecs_debug message
  *
- * @return SKE_dem
+ * @return STE_dem
  */
 static inline float mavlink_msg_tecs_debug_get_tecs_STE_dem(const mavlink_message_t* msg)
 {
@@ -432,7 +432,7 @@ static inline float mavlink_msg_tecs_debug_get_tecs_SKE_est(const mavlink_messag
 /**
  * @brief Get field tecs_STE_est from tecs_debug message
  *
- * @return SKE_est
+ * @return STE_est
  */
 static inline float mavlink_msg_tecs_debug_get_tecs_STE_est(const mavlink_message_t* msg)
 {
