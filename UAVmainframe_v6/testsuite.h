@@ -1216,6 +1216,52 @@ static void mavlink_test_mr_debug(uint8_t system_id, uint8_t component_id, mavli
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_sensor_id(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+	mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+	mavlink_sensor_id_t packet_in = {
+		"ABCDEFGHI",163,230,"MNOPQRSTU"
+    };
+	mavlink_sensor_id_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        	packet1.version_high = packet_in.version_high;
+        	packet1.version_low = packet_in.version_low;
+        
+        	mav_array_memcpy(packet1.name, packet_in.name, sizeof(char)*10);
+        	mav_array_memcpy(packet1.configuration, packet_in.configuration, sizeof(char)*10);
+        
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensor_id_encode(system_id, component_id, &msg, &packet1);
+	mavlink_msg_sensor_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensor_id_pack(system_id, component_id, &msg , packet1.name , packet1.version_high , packet1.version_low , packet1.configuration );
+	mavlink_msg_sensor_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensor_id_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.name , packet1.version_high , packet1.version_low , packet1.configuration );
+	mavlink_msg_sensor_id_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+        	comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+	mavlink_msg_sensor_id_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+	mavlink_msg_sensor_id_send(MAVLINK_COMM_1 , packet1.name , packet1.version_high , packet1.version_low , packet1.configuration );
+	mavlink_msg_sensor_id_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_thrust_sensor(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
 	mavlink_message_t msg;
@@ -1400,6 +1446,7 @@ static void mavlink_test_UAVmainframe_v6(uint8_t system_id, uint8_t component_id
 	mavlink_test_ekf_health(system_id, component_id, last_msg);
 	mavlink_test_tecs_debug(system_id, component_id, last_msg);
 	mavlink_test_mr_debug(system_id, component_id, last_msg);
+	mavlink_test_sensor_id(system_id, component_id, last_msg);
 	mavlink_test_thrust_sensor(system_id, component_id, last_msg);
 	mavlink_test_attitude_sensor(system_id, component_id, last_msg);
 	mavlink_test_airdata_sensor(system_id, component_id, last_msg);
