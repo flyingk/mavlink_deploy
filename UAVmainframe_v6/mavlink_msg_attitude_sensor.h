@@ -4,8 +4,9 @@
 
 typedef struct __mavlink_attitude_sensor_t
 {
- uint64_t sensor_time_boot_us; /*< Sensor time since boot in usec*/
- uint64_t recorded_time_us; /*< recorded at time in usec*/
+ uint64_t sensor_time_us; /*< Sensor time in usec*/
+ uint64_t recorded_time_us; /*< recording timestamp in usec*/
+ uint32_t sensor_processing_time_us; /*< Sensor processing time in usec*/
  float Ax_UNIT_g; /*< X acceleration (g)*/
  float Ay_UNIT_g; /*< Y acceleration (g)*/
  float Az_UNIT_g; /*< Z acceleration (g)*/
@@ -19,40 +20,35 @@ typedef struct __mavlink_attitude_sensor_t
  float d1; /*< tbd 1*/
  float d2; /*< tbd 2*/
  float d3; /*< tbd 3*/
- float d4; /*< tbd 4*/
- float d5; /*< tbd 5*/
- float d6; /*< tbd 6*/
 } mavlink_attitude_sensor_t;
 
-#define MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN 80
-#define MAVLINK_MSG_ID_222_LEN 80
+#define MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN 72
+#define MAVLINK_MSG_ID_222_LEN 72
 
-#define MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC 24
-#define MAVLINK_MSG_ID_222_CRC 24
+#define MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC 99
+#define MAVLINK_MSG_ID_222_CRC 99
 
 
 
 #define MAVLINK_MESSAGE_INFO_ATTITUDE_SENSOR { \
 	"ATTITUDE_SENSOR", \
-	18, \
-	{  { "sensor_time_boot_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_attitude_sensor_t, sensor_time_boot_us) }, \
+	16, \
+	{  { "sensor_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_attitude_sensor_t, sensor_time_us) }, \
          { "recorded_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_attitude_sensor_t, recorded_time_us) }, \
-         { "Ax_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_attitude_sensor_t, Ax_UNIT_g) }, \
-         { "Ay_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_attitude_sensor_t, Ay_UNIT_g) }, \
-         { "Az_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_attitude_sensor_t, Az_UNIT_g) }, \
-         { "Gx_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_attitude_sensor_t, Gx_UNIT_deg_d_sec) }, \
-         { "Gy_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_attitude_sensor_t, Gy_UNIT_deg_d_sec) }, \
-         { "Gz_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_attitude_sensor_t, Gz_UNIT_deg_d_sec) }, \
-         { "Mx_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_attitude_sensor_t, Mx_UNIT_Gauss) }, \
-         { "My_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_attitude_sensor_t, My_UNIT_Gauss) }, \
-         { "Mz_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_attitude_sensor_t, Mz_UNIT_Gauss) }, \
-         { "Sensor_temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_attitude_sensor_t, Sensor_temp_UNIT_C) }, \
-         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_attitude_sensor_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_attitude_sensor_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_attitude_sensor_t, d3) }, \
-         { "d4", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_attitude_sensor_t, d4) }, \
-         { "d5", NULL, MAVLINK_TYPE_FLOAT, 0, 72, offsetof(mavlink_attitude_sensor_t, d5) }, \
-         { "d6", NULL, MAVLINK_TYPE_FLOAT, 0, 76, offsetof(mavlink_attitude_sensor_t, d6) }, \
+         { "sensor_processing_time_us", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_attitude_sensor_t, sensor_processing_time_us) }, \
+         { "Ax_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_attitude_sensor_t, Ax_UNIT_g) }, \
+         { "Ay_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_attitude_sensor_t, Ay_UNIT_g) }, \
+         { "Az_UNIT_g", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_attitude_sensor_t, Az_UNIT_g) }, \
+         { "Gx_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_attitude_sensor_t, Gx_UNIT_deg_d_sec) }, \
+         { "Gy_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_attitude_sensor_t, Gy_UNIT_deg_d_sec) }, \
+         { "Gz_UNIT_deg_d_sec", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_attitude_sensor_t, Gz_UNIT_deg_d_sec) }, \
+         { "Mx_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_attitude_sensor_t, Mx_UNIT_Gauss) }, \
+         { "My_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_attitude_sensor_t, My_UNIT_Gauss) }, \
+         { "Mz_UNIT_Gauss", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_attitude_sensor_t, Mz_UNIT_Gauss) }, \
+         { "Sensor_temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_attitude_sensor_t, Sensor_temp_UNIT_C) }, \
+         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_attitude_sensor_t, d1) }, \
+         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 64, offsetof(mavlink_attitude_sensor_t, d2) }, \
+         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 68, offsetof(mavlink_attitude_sensor_t, d3) }, \
          } \
 }
 
@@ -63,8 +59,9 @@ typedef struct __mavlink_attitude_sensor_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param sensor_time_boot_us Sensor time since boot in usec
- * @param recorded_time_us recorded at time in usec
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
  * @param Ax_UNIT_g X acceleration (g)
  * @param Ay_UNIT_g Y acceleration (g)
  * @param Az_UNIT_g Z acceleration (g)
@@ -78,40 +75,36 @@ typedef struct __mavlink_attitude_sensor_t
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
- * @param d4 tbd 4
- * @param d5 tbd 5
- * @param d6 tbd 6
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint64_t sensor_time_boot_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3, float d4, float d5, float d6)
+						       uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, sensor_time_boot_us);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
 	_mav_put_uint64_t(buf, 8, recorded_time_us);
-	_mav_put_float(buf, 16, Ax_UNIT_g);
-	_mav_put_float(buf, 20, Ay_UNIT_g);
-	_mav_put_float(buf, 24, Az_UNIT_g);
-	_mav_put_float(buf, 28, Gx_UNIT_deg_d_sec);
-	_mav_put_float(buf, 32, Gy_UNIT_deg_d_sec);
-	_mav_put_float(buf, 36, Gz_UNIT_deg_d_sec);
-	_mav_put_float(buf, 40, Mx_UNIT_Gauss);
-	_mav_put_float(buf, 44, My_UNIT_Gauss);
-	_mav_put_float(buf, 48, Mz_UNIT_Gauss);
-	_mav_put_float(buf, 52, Sensor_temp_UNIT_C);
-	_mav_put_float(buf, 56, d1);
-	_mav_put_float(buf, 60, d2);
-	_mav_put_float(buf, 64, d3);
-	_mav_put_float(buf, 68, d4);
-	_mav_put_float(buf, 72, d5);
-	_mav_put_float(buf, 76, d6);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, Ax_UNIT_g);
+	_mav_put_float(buf, 24, Ay_UNIT_g);
+	_mav_put_float(buf, 28, Az_UNIT_g);
+	_mav_put_float(buf, 32, Gx_UNIT_deg_d_sec);
+	_mav_put_float(buf, 36, Gy_UNIT_deg_d_sec);
+	_mav_put_float(buf, 40, Gz_UNIT_deg_d_sec);
+	_mav_put_float(buf, 44, Mx_UNIT_Gauss);
+	_mav_put_float(buf, 48, My_UNIT_Gauss);
+	_mav_put_float(buf, 52, Mz_UNIT_Gauss);
+	_mav_put_float(buf, 56, Sensor_temp_UNIT_C);
+	_mav_put_float(buf, 60, d1);
+	_mav_put_float(buf, 64, d2);
+	_mav_put_float(buf, 68, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN);
 #else
 	mavlink_attitude_sensor_t packet;
-	packet.sensor_time_boot_us = sensor_time_boot_us;
+	packet.sensor_time_us = sensor_time_us;
 	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
 	packet.Ax_UNIT_g = Ax_UNIT_g;
 	packet.Ay_UNIT_g = Ay_UNIT_g;
 	packet.Az_UNIT_g = Az_UNIT_g;
@@ -125,9 +118,6 @@ static inline uint16_t mavlink_msg_attitude_sensor_pack(uint8_t system_id, uint8
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
-	packet.d4 = d4;
-	packet.d5 = d5;
-	packet.d6 = d6;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN);
 #endif
@@ -146,8 +136,9 @@ static inline uint16_t mavlink_msg_attitude_sensor_pack(uint8_t system_id, uint8
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param sensor_time_boot_us Sensor time since boot in usec
- * @param recorded_time_us recorded at time in usec
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
  * @param Ax_UNIT_g X acceleration (g)
  * @param Ay_UNIT_g Y acceleration (g)
  * @param Az_UNIT_g Z acceleration (g)
@@ -161,41 +152,37 @@ static inline uint16_t mavlink_msg_attitude_sensor_pack(uint8_t system_id, uint8
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
- * @param d4 tbd 4
- * @param d5 tbd 5
- * @param d6 tbd 6
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_attitude_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint64_t sensor_time_boot_us,uint64_t recorded_time_us,float Ax_UNIT_g,float Ay_UNIT_g,float Az_UNIT_g,float Gx_UNIT_deg_d_sec,float Gy_UNIT_deg_d_sec,float Gz_UNIT_deg_d_sec,float Mx_UNIT_Gauss,float My_UNIT_Gauss,float Mz_UNIT_Gauss,float Sensor_temp_UNIT_C,float d1,float d2,float d3,float d4,float d5,float d6)
+						           uint64_t sensor_time_us,uint32_t sensor_processing_time_us,uint64_t recorded_time_us,float Ax_UNIT_g,float Ay_UNIT_g,float Az_UNIT_g,float Gx_UNIT_deg_d_sec,float Gy_UNIT_deg_d_sec,float Gz_UNIT_deg_d_sec,float Mx_UNIT_Gauss,float My_UNIT_Gauss,float Mz_UNIT_Gauss,float Sensor_temp_UNIT_C,float d1,float d2,float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, sensor_time_boot_us);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
 	_mav_put_uint64_t(buf, 8, recorded_time_us);
-	_mav_put_float(buf, 16, Ax_UNIT_g);
-	_mav_put_float(buf, 20, Ay_UNIT_g);
-	_mav_put_float(buf, 24, Az_UNIT_g);
-	_mav_put_float(buf, 28, Gx_UNIT_deg_d_sec);
-	_mav_put_float(buf, 32, Gy_UNIT_deg_d_sec);
-	_mav_put_float(buf, 36, Gz_UNIT_deg_d_sec);
-	_mav_put_float(buf, 40, Mx_UNIT_Gauss);
-	_mav_put_float(buf, 44, My_UNIT_Gauss);
-	_mav_put_float(buf, 48, Mz_UNIT_Gauss);
-	_mav_put_float(buf, 52, Sensor_temp_UNIT_C);
-	_mav_put_float(buf, 56, d1);
-	_mav_put_float(buf, 60, d2);
-	_mav_put_float(buf, 64, d3);
-	_mav_put_float(buf, 68, d4);
-	_mav_put_float(buf, 72, d5);
-	_mav_put_float(buf, 76, d6);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, Ax_UNIT_g);
+	_mav_put_float(buf, 24, Ay_UNIT_g);
+	_mav_put_float(buf, 28, Az_UNIT_g);
+	_mav_put_float(buf, 32, Gx_UNIT_deg_d_sec);
+	_mav_put_float(buf, 36, Gy_UNIT_deg_d_sec);
+	_mav_put_float(buf, 40, Gz_UNIT_deg_d_sec);
+	_mav_put_float(buf, 44, Mx_UNIT_Gauss);
+	_mav_put_float(buf, 48, My_UNIT_Gauss);
+	_mav_put_float(buf, 52, Mz_UNIT_Gauss);
+	_mav_put_float(buf, 56, Sensor_temp_UNIT_C);
+	_mav_put_float(buf, 60, d1);
+	_mav_put_float(buf, 64, d2);
+	_mav_put_float(buf, 68, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN);
 #else
 	mavlink_attitude_sensor_t packet;
-	packet.sensor_time_boot_us = sensor_time_boot_us;
+	packet.sensor_time_us = sensor_time_us;
 	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
 	packet.Ax_UNIT_g = Ax_UNIT_g;
 	packet.Ay_UNIT_g = Ay_UNIT_g;
 	packet.Az_UNIT_g = Az_UNIT_g;
@@ -209,9 +196,6 @@ static inline uint16_t mavlink_msg_attitude_sensor_pack_chan(uint8_t system_id, 
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
-	packet.d4 = d4;
-	packet.d5 = d5;
-	packet.d6 = d6;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN);
 #endif
@@ -234,7 +218,7 @@ static inline uint16_t mavlink_msg_attitude_sensor_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_attitude_sensor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_attitude_sensor_t* attitude_sensor)
 {
-	return mavlink_msg_attitude_sensor_pack(system_id, component_id, msg, attitude_sensor->sensor_time_boot_us, attitude_sensor->recorded_time_us, attitude_sensor->Ax_UNIT_g, attitude_sensor->Ay_UNIT_g, attitude_sensor->Az_UNIT_g, attitude_sensor->Gx_UNIT_deg_d_sec, attitude_sensor->Gy_UNIT_deg_d_sec, attitude_sensor->Gz_UNIT_deg_d_sec, attitude_sensor->Mx_UNIT_Gauss, attitude_sensor->My_UNIT_Gauss, attitude_sensor->Mz_UNIT_Gauss, attitude_sensor->Sensor_temp_UNIT_C, attitude_sensor->d1, attitude_sensor->d2, attitude_sensor->d3, attitude_sensor->d4, attitude_sensor->d5, attitude_sensor->d6);
+	return mavlink_msg_attitude_sensor_pack(system_id, component_id, msg, attitude_sensor->sensor_time_us, attitude_sensor->sensor_processing_time_us, attitude_sensor->recorded_time_us, attitude_sensor->Ax_UNIT_g, attitude_sensor->Ay_UNIT_g, attitude_sensor->Az_UNIT_g, attitude_sensor->Gx_UNIT_deg_d_sec, attitude_sensor->Gy_UNIT_deg_d_sec, attitude_sensor->Gz_UNIT_deg_d_sec, attitude_sensor->Mx_UNIT_Gauss, attitude_sensor->My_UNIT_Gauss, attitude_sensor->Mz_UNIT_Gauss, attitude_sensor->Sensor_temp_UNIT_C, attitude_sensor->d1, attitude_sensor->d2, attitude_sensor->d3);
 }
 
 /**
@@ -248,15 +232,16 @@ static inline uint16_t mavlink_msg_attitude_sensor_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_attitude_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_attitude_sensor_t* attitude_sensor)
 {
-	return mavlink_msg_attitude_sensor_pack_chan(system_id, component_id, chan, msg, attitude_sensor->sensor_time_boot_us, attitude_sensor->recorded_time_us, attitude_sensor->Ax_UNIT_g, attitude_sensor->Ay_UNIT_g, attitude_sensor->Az_UNIT_g, attitude_sensor->Gx_UNIT_deg_d_sec, attitude_sensor->Gy_UNIT_deg_d_sec, attitude_sensor->Gz_UNIT_deg_d_sec, attitude_sensor->Mx_UNIT_Gauss, attitude_sensor->My_UNIT_Gauss, attitude_sensor->Mz_UNIT_Gauss, attitude_sensor->Sensor_temp_UNIT_C, attitude_sensor->d1, attitude_sensor->d2, attitude_sensor->d3, attitude_sensor->d4, attitude_sensor->d5, attitude_sensor->d6);
+	return mavlink_msg_attitude_sensor_pack_chan(system_id, component_id, chan, msg, attitude_sensor->sensor_time_us, attitude_sensor->sensor_processing_time_us, attitude_sensor->recorded_time_us, attitude_sensor->Ax_UNIT_g, attitude_sensor->Ay_UNIT_g, attitude_sensor->Az_UNIT_g, attitude_sensor->Gx_UNIT_deg_d_sec, attitude_sensor->Gy_UNIT_deg_d_sec, attitude_sensor->Gz_UNIT_deg_d_sec, attitude_sensor->Mx_UNIT_Gauss, attitude_sensor->My_UNIT_Gauss, attitude_sensor->Mz_UNIT_Gauss, attitude_sensor->Sensor_temp_UNIT_C, attitude_sensor->d1, attitude_sensor->d2, attitude_sensor->d3);
 }
 
 /**
  * @brief Send a attitude_sensor message
  * @param chan MAVLink channel to send the message
  *
- * @param sensor_time_boot_us Sensor time since boot in usec
- * @param recorded_time_us recorded at time in usec
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
  * @param Ax_UNIT_g X acceleration (g)
  * @param Ay_UNIT_g Y acceleration (g)
  * @param Az_UNIT_g Z acceleration (g)
@@ -270,34 +255,29 @@ static inline uint16_t mavlink_msg_attitude_sensor_encode_chan(uint8_t system_id
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
- * @param d4 tbd 4
- * @param d5 tbd 5
- * @param d6 tbd 6
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_attitude_sensor_send(mavlink_channel_t chan, uint64_t sensor_time_boot_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3, float d4, float d5, float d6)
+static inline void mavlink_msg_attitude_sensor_send(mavlink_channel_t chan, uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, sensor_time_boot_us);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
 	_mav_put_uint64_t(buf, 8, recorded_time_us);
-	_mav_put_float(buf, 16, Ax_UNIT_g);
-	_mav_put_float(buf, 20, Ay_UNIT_g);
-	_mav_put_float(buf, 24, Az_UNIT_g);
-	_mav_put_float(buf, 28, Gx_UNIT_deg_d_sec);
-	_mav_put_float(buf, 32, Gy_UNIT_deg_d_sec);
-	_mav_put_float(buf, 36, Gz_UNIT_deg_d_sec);
-	_mav_put_float(buf, 40, Mx_UNIT_Gauss);
-	_mav_put_float(buf, 44, My_UNIT_Gauss);
-	_mav_put_float(buf, 48, Mz_UNIT_Gauss);
-	_mav_put_float(buf, 52, Sensor_temp_UNIT_C);
-	_mav_put_float(buf, 56, d1);
-	_mav_put_float(buf, 60, d2);
-	_mav_put_float(buf, 64, d3);
-	_mav_put_float(buf, 68, d4);
-	_mav_put_float(buf, 72, d5);
-	_mav_put_float(buf, 76, d6);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, Ax_UNIT_g);
+	_mav_put_float(buf, 24, Ay_UNIT_g);
+	_mav_put_float(buf, 28, Az_UNIT_g);
+	_mav_put_float(buf, 32, Gx_UNIT_deg_d_sec);
+	_mav_put_float(buf, 36, Gy_UNIT_deg_d_sec);
+	_mav_put_float(buf, 40, Gz_UNIT_deg_d_sec);
+	_mav_put_float(buf, 44, Mx_UNIT_Gauss);
+	_mav_put_float(buf, 48, My_UNIT_Gauss);
+	_mav_put_float(buf, 52, Mz_UNIT_Gauss);
+	_mav_put_float(buf, 56, Sensor_temp_UNIT_C);
+	_mav_put_float(buf, 60, d1);
+	_mav_put_float(buf, 64, d2);
+	_mav_put_float(buf, 68, d3);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATTITUDE_SENSOR, buf, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN, MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC);
@@ -306,8 +286,9 @@ static inline void mavlink_msg_attitude_sensor_send(mavlink_channel_t chan, uint
 #endif
 #else
 	mavlink_attitude_sensor_t packet;
-	packet.sensor_time_boot_us = sensor_time_boot_us;
+	packet.sensor_time_us = sensor_time_us;
 	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
 	packet.Ax_UNIT_g = Ax_UNIT_g;
 	packet.Ay_UNIT_g = Ay_UNIT_g;
 	packet.Az_UNIT_g = Az_UNIT_g;
@@ -321,9 +302,6 @@ static inline void mavlink_msg_attitude_sensor_send(mavlink_channel_t chan, uint
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
-	packet.d4 = d4;
-	packet.d5 = d5;
-	packet.d6 = d6;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATTITUDE_SENSOR, (const char *)&packet, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN, MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC);
@@ -341,28 +319,26 @@ static inline void mavlink_msg_attitude_sensor_send(mavlink_channel_t chan, uint
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_attitude_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t sensor_time_boot_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3, float d4, float d5, float d6)
+static inline void mavlink_msg_attitude_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float Ax_UNIT_g, float Ay_UNIT_g, float Az_UNIT_g, float Gx_UNIT_deg_d_sec, float Gy_UNIT_deg_d_sec, float Gz_UNIT_deg_d_sec, float Mx_UNIT_Gauss, float My_UNIT_Gauss, float Mz_UNIT_Gauss, float Sensor_temp_UNIT_C, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
-	_mav_put_uint64_t(buf, 0, sensor_time_boot_us);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
 	_mav_put_uint64_t(buf, 8, recorded_time_us);
-	_mav_put_float(buf, 16, Ax_UNIT_g);
-	_mav_put_float(buf, 20, Ay_UNIT_g);
-	_mav_put_float(buf, 24, Az_UNIT_g);
-	_mav_put_float(buf, 28, Gx_UNIT_deg_d_sec);
-	_mav_put_float(buf, 32, Gy_UNIT_deg_d_sec);
-	_mav_put_float(buf, 36, Gz_UNIT_deg_d_sec);
-	_mav_put_float(buf, 40, Mx_UNIT_Gauss);
-	_mav_put_float(buf, 44, My_UNIT_Gauss);
-	_mav_put_float(buf, 48, Mz_UNIT_Gauss);
-	_mav_put_float(buf, 52, Sensor_temp_UNIT_C);
-	_mav_put_float(buf, 56, d1);
-	_mav_put_float(buf, 60, d2);
-	_mav_put_float(buf, 64, d3);
-	_mav_put_float(buf, 68, d4);
-	_mav_put_float(buf, 72, d5);
-	_mav_put_float(buf, 76, d6);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, Ax_UNIT_g);
+	_mav_put_float(buf, 24, Ay_UNIT_g);
+	_mav_put_float(buf, 28, Az_UNIT_g);
+	_mav_put_float(buf, 32, Gx_UNIT_deg_d_sec);
+	_mav_put_float(buf, 36, Gy_UNIT_deg_d_sec);
+	_mav_put_float(buf, 40, Gz_UNIT_deg_d_sec);
+	_mav_put_float(buf, 44, Mx_UNIT_Gauss);
+	_mav_put_float(buf, 48, My_UNIT_Gauss);
+	_mav_put_float(buf, 52, Mz_UNIT_Gauss);
+	_mav_put_float(buf, 56, Sensor_temp_UNIT_C);
+	_mav_put_float(buf, 60, d1);
+	_mav_put_float(buf, 64, d2);
+	_mav_put_float(buf, 68, d3);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATTITUDE_SENSOR, buf, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN, MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC);
@@ -371,8 +347,9 @@ static inline void mavlink_msg_attitude_sensor_send_buf(mavlink_message_t *msgbu
 #endif
 #else
 	mavlink_attitude_sensor_t *packet = (mavlink_attitude_sensor_t *)msgbuf;
-	packet->sensor_time_boot_us = sensor_time_boot_us;
+	packet->sensor_time_us = sensor_time_us;
 	packet->recorded_time_us = recorded_time_us;
+	packet->sensor_processing_time_us = sensor_processing_time_us;
 	packet->Ax_UNIT_g = Ax_UNIT_g;
 	packet->Ay_UNIT_g = Ay_UNIT_g;
 	packet->Az_UNIT_g = Az_UNIT_g;
@@ -386,9 +363,6 @@ static inline void mavlink_msg_attitude_sensor_send_buf(mavlink_message_t *msgbu
 	packet->d1 = d1;
 	packet->d2 = d2;
 	packet->d3 = d3;
-	packet->d4 = d4;
-	packet->d5 = d5;
-	packet->d6 = d6;
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ATTITUDE_SENSOR, (const char *)packet, MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN, MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC);
@@ -405,19 +379,29 @@ static inline void mavlink_msg_attitude_sensor_send_buf(mavlink_message_t *msgbu
 
 
 /**
- * @brief Get field sensor_time_boot_us from attitude_sensor message
+ * @brief Get field sensor_time_us from attitude_sensor message
  *
- * @return Sensor time since boot in usec
+ * @return Sensor time in usec
  */
-static inline uint64_t mavlink_msg_attitude_sensor_get_sensor_time_boot_us(const mavlink_message_t* msg)
+static inline uint64_t mavlink_msg_attitude_sensor_get_sensor_time_us(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
 
 /**
+ * @brief Get field sensor_processing_time_us from attitude_sensor message
+ *
+ * @return Sensor processing time in usec
+ */
+static inline uint32_t mavlink_msg_attitude_sensor_get_sensor_processing_time_us(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint32_t(msg,  16);
+}
+
+/**
  * @brief Get field recorded_time_us from attitude_sensor message
  *
- * @return recorded at time in usec
+ * @return recording timestamp in usec
  */
 static inline uint64_t mavlink_msg_attitude_sensor_get_recorded_time_us(const mavlink_message_t* msg)
 {
@@ -431,7 +415,7 @@ static inline uint64_t mavlink_msg_attitude_sensor_get_recorded_time_us(const ma
  */
 static inline float mavlink_msg_attitude_sensor_get_Ax_UNIT_g(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  16);
+	return _MAV_RETURN_float(msg,  20);
 }
 
 /**
@@ -441,7 +425,7 @@ static inline float mavlink_msg_attitude_sensor_get_Ax_UNIT_g(const mavlink_mess
  */
 static inline float mavlink_msg_attitude_sensor_get_Ay_UNIT_g(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  20);
+	return _MAV_RETURN_float(msg,  24);
 }
 
 /**
@@ -451,7 +435,7 @@ static inline float mavlink_msg_attitude_sensor_get_Ay_UNIT_g(const mavlink_mess
  */
 static inline float mavlink_msg_attitude_sensor_get_Az_UNIT_g(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  24);
+	return _MAV_RETURN_float(msg,  28);
 }
 
 /**
@@ -461,7 +445,7 @@ static inline float mavlink_msg_attitude_sensor_get_Az_UNIT_g(const mavlink_mess
  */
 static inline float mavlink_msg_attitude_sensor_get_Gx_UNIT_deg_d_sec(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  28);
+	return _MAV_RETURN_float(msg,  32);
 }
 
 /**
@@ -471,7 +455,7 @@ static inline float mavlink_msg_attitude_sensor_get_Gx_UNIT_deg_d_sec(const mavl
  */
 static inline float mavlink_msg_attitude_sensor_get_Gy_UNIT_deg_d_sec(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  32);
+	return _MAV_RETURN_float(msg,  36);
 }
 
 /**
@@ -481,7 +465,7 @@ static inline float mavlink_msg_attitude_sensor_get_Gy_UNIT_deg_d_sec(const mavl
  */
 static inline float mavlink_msg_attitude_sensor_get_Gz_UNIT_deg_d_sec(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  36);
+	return _MAV_RETURN_float(msg,  40);
 }
 
 /**
@@ -491,7 +475,7 @@ static inline float mavlink_msg_attitude_sensor_get_Gz_UNIT_deg_d_sec(const mavl
  */
 static inline float mavlink_msg_attitude_sensor_get_Mx_UNIT_Gauss(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  40);
+	return _MAV_RETURN_float(msg,  44);
 }
 
 /**
@@ -501,7 +485,7 @@ static inline float mavlink_msg_attitude_sensor_get_Mx_UNIT_Gauss(const mavlink_
  */
 static inline float mavlink_msg_attitude_sensor_get_My_UNIT_Gauss(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  44);
+	return _MAV_RETURN_float(msg,  48);
 }
 
 /**
@@ -511,7 +495,7 @@ static inline float mavlink_msg_attitude_sensor_get_My_UNIT_Gauss(const mavlink_
  */
 static inline float mavlink_msg_attitude_sensor_get_Mz_UNIT_Gauss(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  48);
+	return _MAV_RETURN_float(msg,  52);
 }
 
 /**
@@ -521,7 +505,7 @@ static inline float mavlink_msg_attitude_sensor_get_Mz_UNIT_Gauss(const mavlink_
  */
 static inline float mavlink_msg_attitude_sensor_get_Sensor_temp_UNIT_C(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  52);
+	return _MAV_RETURN_float(msg,  56);
 }
 
 /**
@@ -531,7 +515,7 @@ static inline float mavlink_msg_attitude_sensor_get_Sensor_temp_UNIT_C(const mav
  */
 static inline float mavlink_msg_attitude_sensor_get_d1(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  56);
+	return _MAV_RETURN_float(msg,  60);
 }
 
 /**
@@ -541,7 +525,7 @@ static inline float mavlink_msg_attitude_sensor_get_d1(const mavlink_message_t* 
  */
 static inline float mavlink_msg_attitude_sensor_get_d2(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  60);
+	return _MAV_RETURN_float(msg,  64);
 }
 
 /**
@@ -551,37 +535,7 @@ static inline float mavlink_msg_attitude_sensor_get_d2(const mavlink_message_t* 
  */
 static inline float mavlink_msg_attitude_sensor_get_d3(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  64);
-}
-
-/**
- * @brief Get field d4 from attitude_sensor message
- *
- * @return tbd 4
- */
-static inline float mavlink_msg_attitude_sensor_get_d4(const mavlink_message_t* msg)
-{
 	return _MAV_RETURN_float(msg,  68);
-}
-
-/**
- * @brief Get field d5 from attitude_sensor message
- *
- * @return tbd 5
- */
-static inline float mavlink_msg_attitude_sensor_get_d5(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  72);
-}
-
-/**
- * @brief Get field d6 from attitude_sensor message
- *
- * @return tbd 6
- */
-static inline float mavlink_msg_attitude_sensor_get_d6(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  76);
 }
 
 /**
@@ -593,8 +547,9 @@ static inline float mavlink_msg_attitude_sensor_get_d6(const mavlink_message_t* 
 static inline void mavlink_msg_attitude_sensor_decode(const mavlink_message_t* msg, mavlink_attitude_sensor_t* attitude_sensor)
 {
 #if MAVLINK_NEED_BYTE_SWAP
-	attitude_sensor->sensor_time_boot_us = mavlink_msg_attitude_sensor_get_sensor_time_boot_us(msg);
+	attitude_sensor->sensor_time_us = mavlink_msg_attitude_sensor_get_sensor_time_us(msg);
 	attitude_sensor->recorded_time_us = mavlink_msg_attitude_sensor_get_recorded_time_us(msg);
+	attitude_sensor->sensor_processing_time_us = mavlink_msg_attitude_sensor_get_sensor_processing_time_us(msg);
 	attitude_sensor->Ax_UNIT_g = mavlink_msg_attitude_sensor_get_Ax_UNIT_g(msg);
 	attitude_sensor->Ay_UNIT_g = mavlink_msg_attitude_sensor_get_Ay_UNIT_g(msg);
 	attitude_sensor->Az_UNIT_g = mavlink_msg_attitude_sensor_get_Az_UNIT_g(msg);
@@ -608,9 +563,6 @@ static inline void mavlink_msg_attitude_sensor_decode(const mavlink_message_t* m
 	attitude_sensor->d1 = mavlink_msg_attitude_sensor_get_d1(msg);
 	attitude_sensor->d2 = mavlink_msg_attitude_sensor_get_d2(msg);
 	attitude_sensor->d3 = mavlink_msg_attitude_sensor_get_d3(msg);
-	attitude_sensor->d4 = mavlink_msg_attitude_sensor_get_d4(msg);
-	attitude_sensor->d5 = mavlink_msg_attitude_sensor_get_d5(msg);
-	attitude_sensor->d6 = mavlink_msg_attitude_sensor_get_d6(msg);
 #else
 	memcpy(attitude_sensor, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN);
 #endif

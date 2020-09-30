@@ -4,45 +4,47 @@
 
 typedef struct __mavlink_airdata_sensor_t
 {
- uint64_t utc_time_us; /*< UTC time in usec*/
- uint32_t time_boot_ms; /*< Time since boot in msec*/
- float absP; /*< Absolute Pressure (Pa)*/
- float dP_1; /*< Differential Pressure 1(Pa)*/
- float dp_2; /*< Differential Pressure 2(Pa)*/
- float dp_3; /*< Differential Pressure 3(Pa)*/
- float Sensor_Temp; /*< Sensor Temperature*/
- float Altitude; /*< Calculated Altitude*/
- float Airspeed; /*< Calculated Airspeed*/
- float Density; /*< Calculated air density*/
+ uint64_t sensor_time_us; /*< Sensor time in usec*/
+ uint64_t recorded_time_us; /*< recording timestamp in usec*/
+ uint32_t sensor_processing_time_us; /*< Sensor processing time in usec*/
+ float absP_UNIT_Pa; /*< Absolute Pressure (Pa)*/
+ float dP_1_UNIT_Pa; /*< Differential Pressure 1(Pa)*/
+ float dp_2_UNIT_Pa; /*< Differential Pressure 2(Pa)*/
+ float dp_3_UNIT_Pa; /*< Differential Pressure 3(Pa)*/
+ float Sensor_Temp_UNIT_C; /*< Sensor Temperature (deg C)*/
+ float Altitude_UNIT_m; /*< Calculated Altitude (m)*/
+ float Airspeed_UNIT_m_d_s; /*< Calculated Airspeed (m/s)*/
+ float Density_UNIT_kg_d_m3; /*< Calculated air density (kg/m3)*/
  float d1; /*< tbd 1*/
  float d2; /*< tbd 2*/
  float d3; /*< tbd 3*/
 } mavlink_airdata_sensor_t;
 
-#define MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN 56
-#define MAVLINK_MSG_ID_223_LEN 56
+#define MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN 64
+#define MAVLINK_MSG_ID_223_LEN 64
 
-#define MAVLINK_MSG_ID_AIRDATA_SENSOR_CRC 159
-#define MAVLINK_MSG_ID_223_CRC 159
+#define MAVLINK_MSG_ID_AIRDATA_SENSOR_CRC 202
+#define MAVLINK_MSG_ID_223_CRC 202
 
 
 
 #define MAVLINK_MESSAGE_INFO_AIRDATA_SENSOR { \
 	"AIRDATA_SENSOR", \
-	13, \
-	{  { "utc_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_airdata_sensor_t, utc_time_us) }, \
-         { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_airdata_sensor_t, time_boot_ms) }, \
-         { "absP", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_airdata_sensor_t, absP) }, \
-         { "dP_1", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_airdata_sensor_t, dP_1) }, \
-         { "dp_2", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_airdata_sensor_t, dp_2) }, \
-         { "dp_3", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_airdata_sensor_t, dp_3) }, \
-         { "Sensor_Temp", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_airdata_sensor_t, Sensor_Temp) }, \
-         { "Altitude", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_airdata_sensor_t, Altitude) }, \
-         { "Airspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_airdata_sensor_t, Airspeed) }, \
-         { "Density", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_airdata_sensor_t, Density) }, \
-         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_airdata_sensor_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_airdata_sensor_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_airdata_sensor_t, d3) }, \
+	14, \
+	{  { "sensor_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_airdata_sensor_t, sensor_time_us) }, \
+         { "recorded_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_airdata_sensor_t, recorded_time_us) }, \
+         { "sensor_processing_time_us", NULL, MAVLINK_TYPE_UINT32_T, 0, 16, offsetof(mavlink_airdata_sensor_t, sensor_processing_time_us) }, \
+         { "absP_UNIT_Pa", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_airdata_sensor_t, absP_UNIT_Pa) }, \
+         { "dP_1_UNIT_Pa", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_airdata_sensor_t, dP_1_UNIT_Pa) }, \
+         { "dp_2_UNIT_Pa", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_airdata_sensor_t, dp_2_UNIT_Pa) }, \
+         { "dp_3_UNIT_Pa", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_airdata_sensor_t, dp_3_UNIT_Pa) }, \
+         { "Sensor_Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_airdata_sensor_t, Sensor_Temp_UNIT_C) }, \
+         { "Altitude_UNIT_m", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_airdata_sensor_t, Altitude_UNIT_m) }, \
+         { "Airspeed_UNIT_m_d_s", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_airdata_sensor_t, Airspeed_UNIT_m_d_s) }, \
+         { "Density_UNIT_kg_d_m3", NULL, MAVLINK_TYPE_FLOAT, 0, 48, offsetof(mavlink_airdata_sensor_t, Density_UNIT_kg_d_m3) }, \
+         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 52, offsetof(mavlink_airdata_sensor_t, d1) }, \
+         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 56, offsetof(mavlink_airdata_sensor_t, d2) }, \
+         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 60, offsetof(mavlink_airdata_sensor_t, d3) }, \
          } \
 }
 
@@ -53,53 +55,56 @@ typedef struct __mavlink_airdata_sensor_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Time since boot in msec
- * @param utc_time_us UTC time in usec
- * @param absP Absolute Pressure (Pa)
- * @param dP_1 Differential Pressure 1(Pa)
- * @param dp_2 Differential Pressure 2(Pa)
- * @param dp_3 Differential Pressure 3(Pa)
- * @param Sensor_Temp Sensor Temperature
- * @param Altitude Calculated Altitude
- * @param Airspeed Calculated Airspeed
- * @param Density Calculated air density
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
+ * @param absP_UNIT_Pa Absolute Pressure (Pa)
+ * @param dP_1_UNIT_Pa Differential Pressure 1(Pa)
+ * @param dp_2_UNIT_Pa Differential Pressure 2(Pa)
+ * @param dp_3_UNIT_Pa Differential Pressure 3(Pa)
+ * @param Sensor_Temp_UNIT_C Sensor Temperature (deg C)
+ * @param Altitude_UNIT_m Calculated Altitude (m)
+ * @param Airspeed_UNIT_m_d_s Calculated Airspeed (m/s)
+ * @param Density_UNIT_kg_d_m3 Calculated air density (kg/m3)
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_airdata_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, uint64_t utc_time_us, float absP, float dP_1, float dp_2, float dp_3, float Sensor_Temp, float Altitude, float Airspeed, float Density, float d1, float d2, float d3)
+						       uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float absP_UNIT_Pa, float dP_1_UNIT_Pa, float dp_2_UNIT_Pa, float dp_3_UNIT_Pa, float Sensor_Temp_UNIT_C, float Altitude_UNIT_m, float Airspeed_UNIT_m_d_s, float Density_UNIT_kg_d_m3, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, utc_time_us);
-	_mav_put_uint32_t(buf, 8, time_boot_ms);
-	_mav_put_float(buf, 12, absP);
-	_mav_put_float(buf, 16, dP_1);
-	_mav_put_float(buf, 20, dp_2);
-	_mav_put_float(buf, 24, dp_3);
-	_mav_put_float(buf, 28, Sensor_Temp);
-	_mav_put_float(buf, 32, Altitude);
-	_mav_put_float(buf, 36, Airspeed);
-	_mav_put_float(buf, 40, Density);
-	_mav_put_float(buf, 44, d1);
-	_mav_put_float(buf, 48, d2);
-	_mav_put_float(buf, 52, d3);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
+	_mav_put_uint64_t(buf, 8, recorded_time_us);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, absP_UNIT_Pa);
+	_mav_put_float(buf, 24, dP_1_UNIT_Pa);
+	_mav_put_float(buf, 28, dp_2_UNIT_Pa);
+	_mav_put_float(buf, 32, dp_3_UNIT_Pa);
+	_mav_put_float(buf, 36, Sensor_Temp_UNIT_C);
+	_mav_put_float(buf, 40, Altitude_UNIT_m);
+	_mav_put_float(buf, 44, Airspeed_UNIT_m_d_s);
+	_mav_put_float(buf, 48, Density_UNIT_kg_d_m3);
+	_mav_put_float(buf, 52, d1);
+	_mav_put_float(buf, 56, d2);
+	_mav_put_float(buf, 60, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN);
 #else
 	mavlink_airdata_sensor_t packet;
-	packet.utc_time_us = utc_time_us;
-	packet.time_boot_ms = time_boot_ms;
-	packet.absP = absP;
-	packet.dP_1 = dP_1;
-	packet.dp_2 = dp_2;
-	packet.dp_3 = dp_3;
-	packet.Sensor_Temp = Sensor_Temp;
-	packet.Altitude = Altitude;
-	packet.Airspeed = Airspeed;
-	packet.Density = Density;
+	packet.sensor_time_us = sensor_time_us;
+	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
+	packet.absP_UNIT_Pa = absP_UNIT_Pa;
+	packet.dP_1_UNIT_Pa = dP_1_UNIT_Pa;
+	packet.dp_2_UNIT_Pa = dp_2_UNIT_Pa;
+	packet.dp_3_UNIT_Pa = dp_3_UNIT_Pa;
+	packet.Sensor_Temp_UNIT_C = Sensor_Temp_UNIT_C;
+	packet.Altitude_UNIT_m = Altitude_UNIT_m;
+	packet.Airspeed_UNIT_m_d_s = Airspeed_UNIT_m_d_s;
+	packet.Density_UNIT_kg_d_m3 = Density_UNIT_kg_d_m3;
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
@@ -121,16 +126,17 @@ static inline uint16_t mavlink_msg_airdata_sensor_pack(uint8_t system_id, uint8_
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Time since boot in msec
- * @param utc_time_us UTC time in usec
- * @param absP Absolute Pressure (Pa)
- * @param dP_1 Differential Pressure 1(Pa)
- * @param dp_2 Differential Pressure 2(Pa)
- * @param dp_3 Differential Pressure 3(Pa)
- * @param Sensor_Temp Sensor Temperature
- * @param Altitude Calculated Altitude
- * @param Airspeed Calculated Airspeed
- * @param Density Calculated air density
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
+ * @param absP_UNIT_Pa Absolute Pressure (Pa)
+ * @param dP_1_UNIT_Pa Differential Pressure 1(Pa)
+ * @param dp_2_UNIT_Pa Differential Pressure 2(Pa)
+ * @param dp_3_UNIT_Pa Differential Pressure 3(Pa)
+ * @param Sensor_Temp_UNIT_C Sensor Temperature (deg C)
+ * @param Altitude_UNIT_m Calculated Altitude (m)
+ * @param Airspeed_UNIT_m_d_s Calculated Airspeed (m/s)
+ * @param Density_UNIT_kg_d_m3 Calculated air density (kg/m3)
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
@@ -138,37 +144,39 @@ static inline uint16_t mavlink_msg_airdata_sensor_pack(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_airdata_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,uint64_t utc_time_us,float absP,float dP_1,float dp_2,float dp_3,float Sensor_Temp,float Altitude,float Airspeed,float Density,float d1,float d2,float d3)
+						           uint64_t sensor_time_us,uint32_t sensor_processing_time_us,uint64_t recorded_time_us,float absP_UNIT_Pa,float dP_1_UNIT_Pa,float dp_2_UNIT_Pa,float dp_3_UNIT_Pa,float Sensor_Temp_UNIT_C,float Altitude_UNIT_m,float Airspeed_UNIT_m_d_s,float Density_UNIT_kg_d_m3,float d1,float d2,float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, utc_time_us);
-	_mav_put_uint32_t(buf, 8, time_boot_ms);
-	_mav_put_float(buf, 12, absP);
-	_mav_put_float(buf, 16, dP_1);
-	_mav_put_float(buf, 20, dp_2);
-	_mav_put_float(buf, 24, dp_3);
-	_mav_put_float(buf, 28, Sensor_Temp);
-	_mav_put_float(buf, 32, Altitude);
-	_mav_put_float(buf, 36, Airspeed);
-	_mav_put_float(buf, 40, Density);
-	_mav_put_float(buf, 44, d1);
-	_mav_put_float(buf, 48, d2);
-	_mav_put_float(buf, 52, d3);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
+	_mav_put_uint64_t(buf, 8, recorded_time_us);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, absP_UNIT_Pa);
+	_mav_put_float(buf, 24, dP_1_UNIT_Pa);
+	_mav_put_float(buf, 28, dp_2_UNIT_Pa);
+	_mav_put_float(buf, 32, dp_3_UNIT_Pa);
+	_mav_put_float(buf, 36, Sensor_Temp_UNIT_C);
+	_mav_put_float(buf, 40, Altitude_UNIT_m);
+	_mav_put_float(buf, 44, Airspeed_UNIT_m_d_s);
+	_mav_put_float(buf, 48, Density_UNIT_kg_d_m3);
+	_mav_put_float(buf, 52, d1);
+	_mav_put_float(buf, 56, d2);
+	_mav_put_float(buf, 60, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN);
 #else
 	mavlink_airdata_sensor_t packet;
-	packet.utc_time_us = utc_time_us;
-	packet.time_boot_ms = time_boot_ms;
-	packet.absP = absP;
-	packet.dP_1 = dP_1;
-	packet.dp_2 = dp_2;
-	packet.dp_3 = dp_3;
-	packet.Sensor_Temp = Sensor_Temp;
-	packet.Altitude = Altitude;
-	packet.Airspeed = Airspeed;
-	packet.Density = Density;
+	packet.sensor_time_us = sensor_time_us;
+	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
+	packet.absP_UNIT_Pa = absP_UNIT_Pa;
+	packet.dP_1_UNIT_Pa = dP_1_UNIT_Pa;
+	packet.dp_2_UNIT_Pa = dp_2_UNIT_Pa;
+	packet.dp_3_UNIT_Pa = dp_3_UNIT_Pa;
+	packet.Sensor_Temp_UNIT_C = Sensor_Temp_UNIT_C;
+	packet.Altitude_UNIT_m = Altitude_UNIT_m;
+	packet.Airspeed_UNIT_m_d_s = Airspeed_UNIT_m_d_s;
+	packet.Density_UNIT_kg_d_m3 = Density_UNIT_kg_d_m3;
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
@@ -194,7 +202,7 @@ static inline uint16_t mavlink_msg_airdata_sensor_pack_chan(uint8_t system_id, u
  */
 static inline uint16_t mavlink_msg_airdata_sensor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_airdata_sensor_t* airdata_sensor)
 {
-	return mavlink_msg_airdata_sensor_pack(system_id, component_id, msg, airdata_sensor->time_boot_ms, airdata_sensor->utc_time_us, airdata_sensor->absP, airdata_sensor->dP_1, airdata_sensor->dp_2, airdata_sensor->dp_3, airdata_sensor->Sensor_Temp, airdata_sensor->Altitude, airdata_sensor->Airspeed, airdata_sensor->Density, airdata_sensor->d1, airdata_sensor->d2, airdata_sensor->d3);
+	return mavlink_msg_airdata_sensor_pack(system_id, component_id, msg, airdata_sensor->sensor_time_us, airdata_sensor->sensor_processing_time_us, airdata_sensor->recorded_time_us, airdata_sensor->absP_UNIT_Pa, airdata_sensor->dP_1_UNIT_Pa, airdata_sensor->dp_2_UNIT_Pa, airdata_sensor->dp_3_UNIT_Pa, airdata_sensor->Sensor_Temp_UNIT_C, airdata_sensor->Altitude_UNIT_m, airdata_sensor->Airspeed_UNIT_m_d_s, airdata_sensor->Density_UNIT_kg_d_m3, airdata_sensor->d1, airdata_sensor->d2, airdata_sensor->d3);
 }
 
 /**
@@ -208,46 +216,48 @@ static inline uint16_t mavlink_msg_airdata_sensor_encode(uint8_t system_id, uint
  */
 static inline uint16_t mavlink_msg_airdata_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_airdata_sensor_t* airdata_sensor)
 {
-	return mavlink_msg_airdata_sensor_pack_chan(system_id, component_id, chan, msg, airdata_sensor->time_boot_ms, airdata_sensor->utc_time_us, airdata_sensor->absP, airdata_sensor->dP_1, airdata_sensor->dp_2, airdata_sensor->dp_3, airdata_sensor->Sensor_Temp, airdata_sensor->Altitude, airdata_sensor->Airspeed, airdata_sensor->Density, airdata_sensor->d1, airdata_sensor->d2, airdata_sensor->d3);
+	return mavlink_msg_airdata_sensor_pack_chan(system_id, component_id, chan, msg, airdata_sensor->sensor_time_us, airdata_sensor->sensor_processing_time_us, airdata_sensor->recorded_time_us, airdata_sensor->absP_UNIT_Pa, airdata_sensor->dP_1_UNIT_Pa, airdata_sensor->dp_2_UNIT_Pa, airdata_sensor->dp_3_UNIT_Pa, airdata_sensor->Sensor_Temp_UNIT_C, airdata_sensor->Altitude_UNIT_m, airdata_sensor->Airspeed_UNIT_m_d_s, airdata_sensor->Density_UNIT_kg_d_m3, airdata_sensor->d1, airdata_sensor->d2, airdata_sensor->d3);
 }
 
 /**
  * @brief Send a airdata_sensor message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Time since boot in msec
- * @param utc_time_us UTC time in usec
- * @param absP Absolute Pressure (Pa)
- * @param dP_1 Differential Pressure 1(Pa)
- * @param dp_2 Differential Pressure 2(Pa)
- * @param dp_3 Differential Pressure 3(Pa)
- * @param Sensor_Temp Sensor Temperature
- * @param Altitude Calculated Altitude
- * @param Airspeed Calculated Airspeed
- * @param Density Calculated air density
+ * @param sensor_time_us Sensor time in usec
+ * @param sensor_processing_time_us Sensor processing time in usec
+ * @param recorded_time_us recording timestamp in usec
+ * @param absP_UNIT_Pa Absolute Pressure (Pa)
+ * @param dP_1_UNIT_Pa Differential Pressure 1(Pa)
+ * @param dp_2_UNIT_Pa Differential Pressure 2(Pa)
+ * @param dp_3_UNIT_Pa Differential Pressure 3(Pa)
+ * @param Sensor_Temp_UNIT_C Sensor Temperature (deg C)
+ * @param Altitude_UNIT_m Calculated Altitude (m)
+ * @param Airspeed_UNIT_m_d_s Calculated Airspeed (m/s)
+ * @param Density_UNIT_kg_d_m3 Calculated air density (kg/m3)
  * @param d1 tbd 1
  * @param d2 tbd 2
  * @param d3 tbd 3
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_airdata_sensor_send(mavlink_channel_t chan, uint32_t time_boot_ms, uint64_t utc_time_us, float absP, float dP_1, float dp_2, float dp_3, float Sensor_Temp, float Altitude, float Airspeed, float Density, float d1, float d2, float d3)
+static inline void mavlink_msg_airdata_sensor_send(mavlink_channel_t chan, uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float absP_UNIT_Pa, float dP_1_UNIT_Pa, float dp_2_UNIT_Pa, float dp_3_UNIT_Pa, float Sensor_Temp_UNIT_C, float Altitude_UNIT_m, float Airspeed_UNIT_m_d_s, float Density_UNIT_kg_d_m3, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN];
-	_mav_put_uint64_t(buf, 0, utc_time_us);
-	_mav_put_uint32_t(buf, 8, time_boot_ms);
-	_mav_put_float(buf, 12, absP);
-	_mav_put_float(buf, 16, dP_1);
-	_mav_put_float(buf, 20, dp_2);
-	_mav_put_float(buf, 24, dp_3);
-	_mav_put_float(buf, 28, Sensor_Temp);
-	_mav_put_float(buf, 32, Altitude);
-	_mav_put_float(buf, 36, Airspeed);
-	_mav_put_float(buf, 40, Density);
-	_mav_put_float(buf, 44, d1);
-	_mav_put_float(buf, 48, d2);
-	_mav_put_float(buf, 52, d3);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
+	_mav_put_uint64_t(buf, 8, recorded_time_us);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, absP_UNIT_Pa);
+	_mav_put_float(buf, 24, dP_1_UNIT_Pa);
+	_mav_put_float(buf, 28, dp_2_UNIT_Pa);
+	_mav_put_float(buf, 32, dp_3_UNIT_Pa);
+	_mav_put_float(buf, 36, Sensor_Temp_UNIT_C);
+	_mav_put_float(buf, 40, Altitude_UNIT_m);
+	_mav_put_float(buf, 44, Airspeed_UNIT_m_d_s);
+	_mav_put_float(buf, 48, Density_UNIT_kg_d_m3);
+	_mav_put_float(buf, 52, d1);
+	_mav_put_float(buf, 56, d2);
+	_mav_put_float(buf, 60, d3);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRDATA_SENSOR, buf, MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN, MAVLINK_MSG_ID_AIRDATA_SENSOR_CRC);
@@ -256,16 +266,17 @@ static inline void mavlink_msg_airdata_sensor_send(mavlink_channel_t chan, uint3
 #endif
 #else
 	mavlink_airdata_sensor_t packet;
-	packet.utc_time_us = utc_time_us;
-	packet.time_boot_ms = time_boot_ms;
-	packet.absP = absP;
-	packet.dP_1 = dP_1;
-	packet.dp_2 = dp_2;
-	packet.dp_3 = dp_3;
-	packet.Sensor_Temp = Sensor_Temp;
-	packet.Altitude = Altitude;
-	packet.Airspeed = Airspeed;
-	packet.Density = Density;
+	packet.sensor_time_us = sensor_time_us;
+	packet.recorded_time_us = recorded_time_us;
+	packet.sensor_processing_time_us = sensor_processing_time_us;
+	packet.absP_UNIT_Pa = absP_UNIT_Pa;
+	packet.dP_1_UNIT_Pa = dP_1_UNIT_Pa;
+	packet.dp_2_UNIT_Pa = dp_2_UNIT_Pa;
+	packet.dp_3_UNIT_Pa = dp_3_UNIT_Pa;
+	packet.Sensor_Temp_UNIT_C = Sensor_Temp_UNIT_C;
+	packet.Altitude_UNIT_m = Altitude_UNIT_m;
+	packet.Airspeed_UNIT_m_d_s = Airspeed_UNIT_m_d_s;
+	packet.Density_UNIT_kg_d_m3 = Density_UNIT_kg_d_m3;
 	packet.d1 = d1;
 	packet.d2 = d2;
 	packet.d3 = d3;
@@ -286,23 +297,24 @@ static inline void mavlink_msg_airdata_sensor_send(mavlink_channel_t chan, uint3
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_airdata_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, uint64_t utc_time_us, float absP, float dP_1, float dp_2, float dp_3, float Sensor_Temp, float Altitude, float Airspeed, float Density, float d1, float d2, float d3)
+static inline void mavlink_msg_airdata_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t sensor_time_us, uint32_t sensor_processing_time_us, uint64_t recorded_time_us, float absP_UNIT_Pa, float dP_1_UNIT_Pa, float dp_2_UNIT_Pa, float dp_3_UNIT_Pa, float Sensor_Temp_UNIT_C, float Altitude_UNIT_m, float Airspeed_UNIT_m_d_s, float Density_UNIT_kg_d_m3, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char *buf = (char *)msgbuf;
-	_mav_put_uint64_t(buf, 0, utc_time_us);
-	_mav_put_uint32_t(buf, 8, time_boot_ms);
-	_mav_put_float(buf, 12, absP);
-	_mav_put_float(buf, 16, dP_1);
-	_mav_put_float(buf, 20, dp_2);
-	_mav_put_float(buf, 24, dp_3);
-	_mav_put_float(buf, 28, Sensor_Temp);
-	_mav_put_float(buf, 32, Altitude);
-	_mav_put_float(buf, 36, Airspeed);
-	_mav_put_float(buf, 40, Density);
-	_mav_put_float(buf, 44, d1);
-	_mav_put_float(buf, 48, d2);
-	_mav_put_float(buf, 52, d3);
+	_mav_put_uint64_t(buf, 0, sensor_time_us);
+	_mav_put_uint64_t(buf, 8, recorded_time_us);
+	_mav_put_uint32_t(buf, 16, sensor_processing_time_us);
+	_mav_put_float(buf, 20, absP_UNIT_Pa);
+	_mav_put_float(buf, 24, dP_1_UNIT_Pa);
+	_mav_put_float(buf, 28, dp_2_UNIT_Pa);
+	_mav_put_float(buf, 32, dp_3_UNIT_Pa);
+	_mav_put_float(buf, 36, Sensor_Temp_UNIT_C);
+	_mav_put_float(buf, 40, Altitude_UNIT_m);
+	_mav_put_float(buf, 44, Airspeed_UNIT_m_d_s);
+	_mav_put_float(buf, 48, Density_UNIT_kg_d_m3);
+	_mav_put_float(buf, 52, d1);
+	_mav_put_float(buf, 56, d2);
+	_mav_put_float(buf, 60, d3);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_AIRDATA_SENSOR, buf, MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN, MAVLINK_MSG_ID_AIRDATA_SENSOR_CRC);
@@ -311,16 +323,17 @@ static inline void mavlink_msg_airdata_sensor_send_buf(mavlink_message_t *msgbuf
 #endif
 #else
 	mavlink_airdata_sensor_t *packet = (mavlink_airdata_sensor_t *)msgbuf;
-	packet->utc_time_us = utc_time_us;
-	packet->time_boot_ms = time_boot_ms;
-	packet->absP = absP;
-	packet->dP_1 = dP_1;
-	packet->dp_2 = dp_2;
-	packet->dp_3 = dp_3;
-	packet->Sensor_Temp = Sensor_Temp;
-	packet->Altitude = Altitude;
-	packet->Airspeed = Airspeed;
-	packet->Density = Density;
+	packet->sensor_time_us = sensor_time_us;
+	packet->recorded_time_us = recorded_time_us;
+	packet->sensor_processing_time_us = sensor_processing_time_us;
+	packet->absP_UNIT_Pa = absP_UNIT_Pa;
+	packet->dP_1_UNIT_Pa = dP_1_UNIT_Pa;
+	packet->dp_2_UNIT_Pa = dp_2_UNIT_Pa;
+	packet->dp_3_UNIT_Pa = dp_3_UNIT_Pa;
+	packet->Sensor_Temp_UNIT_C = Sensor_Temp_UNIT_C;
+	packet->Altitude_UNIT_m = Altitude_UNIT_m;
+	packet->Airspeed_UNIT_m_d_s = Airspeed_UNIT_m_d_s;
+	packet->Density_UNIT_kg_d_m3 = Density_UNIT_kg_d_m3;
 	packet->d1 = d1;
 	packet->d2 = d2;
 	packet->d3 = d3;
@@ -340,103 +353,113 @@ static inline void mavlink_msg_airdata_sensor_send_buf(mavlink_message_t *msgbuf
 
 
 /**
- * @brief Get field time_boot_ms from airdata_sensor message
+ * @brief Get field sensor_time_us from airdata_sensor message
  *
- * @return Time since boot in msec
+ * @return Sensor time in usec
  */
-static inline uint32_t mavlink_msg_airdata_sensor_get_time_boot_ms(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_uint32_t(msg,  8);
-}
-
-/**
- * @brief Get field utc_time_us from airdata_sensor message
- *
- * @return UTC time in usec
- */
-static inline uint64_t mavlink_msg_airdata_sensor_get_utc_time_us(const mavlink_message_t* msg)
+static inline uint64_t mavlink_msg_airdata_sensor_get_sensor_time_us(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_uint64_t(msg,  0);
 }
 
 /**
- * @brief Get field absP from airdata_sensor message
+ * @brief Get field sensor_processing_time_us from airdata_sensor message
+ *
+ * @return Sensor processing time in usec
+ */
+static inline uint32_t mavlink_msg_airdata_sensor_get_sensor_processing_time_us(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint32_t(msg,  16);
+}
+
+/**
+ * @brief Get field recorded_time_us from airdata_sensor message
+ *
+ * @return recording timestamp in usec
+ */
+static inline uint64_t mavlink_msg_airdata_sensor_get_recorded_time_us(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_uint64_t(msg,  8);
+}
+
+/**
+ * @brief Get field absP_UNIT_Pa from airdata_sensor message
  *
  * @return Absolute Pressure (Pa)
  */
-static inline float mavlink_msg_airdata_sensor_get_absP(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  12);
-}
-
-/**
- * @brief Get field dP_1 from airdata_sensor message
- *
- * @return Differential Pressure 1(Pa)
- */
-static inline float mavlink_msg_airdata_sensor_get_dP_1(const mavlink_message_t* msg)
-{
-	return _MAV_RETURN_float(msg,  16);
-}
-
-/**
- * @brief Get field dp_2 from airdata_sensor message
- *
- * @return Differential Pressure 2(Pa)
- */
-static inline float mavlink_msg_airdata_sensor_get_dp_2(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_absP_UNIT_Pa(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  20);
 }
 
 /**
- * @brief Get field dp_3 from airdata_sensor message
+ * @brief Get field dP_1_UNIT_Pa from airdata_sensor message
  *
- * @return Differential Pressure 3(Pa)
+ * @return Differential Pressure 1(Pa)
  */
-static inline float mavlink_msg_airdata_sensor_get_dp_3(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_dP_1_UNIT_Pa(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  24);
 }
 
 /**
- * @brief Get field Sensor_Temp from airdata_sensor message
+ * @brief Get field dp_2_UNIT_Pa from airdata_sensor message
  *
- * @return Sensor Temperature
+ * @return Differential Pressure 2(Pa)
  */
-static inline float mavlink_msg_airdata_sensor_get_Sensor_Temp(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_dp_2_UNIT_Pa(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  28);
 }
 
 /**
- * @brief Get field Altitude from airdata_sensor message
+ * @brief Get field dp_3_UNIT_Pa from airdata_sensor message
  *
- * @return Calculated Altitude
+ * @return Differential Pressure 3(Pa)
  */
-static inline float mavlink_msg_airdata_sensor_get_Altitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_dp_3_UNIT_Pa(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  32);
 }
 
 /**
- * @brief Get field Airspeed from airdata_sensor message
+ * @brief Get field Sensor_Temp_UNIT_C from airdata_sensor message
  *
- * @return Calculated Airspeed
+ * @return Sensor Temperature (deg C)
  */
-static inline float mavlink_msg_airdata_sensor_get_Airspeed(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_Sensor_Temp_UNIT_C(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  36);
 }
 
 /**
- * @brief Get field Density from airdata_sensor message
+ * @brief Get field Altitude_UNIT_m from airdata_sensor message
  *
- * @return Calculated air density
+ * @return Calculated Altitude (m)
  */
-static inline float mavlink_msg_airdata_sensor_get_Density(const mavlink_message_t* msg)
+static inline float mavlink_msg_airdata_sensor_get_Altitude_UNIT_m(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  40);
+}
+
+/**
+ * @brief Get field Airspeed_UNIT_m_d_s from airdata_sensor message
+ *
+ * @return Calculated Airspeed (m/s)
+ */
+static inline float mavlink_msg_airdata_sensor_get_Airspeed_UNIT_m_d_s(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  44);
+}
+
+/**
+ * @brief Get field Density_UNIT_kg_d_m3 from airdata_sensor message
+ *
+ * @return Calculated air density (kg/m3)
+ */
+static inline float mavlink_msg_airdata_sensor_get_Density_UNIT_kg_d_m3(const mavlink_message_t* msg)
+{
+	return _MAV_RETURN_float(msg,  48);
 }
 
 /**
@@ -446,7 +469,7 @@ static inline float mavlink_msg_airdata_sensor_get_Density(const mavlink_message
  */
 static inline float mavlink_msg_airdata_sensor_get_d1(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  44);
+	return _MAV_RETURN_float(msg,  52);
 }
 
 /**
@@ -456,7 +479,7 @@ static inline float mavlink_msg_airdata_sensor_get_d1(const mavlink_message_t* m
  */
 static inline float mavlink_msg_airdata_sensor_get_d2(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  48);
+	return _MAV_RETURN_float(msg,  56);
 }
 
 /**
@@ -466,7 +489,7 @@ static inline float mavlink_msg_airdata_sensor_get_d2(const mavlink_message_t* m
  */
 static inline float mavlink_msg_airdata_sensor_get_d3(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_float(msg,  52);
+	return _MAV_RETURN_float(msg,  60);
 }
 
 /**
@@ -478,16 +501,17 @@ static inline float mavlink_msg_airdata_sensor_get_d3(const mavlink_message_t* m
 static inline void mavlink_msg_airdata_sensor_decode(const mavlink_message_t* msg, mavlink_airdata_sensor_t* airdata_sensor)
 {
 #if MAVLINK_NEED_BYTE_SWAP
-	airdata_sensor->utc_time_us = mavlink_msg_airdata_sensor_get_utc_time_us(msg);
-	airdata_sensor->time_boot_ms = mavlink_msg_airdata_sensor_get_time_boot_ms(msg);
-	airdata_sensor->absP = mavlink_msg_airdata_sensor_get_absP(msg);
-	airdata_sensor->dP_1 = mavlink_msg_airdata_sensor_get_dP_1(msg);
-	airdata_sensor->dp_2 = mavlink_msg_airdata_sensor_get_dp_2(msg);
-	airdata_sensor->dp_3 = mavlink_msg_airdata_sensor_get_dp_3(msg);
-	airdata_sensor->Sensor_Temp = mavlink_msg_airdata_sensor_get_Sensor_Temp(msg);
-	airdata_sensor->Altitude = mavlink_msg_airdata_sensor_get_Altitude(msg);
-	airdata_sensor->Airspeed = mavlink_msg_airdata_sensor_get_Airspeed(msg);
-	airdata_sensor->Density = mavlink_msg_airdata_sensor_get_Density(msg);
+	airdata_sensor->sensor_time_us = mavlink_msg_airdata_sensor_get_sensor_time_us(msg);
+	airdata_sensor->recorded_time_us = mavlink_msg_airdata_sensor_get_recorded_time_us(msg);
+	airdata_sensor->sensor_processing_time_us = mavlink_msg_airdata_sensor_get_sensor_processing_time_us(msg);
+	airdata_sensor->absP_UNIT_Pa = mavlink_msg_airdata_sensor_get_absP_UNIT_Pa(msg);
+	airdata_sensor->dP_1_UNIT_Pa = mavlink_msg_airdata_sensor_get_dP_1_UNIT_Pa(msg);
+	airdata_sensor->dp_2_UNIT_Pa = mavlink_msg_airdata_sensor_get_dp_2_UNIT_Pa(msg);
+	airdata_sensor->dp_3_UNIT_Pa = mavlink_msg_airdata_sensor_get_dp_3_UNIT_Pa(msg);
+	airdata_sensor->Sensor_Temp_UNIT_C = mavlink_msg_airdata_sensor_get_Sensor_Temp_UNIT_C(msg);
+	airdata_sensor->Altitude_UNIT_m = mavlink_msg_airdata_sensor_get_Altitude_UNIT_m(msg);
+	airdata_sensor->Airspeed_UNIT_m_d_s = mavlink_msg_airdata_sensor_get_Airspeed_UNIT_m_d_s(msg);
+	airdata_sensor->Density_UNIT_kg_d_m3 = mavlink_msg_airdata_sensor_get_Density_UNIT_kg_d_m3(msg);
 	airdata_sensor->d1 = mavlink_msg_airdata_sensor_get_d1(msg);
 	airdata_sensor->d2 = mavlink_msg_airdata_sensor_get_d2(msg);
 	airdata_sensor->d3 = mavlink_msg_airdata_sensor_get_d3(msg);
