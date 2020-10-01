@@ -1,36 +1,41 @@
+#pragma once
 // MESSAGE ACCEL_DEBUG PACKING
 
 #define MAVLINK_MSG_ID_ACCEL_DEBUG 188
 
-typedef struct __mavlink_accel_debug_t
-{
- uint32_t time_boot_ms; /*< Timestamp (milliseconds since system boot)*/
- int16_t imu_ax; /*< X acceleration (mg)*/
- int16_t imu_ay; /*< Y acceleration (mg)*/
- int16_t imu_az; /*< Z acceleration (mg)*/
- int16_t tail_ax; /*< X acceleration (mg)*/
- int16_t tail_ay; /*< Y acceleration (mg)*/
- int16_t tail_az; /*< Z acceleration (mg)*/
- int16_t wing_ax; /*< X acceleration (mg)*/
- int16_t wing_ay; /*< Y acceleration (mg)*/
- int16_t wing_az; /*< Z acceleration (mg)*/
- int16_t aird_ax; /*< X acceleration (mg)*/
- int16_t aird_ay; /*< Y acceleration (mg)*/
- int16_t aird_az; /*< Z acceleration (mg)*/
+
+typedef struct __mavlink_accel_debug_t {
+ uint32_t time_boot_ms; /*<  Timestamp (milliseconds since system boot)*/
+ int16_t imu_ax; /*<  X acceleration (mg)*/
+ int16_t imu_ay; /*<  Y acceleration (mg)*/
+ int16_t imu_az; /*<  Z acceleration (mg)*/
+ int16_t tail_ax; /*<  X acceleration (mg)*/
+ int16_t tail_ay; /*<  Y acceleration (mg)*/
+ int16_t tail_az; /*<  Z acceleration (mg)*/
+ int16_t wing_ax; /*<  X acceleration (mg)*/
+ int16_t wing_ay; /*<  Y acceleration (mg)*/
+ int16_t wing_az; /*<  Z acceleration (mg)*/
+ int16_t aird_ax; /*<  X acceleration (mg)*/
+ int16_t aird_ay; /*<  Y acceleration (mg)*/
+ int16_t aird_az; /*<  Z acceleration (mg)*/
 } mavlink_accel_debug_t;
 
 #define MAVLINK_MSG_ID_ACCEL_DEBUG_LEN 28
+#define MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN 28
 #define MAVLINK_MSG_ID_188_LEN 28
+#define MAVLINK_MSG_ID_188_MIN_LEN 28
 
 #define MAVLINK_MSG_ID_ACCEL_DEBUG_CRC 57
 #define MAVLINK_MSG_ID_188_CRC 57
 
 
 
+#if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ACCEL_DEBUG { \
-	"ACCEL_DEBUG", \
-	13, \
-	{  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_accel_debug_t, time_boot_ms) }, \
+    188, \
+    "ACCEL_DEBUG", \
+    13, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_accel_debug_t, time_boot_ms) }, \
          { "imu_ax", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_accel_debug_t, imu_ax) }, \
          { "imu_ay", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_accel_debug_t, imu_ay) }, \
          { "imu_az", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_accel_debug_t, imu_az) }, \
@@ -45,7 +50,26 @@ typedef struct __mavlink_accel_debug_t
          { "aird_az", NULL, MAVLINK_TYPE_INT16_T, 0, 26, offsetof(mavlink_accel_debug_t, aird_az) }, \
          } \
 }
-
+#else
+#define MAVLINK_MESSAGE_INFO_ACCEL_DEBUG { \
+    "ACCEL_DEBUG", \
+    13, \
+    {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_accel_debug_t, time_boot_ms) }, \
+         { "imu_ax", NULL, MAVLINK_TYPE_INT16_T, 0, 4, offsetof(mavlink_accel_debug_t, imu_ax) }, \
+         { "imu_ay", NULL, MAVLINK_TYPE_INT16_T, 0, 6, offsetof(mavlink_accel_debug_t, imu_ay) }, \
+         { "imu_az", NULL, MAVLINK_TYPE_INT16_T, 0, 8, offsetof(mavlink_accel_debug_t, imu_az) }, \
+         { "tail_ax", NULL, MAVLINK_TYPE_INT16_T, 0, 10, offsetof(mavlink_accel_debug_t, tail_ax) }, \
+         { "tail_ay", NULL, MAVLINK_TYPE_INT16_T, 0, 12, offsetof(mavlink_accel_debug_t, tail_ay) }, \
+         { "tail_az", NULL, MAVLINK_TYPE_INT16_T, 0, 14, offsetof(mavlink_accel_debug_t, tail_az) }, \
+         { "wing_ax", NULL, MAVLINK_TYPE_INT16_T, 0, 16, offsetof(mavlink_accel_debug_t, wing_ax) }, \
+         { "wing_ay", NULL, MAVLINK_TYPE_INT16_T, 0, 18, offsetof(mavlink_accel_debug_t, wing_ay) }, \
+         { "wing_az", NULL, MAVLINK_TYPE_INT16_T, 0, 20, offsetof(mavlink_accel_debug_t, wing_az) }, \
+         { "aird_ax", NULL, MAVLINK_TYPE_INT16_T, 0, 22, offsetof(mavlink_accel_debug_t, aird_ax) }, \
+         { "aird_ay", NULL, MAVLINK_TYPE_INT16_T, 0, 24, offsetof(mavlink_accel_debug_t, aird_ay) }, \
+         { "aird_az", NULL, MAVLINK_TYPE_INT16_T, 0, 26, offsetof(mavlink_accel_debug_t, aird_az) }, \
+         } \
+}
+#endif
 
 /**
  * @brief Pack a accel_debug message
@@ -53,66 +77,62 @@ typedef struct __mavlink_accel_debug_t
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param imu_ax X acceleration (mg)
- * @param imu_ay Y acceleration (mg)
- * @param imu_az Z acceleration (mg)
- * @param tail_ax X acceleration (mg)
- * @param tail_ay Y acceleration (mg)
- * @param tail_az Z acceleration (mg)
- * @param wing_ax X acceleration (mg)
- * @param wing_ay Y acceleration (mg)
- * @param wing_az Z acceleration (mg)
- * @param aird_ax X acceleration (mg)
- * @param aird_ay Y acceleration (mg)
- * @param aird_az Z acceleration (mg)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param imu_ax  X acceleration (mg)
+ * @param imu_ay  Y acceleration (mg)
+ * @param imu_az  Z acceleration (mg)
+ * @param tail_ax  X acceleration (mg)
+ * @param tail_ay  Y acceleration (mg)
+ * @param tail_az  Z acceleration (mg)
+ * @param wing_ax  X acceleration (mg)
+ * @param wing_ay  Y acceleration (mg)
+ * @param wing_az  Z acceleration (mg)
+ * @param aird_ax  X acceleration (mg)
+ * @param aird_ay  Y acceleration (mg)
+ * @param aird_az  Z acceleration (mg)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_accel_debug_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-						       uint32_t time_boot_ms, int16_t imu_ax, int16_t imu_ay, int16_t imu_az, int16_t tail_ax, int16_t tail_ay, int16_t tail_az, int16_t wing_ax, int16_t wing_ay, int16_t wing_az, int16_t aird_ax, int16_t aird_ay, int16_t aird_az)
+                               uint32_t time_boot_ms, int16_t imu_ax, int16_t imu_ay, int16_t imu_az, int16_t tail_ax, int16_t tail_ay, int16_t tail_az, int16_t wing_ax, int16_t wing_ay, int16_t wing_az, int16_t aird_ax, int16_t aird_ay, int16_t aird_az)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int16_t(buf, 4, imu_ax);
-	_mav_put_int16_t(buf, 6, imu_ay);
-	_mav_put_int16_t(buf, 8, imu_az);
-	_mav_put_int16_t(buf, 10, tail_ax);
-	_mav_put_int16_t(buf, 12, tail_ay);
-	_mav_put_int16_t(buf, 14, tail_az);
-	_mav_put_int16_t(buf, 16, wing_ax);
-	_mav_put_int16_t(buf, 18, wing_ay);
-	_mav_put_int16_t(buf, 20, wing_az);
-	_mav_put_int16_t(buf, 22, aird_ax);
-	_mav_put_int16_t(buf, 24, aird_ay);
-	_mav_put_int16_t(buf, 26, aird_az);
+    char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int16_t(buf, 4, imu_ax);
+    _mav_put_int16_t(buf, 6, imu_ay);
+    _mav_put_int16_t(buf, 8, imu_az);
+    _mav_put_int16_t(buf, 10, tail_ax);
+    _mav_put_int16_t(buf, 12, tail_ay);
+    _mav_put_int16_t(buf, 14, tail_az);
+    _mav_put_int16_t(buf, 16, wing_ax);
+    _mav_put_int16_t(buf, 18, wing_ay);
+    _mav_put_int16_t(buf, 20, wing_az);
+    _mav_put_int16_t(buf, 22, aird_ax);
+    _mav_put_int16_t(buf, 24, aird_ay);
+    _mav_put_int16_t(buf, 26, aird_az);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
 #else
-	mavlink_accel_debug_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.imu_ax = imu_ax;
-	packet.imu_ay = imu_ay;
-	packet.imu_az = imu_az;
-	packet.tail_ax = tail_ax;
-	packet.tail_ay = tail_ay;
-	packet.tail_az = tail_az;
-	packet.wing_ax = wing_ax;
-	packet.wing_ay = wing_ay;
-	packet.wing_az = wing_az;
-	packet.aird_ax = aird_ax;
-	packet.aird_ay = aird_ay;
-	packet.aird_az = aird_az;
+    mavlink_accel_debug_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.imu_ax = imu_ax;
+    packet.imu_ay = imu_ay;
+    packet.imu_az = imu_az;
+    packet.tail_ax = tail_ax;
+    packet.tail_ay = tail_ay;
+    packet.tail_az = tail_az;
+    packet.wing_ax = wing_ax;
+    packet.wing_ay = wing_ay;
+    packet.wing_az = wing_az;
+    packet.aird_ax = aird_ax;
+    packet.aird_ay = aird_ay;
+    packet.aird_az = aird_az;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_ACCEL_DEBUG;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
-#else
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
-#endif
+    msg->msgid = MAVLINK_MSG_ID_ACCEL_DEBUG;
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 }
 
 /**
@@ -121,67 +141,63 @@ static inline uint16_t mavlink_msg_accel_debug_pack(uint8_t system_id, uint8_t c
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param imu_ax X acceleration (mg)
- * @param imu_ay Y acceleration (mg)
- * @param imu_az Z acceleration (mg)
- * @param tail_ax X acceleration (mg)
- * @param tail_ay Y acceleration (mg)
- * @param tail_az Z acceleration (mg)
- * @param wing_ax X acceleration (mg)
- * @param wing_ay Y acceleration (mg)
- * @param wing_az Z acceleration (mg)
- * @param aird_ax X acceleration (mg)
- * @param aird_ay Y acceleration (mg)
- * @param aird_az Z acceleration (mg)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param imu_ax  X acceleration (mg)
+ * @param imu_ay  Y acceleration (mg)
+ * @param imu_az  Z acceleration (mg)
+ * @param tail_ax  X acceleration (mg)
+ * @param tail_ay  Y acceleration (mg)
+ * @param tail_az  Z acceleration (mg)
+ * @param wing_ax  X acceleration (mg)
+ * @param wing_ay  Y acceleration (mg)
+ * @param wing_az  Z acceleration (mg)
+ * @param aird_ax  X acceleration (mg)
+ * @param aird_ay  Y acceleration (mg)
+ * @param aird_az  Z acceleration (mg)
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_accel_debug_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-							   mavlink_message_t* msg,
-						           uint32_t time_boot_ms,int16_t imu_ax,int16_t imu_ay,int16_t imu_az,int16_t tail_ax,int16_t tail_ay,int16_t tail_az,int16_t wing_ax,int16_t wing_ay,int16_t wing_az,int16_t aird_ax,int16_t aird_ay,int16_t aird_az)
+                               mavlink_message_t* msg,
+                                   uint32_t time_boot_ms,int16_t imu_ax,int16_t imu_ay,int16_t imu_az,int16_t tail_ax,int16_t tail_ay,int16_t tail_az,int16_t wing_ax,int16_t wing_ay,int16_t wing_az,int16_t aird_ax,int16_t aird_ay,int16_t aird_az)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int16_t(buf, 4, imu_ax);
-	_mav_put_int16_t(buf, 6, imu_ay);
-	_mav_put_int16_t(buf, 8, imu_az);
-	_mav_put_int16_t(buf, 10, tail_ax);
-	_mav_put_int16_t(buf, 12, tail_ay);
-	_mav_put_int16_t(buf, 14, tail_az);
-	_mav_put_int16_t(buf, 16, wing_ax);
-	_mav_put_int16_t(buf, 18, wing_ay);
-	_mav_put_int16_t(buf, 20, wing_az);
-	_mav_put_int16_t(buf, 22, aird_ax);
-	_mav_put_int16_t(buf, 24, aird_ay);
-	_mav_put_int16_t(buf, 26, aird_az);
+    char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int16_t(buf, 4, imu_ax);
+    _mav_put_int16_t(buf, 6, imu_ay);
+    _mav_put_int16_t(buf, 8, imu_az);
+    _mav_put_int16_t(buf, 10, tail_ax);
+    _mav_put_int16_t(buf, 12, tail_ay);
+    _mav_put_int16_t(buf, 14, tail_az);
+    _mav_put_int16_t(buf, 16, wing_ax);
+    _mav_put_int16_t(buf, 18, wing_ay);
+    _mav_put_int16_t(buf, 20, wing_az);
+    _mav_put_int16_t(buf, 22, aird_ax);
+    _mav_put_int16_t(buf, 24, aird_ay);
+    _mav_put_int16_t(buf, 26, aird_az);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
 #else
-	mavlink_accel_debug_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.imu_ax = imu_ax;
-	packet.imu_ay = imu_ay;
-	packet.imu_az = imu_az;
-	packet.tail_ax = tail_ax;
-	packet.tail_ay = tail_ay;
-	packet.tail_az = tail_az;
-	packet.wing_ax = wing_ax;
-	packet.wing_ay = wing_ay;
-	packet.wing_az = wing_az;
-	packet.aird_ax = aird_ax;
-	packet.aird_ay = aird_ay;
-	packet.aird_az = aird_az;
+    mavlink_accel_debug_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.imu_ax = imu_ax;
+    packet.imu_ay = imu_ay;
+    packet.imu_az = imu_az;
+    packet.tail_ax = tail_ax;
+    packet.tail_ay = tail_ay;
+    packet.tail_az = tail_az;
+    packet.wing_ax = wing_ax;
+    packet.wing_ay = wing_ay;
+    packet.wing_az = wing_az;
+    packet.aird_ax = aird_ax;
+    packet.aird_ay = aird_ay;
+    packet.aird_az = aird_az;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
 #endif
 
-	msg->msgid = MAVLINK_MSG_ID_ACCEL_DEBUG;
-#if MAVLINK_CRC_EXTRA
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
-#else
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
-#endif
+    msg->msgid = MAVLINK_MSG_ID_ACCEL_DEBUG;
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 }
 
 /**
@@ -194,7 +210,7 @@ static inline uint16_t mavlink_msg_accel_debug_pack_chan(uint8_t system_id, uint
  */
 static inline uint16_t mavlink_msg_accel_debug_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_accel_debug_t* accel_debug)
 {
-	return mavlink_msg_accel_debug_pack(system_id, component_id, msg, accel_debug->time_boot_ms, accel_debug->imu_ax, accel_debug->imu_ay, accel_debug->imu_az, accel_debug->tail_ax, accel_debug->tail_ay, accel_debug->tail_az, accel_debug->wing_ax, accel_debug->wing_ay, accel_debug->wing_az, accel_debug->aird_ax, accel_debug->aird_ay, accel_debug->aird_az);
+    return mavlink_msg_accel_debug_pack(system_id, component_id, msg, accel_debug->time_boot_ms, accel_debug->imu_ax, accel_debug->imu_ay, accel_debug->imu_az, accel_debug->tail_ax, accel_debug->tail_ay, accel_debug->tail_az, accel_debug->wing_ax, accel_debug->wing_ay, accel_debug->wing_az, accel_debug->aird_ax, accel_debug->aird_ay, accel_debug->aird_az);
 }
 
 /**
@@ -208,73 +224,79 @@ static inline uint16_t mavlink_msg_accel_debug_encode(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_accel_debug_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_accel_debug_t* accel_debug)
 {
-	return mavlink_msg_accel_debug_pack_chan(system_id, component_id, chan, msg, accel_debug->time_boot_ms, accel_debug->imu_ax, accel_debug->imu_ay, accel_debug->imu_az, accel_debug->tail_ax, accel_debug->tail_ay, accel_debug->tail_az, accel_debug->wing_ax, accel_debug->wing_ay, accel_debug->wing_az, accel_debug->aird_ax, accel_debug->aird_ay, accel_debug->aird_az);
+    return mavlink_msg_accel_debug_pack_chan(system_id, component_id, chan, msg, accel_debug->time_boot_ms, accel_debug->imu_ax, accel_debug->imu_ay, accel_debug->imu_az, accel_debug->tail_ax, accel_debug->tail_ay, accel_debug->tail_az, accel_debug->wing_ax, accel_debug->wing_ay, accel_debug->wing_az, accel_debug->aird_ax, accel_debug->aird_ay, accel_debug->aird_az);
 }
 
 /**
  * @brief Send a accel_debug message
  * @param chan MAVLink channel to send the message
  *
- * @param time_boot_ms Timestamp (milliseconds since system boot)
- * @param imu_ax X acceleration (mg)
- * @param imu_ay Y acceleration (mg)
- * @param imu_az Z acceleration (mg)
- * @param tail_ax X acceleration (mg)
- * @param tail_ay Y acceleration (mg)
- * @param tail_az Z acceleration (mg)
- * @param wing_ax X acceleration (mg)
- * @param wing_ay Y acceleration (mg)
- * @param wing_az Z acceleration (mg)
- * @param aird_ax X acceleration (mg)
- * @param aird_ay Y acceleration (mg)
- * @param aird_az Z acceleration (mg)
+ * @param time_boot_ms  Timestamp (milliseconds since system boot)
+ * @param imu_ax  X acceleration (mg)
+ * @param imu_ay  Y acceleration (mg)
+ * @param imu_az  Z acceleration (mg)
+ * @param tail_ax  X acceleration (mg)
+ * @param tail_ay  Y acceleration (mg)
+ * @param tail_az  Z acceleration (mg)
+ * @param wing_ax  X acceleration (mg)
+ * @param wing_ay  Y acceleration (mg)
+ * @param wing_az  Z acceleration (mg)
+ * @param aird_ax  X acceleration (mg)
+ * @param aird_ay  Y acceleration (mg)
+ * @param aird_az  Z acceleration (mg)
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
 static inline void mavlink_msg_accel_debug_send(mavlink_channel_t chan, uint32_t time_boot_ms, int16_t imu_ax, int16_t imu_ay, int16_t imu_az, int16_t tail_ax, int16_t tail_ay, int16_t tail_az, int16_t wing_ax, int16_t wing_ay, int16_t wing_az, int16_t aird_ax, int16_t aird_ay, int16_t aird_az)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int16_t(buf, 4, imu_ax);
-	_mav_put_int16_t(buf, 6, imu_ay);
-	_mav_put_int16_t(buf, 8, imu_az);
-	_mav_put_int16_t(buf, 10, tail_ax);
-	_mav_put_int16_t(buf, 12, tail_ay);
-	_mav_put_int16_t(buf, 14, tail_az);
-	_mav_put_int16_t(buf, 16, wing_ax);
-	_mav_put_int16_t(buf, 18, wing_ay);
-	_mav_put_int16_t(buf, 20, wing_az);
-	_mav_put_int16_t(buf, 22, aird_ax);
-	_mav_put_int16_t(buf, 24, aird_ay);
-	_mav_put_int16_t(buf, 26, aird_az);
+    char buf[MAVLINK_MSG_ID_ACCEL_DEBUG_LEN];
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int16_t(buf, 4, imu_ax);
+    _mav_put_int16_t(buf, 6, imu_ay);
+    _mav_put_int16_t(buf, 8, imu_az);
+    _mav_put_int16_t(buf, 10, tail_ax);
+    _mav_put_int16_t(buf, 12, tail_ay);
+    _mav_put_int16_t(buf, 14, tail_az);
+    _mav_put_int16_t(buf, 16, wing_ax);
+    _mav_put_int16_t(buf, 18, wing_ay);
+    _mav_put_int16_t(buf, 20, wing_az);
+    _mav_put_int16_t(buf, 22, aird_ax);
+    _mav_put_int16_t(buf, 24, aird_ay);
+    _mav_put_int16_t(buf, 26, aird_az);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 #else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
-#endif
-#else
-	mavlink_accel_debug_t packet;
-	packet.time_boot_ms = time_boot_ms;
-	packet.imu_ax = imu_ax;
-	packet.imu_ay = imu_ay;
-	packet.imu_az = imu_az;
-	packet.tail_ax = tail_ax;
-	packet.tail_ay = tail_ay;
-	packet.tail_az = tail_az;
-	packet.wing_ax = wing_ax;
-	packet.wing_ay = wing_ay;
-	packet.wing_az = wing_az;
-	packet.aird_ax = aird_ax;
-	packet.aird_ay = aird_ay;
-	packet.aird_az = aird_az;
+    mavlink_accel_debug_t packet;
+    packet.time_boot_ms = time_boot_ms;
+    packet.imu_ax = imu_ax;
+    packet.imu_ay = imu_ay;
+    packet.imu_az = imu_az;
+    packet.tail_ax = tail_ax;
+    packet.tail_ay = tail_ay;
+    packet.tail_az = tail_az;
+    packet.wing_ax = wing_ax;
+    packet.wing_ay = wing_ay;
+    packet.wing_az = wing_az;
+    packet.aird_ax = aird_ax;
+    packet.aird_ay = aird_ay;
+    packet.aird_az = aird_az;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)&packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)&packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)&packet, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 #endif
+}
+
+/**
+ * @brief Send a accel_debug message
+ * @param chan MAVLink channel to send the message
+ * @param struct The MAVLink struct to serialize
+ */
+static inline void mavlink_msg_accel_debug_send_struct(mavlink_channel_t chan, const mavlink_accel_debug_t* accel_debug)
+{
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    mavlink_msg_accel_debug_send(chan, accel_debug->time_boot_ms, accel_debug->imu_ax, accel_debug->imu_ay, accel_debug->imu_az, accel_debug->tail_ax, accel_debug->tail_ay, accel_debug->tail_az, accel_debug->wing_ax, accel_debug->wing_ay, accel_debug->wing_az, accel_debug->aird_ax, accel_debug->aird_ay, accel_debug->aird_az);
+#else
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)accel_debug, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 #endif
 }
 
@@ -289,47 +311,39 @@ static inline void mavlink_msg_accel_debug_send(mavlink_channel_t chan, uint32_t
 static inline void mavlink_msg_accel_debug_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t time_boot_ms, int16_t imu_ax, int16_t imu_ay, int16_t imu_az, int16_t tail_ax, int16_t tail_ay, int16_t tail_az, int16_t wing_ax, int16_t wing_ay, int16_t wing_az, int16_t aird_ax, int16_t aird_ay, int16_t aird_az)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-	char *buf = (char *)msgbuf;
-	_mav_put_uint32_t(buf, 0, time_boot_ms);
-	_mav_put_int16_t(buf, 4, imu_ax);
-	_mav_put_int16_t(buf, 6, imu_ay);
-	_mav_put_int16_t(buf, 8, imu_az);
-	_mav_put_int16_t(buf, 10, tail_ax);
-	_mav_put_int16_t(buf, 12, tail_ay);
-	_mav_put_int16_t(buf, 14, tail_az);
-	_mav_put_int16_t(buf, 16, wing_ax);
-	_mav_put_int16_t(buf, 18, wing_ay);
-	_mav_put_int16_t(buf, 20, wing_az);
-	_mav_put_int16_t(buf, 22, aird_ax);
-	_mav_put_int16_t(buf, 24, aird_ay);
-	_mav_put_int16_t(buf, 26, aird_az);
+    char *buf = (char *)msgbuf;
+    _mav_put_uint32_t(buf, 0, time_boot_ms);
+    _mav_put_int16_t(buf, 4, imu_ax);
+    _mav_put_int16_t(buf, 6, imu_ay);
+    _mav_put_int16_t(buf, 8, imu_az);
+    _mav_put_int16_t(buf, 10, tail_ax);
+    _mav_put_int16_t(buf, 12, tail_ay);
+    _mav_put_int16_t(buf, 14, tail_az);
+    _mav_put_int16_t(buf, 16, wing_ax);
+    _mav_put_int16_t(buf, 18, wing_ay);
+    _mav_put_int16_t(buf, 20, wing_az);
+    _mav_put_int16_t(buf, 22, aird_ax);
+    _mav_put_int16_t(buf, 24, aird_ay);
+    _mav_put_int16_t(buf, 26, aird_az);
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 #else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, buf, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
-#endif
-#else
-	mavlink_accel_debug_t *packet = (mavlink_accel_debug_t *)msgbuf;
-	packet->time_boot_ms = time_boot_ms;
-	packet->imu_ax = imu_ax;
-	packet->imu_ay = imu_ay;
-	packet->imu_az = imu_az;
-	packet->tail_ax = tail_ax;
-	packet->tail_ay = tail_ay;
-	packet->tail_az = tail_az;
-	packet->wing_ax = wing_ax;
-	packet->wing_ay = wing_ay;
-	packet->wing_az = wing_az;
-	packet->aird_ax = aird_ax;
-	packet->aird_ay = aird_ay;
-	packet->aird_az = aird_az;
+    mavlink_accel_debug_t *packet = (mavlink_accel_debug_t *)msgbuf;
+    packet->time_boot_ms = time_boot_ms;
+    packet->imu_ax = imu_ax;
+    packet->imu_ay = imu_ay;
+    packet->imu_az = imu_az;
+    packet->tail_ax = tail_ax;
+    packet->tail_ay = tail_ay;
+    packet->tail_az = tail_az;
+    packet->wing_ax = wing_ax;
+    packet->wing_ay = wing_ay;
+    packet->wing_az = wing_az;
+    packet->aird_ax = aird_ax;
+    packet->aird_ay = aird_ay;
+    packet->aird_az = aird_az;
 
-#if MAVLINK_CRC_EXTRA
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
-#else
-    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)packet, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
-#endif
+    _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ACCEL_DEBUG, (const char *)packet, MAVLINK_MSG_ID_ACCEL_DEBUG_MIN_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN, MAVLINK_MSG_ID_ACCEL_DEBUG_CRC);
 #endif
 }
 #endif
@@ -342,131 +356,131 @@ static inline void mavlink_msg_accel_debug_send_buf(mavlink_message_t *msgbuf, m
 /**
  * @brief Get field time_boot_ms from accel_debug message
  *
- * @return Timestamp (milliseconds since system boot)
+ * @return  Timestamp (milliseconds since system boot)
  */
 static inline uint32_t mavlink_msg_accel_debug_get_time_boot_ms(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_uint32_t(msg,  0);
+    return _MAV_RETURN_uint32_t(msg,  0);
 }
 
 /**
  * @brief Get field imu_ax from accel_debug message
  *
- * @return X acceleration (mg)
+ * @return  X acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_imu_ax(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  4);
+    return _MAV_RETURN_int16_t(msg,  4);
 }
 
 /**
  * @brief Get field imu_ay from accel_debug message
  *
- * @return Y acceleration (mg)
+ * @return  Y acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_imu_ay(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  6);
+    return _MAV_RETURN_int16_t(msg,  6);
 }
 
 /**
  * @brief Get field imu_az from accel_debug message
  *
- * @return Z acceleration (mg)
+ * @return  Z acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_imu_az(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  8);
+    return _MAV_RETURN_int16_t(msg,  8);
 }
 
 /**
  * @brief Get field tail_ax from accel_debug message
  *
- * @return X acceleration (mg)
+ * @return  X acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_tail_ax(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  10);
+    return _MAV_RETURN_int16_t(msg,  10);
 }
 
 /**
  * @brief Get field tail_ay from accel_debug message
  *
- * @return Y acceleration (mg)
+ * @return  Y acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_tail_ay(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  12);
+    return _MAV_RETURN_int16_t(msg,  12);
 }
 
 /**
  * @brief Get field tail_az from accel_debug message
  *
- * @return Z acceleration (mg)
+ * @return  Z acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_tail_az(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  14);
+    return _MAV_RETURN_int16_t(msg,  14);
 }
 
 /**
  * @brief Get field wing_ax from accel_debug message
  *
- * @return X acceleration (mg)
+ * @return  X acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_wing_ax(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  16);
+    return _MAV_RETURN_int16_t(msg,  16);
 }
 
 /**
  * @brief Get field wing_ay from accel_debug message
  *
- * @return Y acceleration (mg)
+ * @return  Y acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_wing_ay(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  18);
+    return _MAV_RETURN_int16_t(msg,  18);
 }
 
 /**
  * @brief Get field wing_az from accel_debug message
  *
- * @return Z acceleration (mg)
+ * @return  Z acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_wing_az(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  20);
+    return _MAV_RETURN_int16_t(msg,  20);
 }
 
 /**
  * @brief Get field aird_ax from accel_debug message
  *
- * @return X acceleration (mg)
+ * @return  X acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_aird_ax(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  22);
+    return _MAV_RETURN_int16_t(msg,  22);
 }
 
 /**
  * @brief Get field aird_ay from accel_debug message
  *
- * @return Y acceleration (mg)
+ * @return  Y acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_aird_ay(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  24);
+    return _MAV_RETURN_int16_t(msg,  24);
 }
 
 /**
  * @brief Get field aird_az from accel_debug message
  *
- * @return Z acceleration (mg)
+ * @return  Z acceleration (mg)
  */
 static inline int16_t mavlink_msg_accel_debug_get_aird_az(const mavlink_message_t* msg)
 {
-	return _MAV_RETURN_int16_t(msg,  26);
+    return _MAV_RETURN_int16_t(msg,  26);
 }
 
 /**
@@ -477,21 +491,23 @@ static inline int16_t mavlink_msg_accel_debug_get_aird_az(const mavlink_message_
  */
 static inline void mavlink_msg_accel_debug_decode(const mavlink_message_t* msg, mavlink_accel_debug_t* accel_debug)
 {
-#if MAVLINK_NEED_BYTE_SWAP
-	accel_debug->time_boot_ms = mavlink_msg_accel_debug_get_time_boot_ms(msg);
-	accel_debug->imu_ax = mavlink_msg_accel_debug_get_imu_ax(msg);
-	accel_debug->imu_ay = mavlink_msg_accel_debug_get_imu_ay(msg);
-	accel_debug->imu_az = mavlink_msg_accel_debug_get_imu_az(msg);
-	accel_debug->tail_ax = mavlink_msg_accel_debug_get_tail_ax(msg);
-	accel_debug->tail_ay = mavlink_msg_accel_debug_get_tail_ay(msg);
-	accel_debug->tail_az = mavlink_msg_accel_debug_get_tail_az(msg);
-	accel_debug->wing_ax = mavlink_msg_accel_debug_get_wing_ax(msg);
-	accel_debug->wing_ay = mavlink_msg_accel_debug_get_wing_ay(msg);
-	accel_debug->wing_az = mavlink_msg_accel_debug_get_wing_az(msg);
-	accel_debug->aird_ax = mavlink_msg_accel_debug_get_aird_ax(msg);
-	accel_debug->aird_ay = mavlink_msg_accel_debug_get_aird_ay(msg);
-	accel_debug->aird_az = mavlink_msg_accel_debug_get_aird_az(msg);
+#if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
+    accel_debug->time_boot_ms = mavlink_msg_accel_debug_get_time_boot_ms(msg);
+    accel_debug->imu_ax = mavlink_msg_accel_debug_get_imu_ax(msg);
+    accel_debug->imu_ay = mavlink_msg_accel_debug_get_imu_ay(msg);
+    accel_debug->imu_az = mavlink_msg_accel_debug_get_imu_az(msg);
+    accel_debug->tail_ax = mavlink_msg_accel_debug_get_tail_ax(msg);
+    accel_debug->tail_ay = mavlink_msg_accel_debug_get_tail_ay(msg);
+    accel_debug->tail_az = mavlink_msg_accel_debug_get_tail_az(msg);
+    accel_debug->wing_ax = mavlink_msg_accel_debug_get_wing_ax(msg);
+    accel_debug->wing_ay = mavlink_msg_accel_debug_get_wing_ay(msg);
+    accel_debug->wing_az = mavlink_msg_accel_debug_get_wing_az(msg);
+    accel_debug->aird_ax = mavlink_msg_accel_debug_get_aird_ax(msg);
+    accel_debug->aird_ay = mavlink_msg_accel_debug_get_aird_ay(msg);
+    accel_debug->aird_az = mavlink_msg_accel_debug_get_aird_az(msg);
 #else
-	memcpy(accel_debug, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
+        uint8_t len = msg->len < MAVLINK_MSG_ID_ACCEL_DEBUG_LEN? msg->len : MAVLINK_MSG_ID_ACCEL_DEBUG_LEN;
+        memset(accel_debug, 0, MAVLINK_MSG_ID_ACCEL_DEBUG_LEN);
+    memcpy(accel_debug, _MAV_PAYLOAD(msg), len);
 #endif
 }

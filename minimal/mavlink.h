@@ -1,9 +1,12 @@
 /** @file
- *	@brief MAVLink comm protocol built from UAVmainframe_v5.xml
- *	@see http://mavlink.org
+ *  @brief MAVLink comm protocol built from minimal.xml
+ *  @see http://mavlink.org
  */
+#pragma once
 #ifndef MAVLINK_H
 #define MAVLINK_H
+
+#define MAVLINK_PRIMARY_XML_IDX 2
 
 #ifndef MAVLINK_STX
 #define MAVLINK_STX 254
@@ -21,7 +24,11 @@
 #define MAVLINK_CRC_EXTRA 1
 #endif
 
+#ifndef MAVLINK_COMMAND_24BIT
+#define MAVLINK_COMMAND_24BIT 0
+#endif
+
 #include "version.h"
-#include "UAVmainframe_v5.h"
+#include "minimal.h"
 
 #endif // MAVLINK_H
