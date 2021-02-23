@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE ATTITUDE_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_ATTITUDE_SENSOR 222
+#define MAVLINK_MSG_ID_ATTITUDE_SENSOR 221
 
 
 typedef struct __mavlink_attitude_sensor_t {
@@ -25,17 +25,17 @@ typedef struct __mavlink_attitude_sensor_t {
 
 #define MAVLINK_MSG_ID_ATTITUDE_SENSOR_LEN 72
 #define MAVLINK_MSG_ID_ATTITUDE_SENSOR_MIN_LEN 72
-#define MAVLINK_MSG_ID_222_LEN 72
-#define MAVLINK_MSG_ID_222_MIN_LEN 72
+#define MAVLINK_MSG_ID_221_LEN 72
+#define MAVLINK_MSG_ID_221_MIN_LEN 72
 
 #define MAVLINK_MSG_ID_ATTITUDE_SENSOR_CRC 99
-#define MAVLINK_MSG_ID_222_CRC 99
+#define MAVLINK_MSG_ID_221_CRC 99
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_ATTITUDE_SENSOR { \
-    222, \
+    221, \
     "ATTITUDE_SENSOR", \
     16, \
     {  { "sensor_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_attitude_sensor_t, sensor_time_us) }, \

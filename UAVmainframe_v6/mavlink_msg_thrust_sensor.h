@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE THRUST_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_THRUST_SENSOR 221
+#define MAVLINK_MSG_ID_THRUST_SENSOR 227
 
 
 typedef struct __mavlink_thrust_sensor_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_thrust_sensor_t {
 
 #define MAVLINK_MSG_ID_THRUST_SENSOR_LEN 8
 #define MAVLINK_MSG_ID_THRUST_SENSOR_MIN_LEN 8
-#define MAVLINK_MSG_ID_221_LEN 8
-#define MAVLINK_MSG_ID_221_MIN_LEN 8
+#define MAVLINK_MSG_ID_227_LEN 8
+#define MAVLINK_MSG_ID_227_MIN_LEN 8
 
 #define MAVLINK_MSG_ID_THRUST_SENSOR_CRC 142
-#define MAVLINK_MSG_ID_221_CRC 142
+#define MAVLINK_MSG_ID_227_CRC 142
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_THRUST_SENSOR { \
-    221, \
+    227, \
     "THRUST_SENSOR", \
     2, \
     {  { "time_boot_ms", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_thrust_sensor_t, time_boot_ms) }, \

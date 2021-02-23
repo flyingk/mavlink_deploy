@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE AIRDATA_SENSOR PACKING
 
-#define MAVLINK_MSG_ID_AIRDATA_SENSOR 223
+#define MAVLINK_MSG_ID_AIRDATA_SENSOR 222
 
 
 typedef struct __mavlink_airdata_sensor_t {
@@ -15,7 +15,7 @@ typedef struct __mavlink_airdata_sensor_t {
  float Sensor_Temp_UNIT_C; /*<  Sensor Temperature (deg C)*/
  float Altitude_UNIT_m; /*<  Calculated Altitude (m)*/
  float Airspeed_UNIT_m_d_s; /*<  Calculated Airspeed (m/s)*/
- float Density_UNIT_kg_d_m3; /*<  Calculated air density (kg/m3)*/
+ float Density_UNIT_kg_d_m3; /*<  Calculated Density (kg/m3)*/
  float d1; /*<  tbd 1*/
  float d2; /*<  tbd 2*/
  float d3; /*<  tbd 3*/
@@ -23,17 +23,17 @@ typedef struct __mavlink_airdata_sensor_t {
 
 #define MAVLINK_MSG_ID_AIRDATA_SENSOR_LEN 64
 #define MAVLINK_MSG_ID_AIRDATA_SENSOR_MIN_LEN 64
-#define MAVLINK_MSG_ID_223_LEN 64
-#define MAVLINK_MSG_ID_223_MIN_LEN 64
+#define MAVLINK_MSG_ID_222_LEN 64
+#define MAVLINK_MSG_ID_222_MIN_LEN 64
 
 #define MAVLINK_MSG_ID_AIRDATA_SENSOR_CRC 202
-#define MAVLINK_MSG_ID_223_CRC 202
+#define MAVLINK_MSG_ID_222_CRC 202
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_AIRDATA_SENSOR { \
-    223, \
+    222, \
     "AIRDATA_SENSOR", \
     14, \
     {  { "sensor_time_us", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_airdata_sensor_t, sensor_time_us) }, \
@@ -90,7 +90,7 @@ typedef struct __mavlink_airdata_sensor_t {
  * @param Sensor_Temp_UNIT_C  Sensor Temperature (deg C)
  * @param Altitude_UNIT_m  Calculated Altitude (m)
  * @param Airspeed_UNIT_m_d_s  Calculated Airspeed (m/s)
- * @param Density_UNIT_kg_d_m3  Calculated air density (kg/m3)
+ * @param Density_UNIT_kg_d_m3  Calculated Density (kg/m3)
  * @param d1  tbd 1
  * @param d2  tbd 2
  * @param d3  tbd 3
@@ -157,7 +157,7 @@ static inline uint16_t mavlink_msg_airdata_sensor_pack(uint8_t system_id, uint8_
  * @param Sensor_Temp_UNIT_C  Sensor Temperature (deg C)
  * @param Altitude_UNIT_m  Calculated Altitude (m)
  * @param Airspeed_UNIT_m_d_s  Calculated Airspeed (m/s)
- * @param Density_UNIT_kg_d_m3  Calculated air density (kg/m3)
+ * @param Density_UNIT_kg_d_m3  Calculated Density (kg/m3)
  * @param d1  tbd 1
  * @param d2  tbd 2
  * @param d3  tbd 3
@@ -250,7 +250,7 @@ static inline uint16_t mavlink_msg_airdata_sensor_encode_chan(uint8_t system_id,
  * @param Sensor_Temp_UNIT_C  Sensor Temperature (deg C)
  * @param Altitude_UNIT_m  Calculated Altitude (m)
  * @param Airspeed_UNIT_m_d_s  Calculated Airspeed (m/s)
- * @param Density_UNIT_kg_d_m3  Calculated air density (kg/m3)
+ * @param Density_UNIT_kg_d_m3  Calculated Density (kg/m3)
  * @param d1  tbd 1
  * @param d2  tbd 2
  * @param d3  tbd 3
@@ -470,7 +470,7 @@ static inline float mavlink_msg_airdata_sensor_get_Airspeed_UNIT_m_d_s(const mav
 /**
  * @brief Get field Density_UNIT_kg_d_m3 from airdata_sensor message
  *
- * @return  Calculated air density (kg/m3)
+ * @return  Calculated Density (kg/m3)
  */
 static inline float mavlink_msg_airdata_sensor_get_Density_UNIT_kg_d_m3(const mavlink_message_t* msg)
 {
