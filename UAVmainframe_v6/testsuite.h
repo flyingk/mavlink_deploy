@@ -1539,13 +1539,13 @@ static void mavlink_test_attitude_sensor(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_attitude_sensor_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0
+        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0,20563
     };
     mavlink_attitude_sensor_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.recorded_time_us = packet_in.recorded_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
         packet1.Ax_UNIT_g = packet_in.Ax_UNIT_g;
         packet1.Ay_UNIT_g = packet_in.Ay_UNIT_g;
         packet1.Az_UNIT_g = packet_in.Az_UNIT_g;
@@ -1559,6 +1559,7 @@ static void mavlink_test_attitude_sensor(uint8_t system_id, uint8_t component_id
         packet1.d1 = packet_in.d1;
         packet1.d2 = packet_in.d2;
         packet1.d3 = packet_in.d3;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1573,12 +1574,12 @@ static void mavlink_test_attitude_sensor(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_attitude_sensor_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_attitude_sensor_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_attitude_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_attitude_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_attitude_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_attitude_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1591,7 +1592,7 @@ static void mavlink_test_attitude_sensor(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_attitude_sensor_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_attitude_sensor_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Ax_UNIT_g , packet1.Ay_UNIT_g , packet1.Az_UNIT_g , packet1.Gx_UNIT_deg_d_sec , packet1.Gy_UNIT_deg_d_sec , packet1.Gz_UNIT_deg_d_sec , packet1.Mx_UNIT_Gauss , packet1.My_UNIT_Gauss , packet1.Mz_UNIT_Gauss , packet1.Sensor_temp_UNIT_C , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_attitude_sensor_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1608,17 +1609,17 @@ static void mavlink_test_airdata_sensor(uint8_t system_id, uint8_t component_id,
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_airdata_sensor_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0
+        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,20147
     };
     mavlink_airdata_sensor_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.recorded_time_us = packet_in.recorded_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
         packet1.absP_UNIT_Pa = packet_in.absP_UNIT_Pa;
         packet1.dP_1_UNIT_Pa = packet_in.dP_1_UNIT_Pa;
-        packet1.dp_2_UNIT_Pa = packet_in.dp_2_UNIT_Pa;
-        packet1.dp_3_UNIT_Pa = packet_in.dp_3_UNIT_Pa;
+        packet1.dP_2_UNIT_Pa = packet_in.dP_2_UNIT_Pa;
+        packet1.dP_3_UNIT_Pa = packet_in.dP_3_UNIT_Pa;
         packet1.Sensor_Temp_UNIT_C = packet_in.Sensor_Temp_UNIT_C;
         packet1.Altitude_UNIT_m = packet_in.Altitude_UNIT_m;
         packet1.Airspeed_UNIT_m_d_s = packet_in.Airspeed_UNIT_m_d_s;
@@ -1626,6 +1627,7 @@ static void mavlink_test_airdata_sensor(uint8_t system_id, uint8_t component_id,
         packet1.d1 = packet_in.d1;
         packet1.d2 = packet_in.d2;
         packet1.d3 = packet_in.d3;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1640,12 +1642,12 @@ static void mavlink_test_airdata_sensor(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airdata_sensor_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dp_2_UNIT_Pa , packet1.dp_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_airdata_sensor_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dP_2_UNIT_Pa , packet1.dP_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_airdata_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airdata_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dp_2_UNIT_Pa , packet1.dp_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_airdata_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dP_2_UNIT_Pa , packet1.dP_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_airdata_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1658,7 +1660,7 @@ static void mavlink_test_airdata_sensor(uint8_t system_id, uint8_t component_id,
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_airdata_sensor_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dp_2_UNIT_Pa , packet1.dp_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_airdata_sensor_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.absP_UNIT_Pa , packet1.dP_1_UNIT_Pa , packet1.dP_2_UNIT_Pa , packet1.dP_3_UNIT_Pa , packet1.Sensor_Temp_UNIT_C , packet1.Altitude_UNIT_m , packet1.Airspeed_UNIT_m_d_s , packet1.Density_UNIT_kg_d_m3 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_airdata_sensor_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1675,13 +1677,14 @@ static void mavlink_test_rc_command_in(uint8_t system_id, uint8_t component_id, 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_rc_command_in_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315,19419
+        963497464,963497672,963497880,17859,17963,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003,19107
     };
     mavlink_rc_command_in_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.recorded_time_us = packet_in.recorded_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         packet1.CH_1_UNIT_us = packet_in.CH_1_UNIT_us;
         packet1.CH_2_UNIT_us = packet_in.CH_2_UNIT_us;
         packet1.CH_3_UNIT_us = packet_in.CH_3_UNIT_us;
@@ -1708,12 +1711,12 @@ static void mavlink_test_rc_command_in(uint8_t system_id, uint8_t component_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_command_in_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_command_in_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_command_in_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_command_in_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_command_in_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_command_in_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1726,7 +1729,7 @@ static void mavlink_test_rc_command_in(uint8_t system_id, uint8_t component_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_command_in_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_command_in_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_command_in_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1743,13 +1746,14 @@ static void mavlink_test_actuator_command_out(uint8_t system_id, uint8_t compone
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_actuator_command_out_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,18275,18379,18483,18587,18691,18795,18899,19003,19107,19211,19315
+        963497464,963497672,963497880,17859,17963,18067,18171,18275,18379,18483,18587,18691,18795,18899,19003
     };
     mavlink_actuator_command_out_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.transmit_time_us = packet_in.transmit_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         packet1.CH_1_UNIT_us = packet_in.CH_1_UNIT_us;
         packet1.CH_2_UNIT_us = packet_in.CH_2_UNIT_us;
         packet1.CH_3_UNIT_us = packet_in.CH_3_UNIT_us;
@@ -1775,12 +1779,12 @@ static void mavlink_test_actuator_command_out(uint8_t system_id, uint8_t compone
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_command_out_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.transmit_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_command_out_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_command_out_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_command_out_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.transmit_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_command_out_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_command_out_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1793,7 +1797,7 @@ static void mavlink_test_actuator_command_out(uint8_t system_id, uint8_t compone
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_command_out_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.transmit_time_us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_command_out_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_command_out_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1810,16 +1814,23 @@ static void mavlink_test_actuator_feedback(uint8_t system_id, uint8_t component_
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_actuator_feedback_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,157.0,185.0,213.0
+        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,19731
     };
     mavlink_actuator_feedback_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.recorded_time_us = packet_in.recorded_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
+        packet1.Elevator_Unit_deg = packet_in.Elevator_Unit_deg;
+        packet1.Rudder_Unit_deg = packet_in.Rudder_Unit_deg;
+        packet1.Aileron_Unit_deg = packet_in.Aileron_Unit_deg;
+        packet1.Thrust_1_Unit_kg = packet_in.Thrust_1_Unit_kg;
+        packet1.Aux_1 = packet_in.Aux_1;
+        packet1.Aux_2 = packet_in.Aux_2;
         packet1.d1 = packet_in.d1;
         packet1.d2 = packet_in.d2;
         packet1.d3 = packet_in.d3;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1834,12 +1845,12 @@ static void mavlink_test_actuator_feedback(uint8_t system_id, uint8_t component_
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_feedback_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_feedback_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Elevator_Unit_deg , packet1.Rudder_Unit_deg , packet1.Aileron_Unit_deg , packet1.Thrust_1_Unit_kg , packet1.Aux_1 , packet1.Aux_2 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_feedback_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_feedback_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_feedback_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Elevator_Unit_deg , packet1.Rudder_Unit_deg , packet1.Aileron_Unit_deg , packet1.Thrust_1_Unit_kg , packet1.Aux_1 , packet1.Aux_2 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_feedback_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1852,7 +1863,7 @@ static void mavlink_test_actuator_feedback(uint8_t system_id, uint8_t component_
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_actuator_feedback_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_actuator_feedback_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Elevator_Unit_deg , packet1.Rudder_Unit_deg , packet1.Aileron_Unit_deg , packet1.Thrust_1_Unit_kg , packet1.Aux_1 , packet1.Aux_2 , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_actuator_feedback_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1869,13 +1880,13 @@ static void mavlink_test_power_sensor(uint8_t system_id, uint8_t component_id, m
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_power_sensor_t packet_in = {
-        93372036854775807ULL,93372036854776311ULL,963498296,157.0,185.0,213.0,241.0,269.0,297.0,325.0,19731
+        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,19315,19419
     };
     mavlink_power_sensor_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.sensor_time_us = packet_in.sensor_time_us;
-        packet1.recorded_time_us = packet_in.recorded_time_us;
-        packet1.sensor_processing_time_us = packet_in.sensor_processing_time_us;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
         packet1.Voltage_UNIT_V = packet_in.Voltage_UNIT_V;
         packet1.Current_UNIT_A = packet_in.Current_UNIT_A;
         packet1.Power_UNIT_W = packet_in.Power_UNIT_W;
@@ -1883,6 +1894,7 @@ static void mavlink_test_power_sensor(uint8_t system_id, uint8_t component_id, m
         packet1.d1 = packet_in.d1;
         packet1.d2 = packet_in.d2;
         packet1.d3 = packet_in.d3;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         packet1.RPM_UNIT_1_d_sec = packet_in.RPM_UNIT_1_d_sec;
         
         
@@ -1898,12 +1910,12 @@ static void mavlink_test_power_sensor(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_power_sensor_pack(system_id, component_id, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_power_sensor_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_power_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_power_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_power_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_power_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1916,7 +1928,7 @@ static void mavlink_test_power_sensor(uint8_t system_id, uint8_t component_id, m
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_power_sensor_send(MAVLINK_COMM_1 , packet1.sensor_time_us , packet1.sensor_processing_time_us , packet1.recorded_time_us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_power_sensor_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.Power_UNIT_W , packet1.Temp_UNIT_C , packet1.RPM_UNIT_1_d_sec , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_power_sensor_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
@@ -1933,12 +1945,15 @@ static void mavlink_test_thrust_sensor(uint8_t system_id, uint8_t component_id, 
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_thrust_sensor_t packet_in = {
-        963497464,963497672
+        963497464,963497672,963497880,963498088,18067
     };
     mavlink_thrust_sensor_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.time_boot_ms = packet_in.time_boot_ms;
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
         packet1.Load_cell = packet_in.Load_cell;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1953,12 +1968,12 @@ static void mavlink_test_thrust_sensor(uint8_t system_id, uint8_t component_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_thrust_sensor_pack(system_id, component_id, &msg , packet1.time_boot_ms , packet1.Load_cell );
+    mavlink_msg_thrust_sensor_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Load_cell );
     mavlink_msg_thrust_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_thrust_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_boot_ms , packet1.Load_cell );
+    mavlink_msg_thrust_sensor_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Load_cell );
     mavlink_msg_thrust_sensor_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1971,7 +1986,7 @@ static void mavlink_test_thrust_sensor(uint8_t system_id, uint8_t component_id, 
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_thrust_sensor_send(MAVLINK_COMM_1 , packet1.time_boot_ms , packet1.Load_cell );
+    mavlink_msg_thrust_sensor_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Load_cell );
     mavlink_msg_thrust_sensor_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
