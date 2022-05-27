@@ -2005,24 +2005,17 @@ static void mavlink_test_adc_arduino_8ch(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_adc_arduino_8ch_t packet_in = {
-        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,19523,19627
+        963497464,963497672,963497880,{ 101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0 },19523,19627
     };
     mavlink_adc_arduino_8ch_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
         packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
         packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
-        packet1.CH_1_UNIT_V = packet_in.CH_1_UNIT_V;
-        packet1.CH_2_UNIT_V = packet_in.CH_2_UNIT_V;
-        packet1.CH_3_UNIT_V = packet_in.CH_3_UNIT_V;
-        packet1.CH_4_UNIT_V = packet_in.CH_4_UNIT_V;
-        packet1.CH_5_UNIT_V = packet_in.CH_5_UNIT_V;
-        packet1.CH_6_UNIT_V = packet_in.CH_6_UNIT_V;
-        packet1.CH_7_UNIT_V = packet_in.CH_7_UNIT_V;
-        packet1.CH_8_UNIT_V = packet_in.CH_8_UNIT_V;
         packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
         packet1.RPM_UNIT_1_d_s = packet_in.RPM_UNIT_1_d_s;
         
+        mav_array_memcpy(packet1.ADC_Data_UNIT_V, packet_in.ADC_Data_UNIT_V, sizeof(float)*8);
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
         if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
@@ -2036,12 +2029,12 @@ static void mavlink_test_adc_arduino_8ch(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_adc_arduino_8ch_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_V , packet1.CH_2_UNIT_V , packet1.CH_3_UNIT_V , packet1.CH_4_UNIT_V , packet1.CH_5_UNIT_V , packet1.CH_6_UNIT_V , packet1.CH_7_UNIT_V , packet1.CH_8_UNIT_V , packet1.RPM_UNIT_1_d_s );
+    mavlink_msg_adc_arduino_8ch_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.ADC_Data_UNIT_V , packet1.RPM_UNIT_1_d_s );
     mavlink_msg_adc_arduino_8ch_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_adc_arduino_8ch_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_V , packet1.CH_2_UNIT_V , packet1.CH_3_UNIT_V , packet1.CH_4_UNIT_V , packet1.CH_5_UNIT_V , packet1.CH_6_UNIT_V , packet1.CH_7_UNIT_V , packet1.CH_8_UNIT_V , packet1.RPM_UNIT_1_d_s );
+    mavlink_msg_adc_arduino_8ch_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.ADC_Data_UNIT_V , packet1.RPM_UNIT_1_d_s );
     mavlink_msg_adc_arduino_8ch_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -2054,7 +2047,7 @@ static void mavlink_test_adc_arduino_8ch(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_adc_arduino_8ch_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_V , packet1.CH_2_UNIT_V , packet1.CH_3_UNIT_V , packet1.CH_4_UNIT_V , packet1.CH_5_UNIT_V , packet1.CH_6_UNIT_V , packet1.CH_7_UNIT_V , packet1.CH_8_UNIT_V , packet1.RPM_UNIT_1_d_s );
+    mavlink_msg_adc_arduino_8ch_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.ADC_Data_UNIT_V , packet1.RPM_UNIT_1_d_s );
     mavlink_msg_adc_arduino_8ch_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
