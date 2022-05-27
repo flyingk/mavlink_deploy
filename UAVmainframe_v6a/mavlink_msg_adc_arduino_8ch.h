@@ -18,18 +18,15 @@ typedef struct __mavlink_adc_arduino_8ch_t {
  float CH_8_UNIT_V; /*<  ADC Channel 8 [V]*/
  int16_t Sensor_processing_time_UNIT_us; /*<  Sensor processing time in usec, -1 for unknown*/
  uint16_t RPM_UNIT_1_d_s; /*<  RPM counter [rpm]*/
- uint16_t d1; /*<  tbd 1*/
- uint16_t d2; /*<  tbd 2*/
- uint16_t d3; /*<  tbd 3*/
 } mavlink_adc_arduino_8ch_t;
 
-#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN 54
-#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN 54
-#define MAVLINK_MSG_ID_228_LEN 54
-#define MAVLINK_MSG_ID_228_MIN_LEN 54
+#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN 48
+#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN 48
+#define MAVLINK_MSG_ID_228_LEN 48
+#define MAVLINK_MSG_ID_228_MIN_LEN 48
 
-#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC 98
-#define MAVLINK_MSG_ID_228_CRC 98
+#define MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC 223
+#define MAVLINK_MSG_ID_228_CRC 223
 
 
 
@@ -37,7 +34,7 @@ typedef struct __mavlink_adc_arduino_8ch_t {
 #define MAVLINK_MESSAGE_INFO_ADC_ARDUINO_8CH { \
     228, \
     "ADC_ARDUINO_8CH", \
-    16, \
+    13, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adc_arduino_8ch_t, Sensor_time_UNIT_100us) }, \
          { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_adc_arduino_8ch_t, Sync_data_Unit_variable) }, \
          { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 44, offsetof(mavlink_adc_arduino_8ch_t, Sensor_processing_time_UNIT_us) }, \
@@ -51,15 +48,12 @@ typedef struct __mavlink_adc_arduino_8ch_t {
          { "CH_7_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_adc_arduino_8ch_t, CH_7_UNIT_V) }, \
          { "CH_8_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_adc_arduino_8ch_t, CH_8_UNIT_V) }, \
          { "RPM_UNIT_1_d_s", NULL, MAVLINK_TYPE_UINT16_T, 0, 46, offsetof(mavlink_adc_arduino_8ch_t, RPM_UNIT_1_d_s) }, \
-         { "d1", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_adc_arduino_8ch_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_adc_arduino_8ch_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_UINT16_T, 0, 52, offsetof(mavlink_adc_arduino_8ch_t, d3) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ADC_ARDUINO_8CH { \
     "ADC_ARDUINO_8CH", \
-    16, \
+    13, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_adc_arduino_8ch_t, Sensor_time_UNIT_100us) }, \
          { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_adc_arduino_8ch_t, Sync_data_Unit_variable) }, \
          { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 44, offsetof(mavlink_adc_arduino_8ch_t, Sensor_processing_time_UNIT_us) }, \
@@ -73,9 +67,6 @@ typedef struct __mavlink_adc_arduino_8ch_t {
          { "CH_7_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_adc_arduino_8ch_t, CH_7_UNIT_V) }, \
          { "CH_8_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_adc_arduino_8ch_t, CH_8_UNIT_V) }, \
          { "RPM_UNIT_1_d_s", NULL, MAVLINK_TYPE_UINT16_T, 0, 46, offsetof(mavlink_adc_arduino_8ch_t, RPM_UNIT_1_d_s) }, \
-         { "d1", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_adc_arduino_8ch_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_adc_arduino_8ch_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_UINT16_T, 0, 52, offsetof(mavlink_adc_arduino_8ch_t, d3) }, \
          } \
 }
 #endif
@@ -99,13 +90,10 @@ typedef struct __mavlink_adc_arduino_8ch_t {
  * @param CH_7_UNIT_V  ADC Channel 7 [V]
  * @param CH_8_UNIT_V  ADC Channel 8 [V]
  * @param RPM_UNIT_1_d_s  RPM counter [rpm]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_adc_arduino_8ch_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s, uint16_t d1, uint16_t d2, uint16_t d3)
+                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN];
@@ -122,9 +110,6 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack(uint8_t system_id, uint8
     _mav_put_float(buf, 40, CH_8_UNIT_V);
     _mav_put_int16_t(buf, 44, Sensor_processing_time_UNIT_us);
     _mav_put_uint16_t(buf, 46, RPM_UNIT_1_d_s);
-    _mav_put_uint16_t(buf, 48, d1);
-    _mav_put_uint16_t(buf, 50, d2);
-    _mav_put_uint16_t(buf, 52, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN);
 #else
@@ -142,9 +127,6 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack(uint8_t system_id, uint8
     packet.CH_8_UNIT_V = CH_8_UNIT_V;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_s = RPM_UNIT_1_d_s;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN);
 #endif
@@ -172,14 +154,11 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack(uint8_t system_id, uint8
  * @param CH_7_UNIT_V  ADC Channel 7 [V]
  * @param CH_8_UNIT_V  ADC Channel 8 [V]
  * @param RPM_UNIT_1_d_s  RPM counter [rpm]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_adc_arduino_8ch_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_Unit_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float CH_1_UNIT_V,float CH_2_UNIT_V,float CH_3_UNIT_V,float CH_4_UNIT_V,float CH_5_UNIT_V,float CH_6_UNIT_V,float CH_7_UNIT_V,float CH_8_UNIT_V,uint16_t RPM_UNIT_1_d_s,uint16_t d1,uint16_t d2,uint16_t d3)
+                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_Unit_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float CH_1_UNIT_V,float CH_2_UNIT_V,float CH_3_UNIT_V,float CH_4_UNIT_V,float CH_5_UNIT_V,float CH_6_UNIT_V,float CH_7_UNIT_V,float CH_8_UNIT_V,uint16_t RPM_UNIT_1_d_s)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN];
@@ -196,9 +175,6 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack_chan(uint8_t system_id, 
     _mav_put_float(buf, 40, CH_8_UNIT_V);
     _mav_put_int16_t(buf, 44, Sensor_processing_time_UNIT_us);
     _mav_put_uint16_t(buf, 46, RPM_UNIT_1_d_s);
-    _mav_put_uint16_t(buf, 48, d1);
-    _mav_put_uint16_t(buf, 50, d2);
-    _mav_put_uint16_t(buf, 52, d3);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN);
 #else
@@ -216,9 +192,6 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack_chan(uint8_t system_id, 
     packet.CH_8_UNIT_V = CH_8_UNIT_V;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_s = RPM_UNIT_1_d_s;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN);
 #endif
@@ -237,7 +210,7 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_adc_arduino_8ch_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_adc_arduino_8ch_t* adc_arduino_8ch)
 {
-    return mavlink_msg_adc_arduino_8ch_pack(system_id, component_id, msg, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s, adc_arduino_8ch->d1, adc_arduino_8ch->d2, adc_arduino_8ch->d3);
+    return mavlink_msg_adc_arduino_8ch_pack(system_id, component_id, msg, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s);
 }
 
 /**
@@ -251,7 +224,7 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_adc_arduino_8ch_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_adc_arduino_8ch_t* adc_arduino_8ch)
 {
-    return mavlink_msg_adc_arduino_8ch_pack_chan(system_id, component_id, chan, msg, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s, adc_arduino_8ch->d1, adc_arduino_8ch->d2, adc_arduino_8ch->d3);
+    return mavlink_msg_adc_arduino_8ch_pack_chan(system_id, component_id, chan, msg, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s);
 }
 
 /**
@@ -271,13 +244,10 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_encode_chan(uint8_t system_id
  * @param CH_7_UNIT_V  ADC Channel 7 [V]
  * @param CH_8_UNIT_V  ADC Channel 8 [V]
  * @param RPM_UNIT_1_d_s  RPM counter [rpm]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_adc_arduino_8ch_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s, uint16_t d1, uint16_t d2, uint16_t d3)
+static inline void mavlink_msg_adc_arduino_8ch_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN];
@@ -294,9 +264,6 @@ static inline void mavlink_msg_adc_arduino_8ch_send(mavlink_channel_t chan, uint
     _mav_put_float(buf, 40, CH_8_UNIT_V);
     _mav_put_int16_t(buf, 44, Sensor_processing_time_UNIT_us);
     _mav_put_uint16_t(buf, 46, RPM_UNIT_1_d_s);
-    _mav_put_uint16_t(buf, 48, d1);
-    _mav_put_uint16_t(buf, 50, d2);
-    _mav_put_uint16_t(buf, 52, d3);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADC_ARDUINO_8CH, buf, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC);
 #else
@@ -314,9 +281,6 @@ static inline void mavlink_msg_adc_arduino_8ch_send(mavlink_channel_t chan, uint
     packet.CH_8_UNIT_V = CH_8_UNIT_V;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_s = RPM_UNIT_1_d_s;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADC_ARDUINO_8CH, (const char *)&packet, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC);
 #endif
@@ -330,7 +294,7 @@ static inline void mavlink_msg_adc_arduino_8ch_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_adc_arduino_8ch_send_struct(mavlink_channel_t chan, const mavlink_adc_arduino_8ch_t* adc_arduino_8ch)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_adc_arduino_8ch_send(chan, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s, adc_arduino_8ch->d1, adc_arduino_8ch->d2, adc_arduino_8ch->d3);
+    mavlink_msg_adc_arduino_8ch_send(chan, adc_arduino_8ch->Sensor_time_UNIT_100us, adc_arduino_8ch->Sync_data_Unit_variable, adc_arduino_8ch->Sensor_processing_time_UNIT_us, adc_arduino_8ch->Recorded_time_UNIT_100us, adc_arduino_8ch->CH_1_UNIT_V, adc_arduino_8ch->CH_2_UNIT_V, adc_arduino_8ch->CH_3_UNIT_V, adc_arduino_8ch->CH_4_UNIT_V, adc_arduino_8ch->CH_5_UNIT_V, adc_arduino_8ch->CH_6_UNIT_V, adc_arduino_8ch->CH_7_UNIT_V, adc_arduino_8ch->CH_8_UNIT_V, adc_arduino_8ch->RPM_UNIT_1_d_s);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADC_ARDUINO_8CH, (const char *)adc_arduino_8ch, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC);
 #endif
@@ -344,7 +308,7 @@ static inline void mavlink_msg_adc_arduino_8ch_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_adc_arduino_8ch_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s, uint16_t d1, uint16_t d2, uint16_t d3)
+static inline void mavlink_msg_adc_arduino_8ch_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float CH_1_UNIT_V, float CH_2_UNIT_V, float CH_3_UNIT_V, float CH_4_UNIT_V, float CH_5_UNIT_V, float CH_6_UNIT_V, float CH_7_UNIT_V, float CH_8_UNIT_V, uint16_t RPM_UNIT_1_d_s)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -361,9 +325,6 @@ static inline void mavlink_msg_adc_arduino_8ch_send_buf(mavlink_message_t *msgbu
     _mav_put_float(buf, 40, CH_8_UNIT_V);
     _mav_put_int16_t(buf, 44, Sensor_processing_time_UNIT_us);
     _mav_put_uint16_t(buf, 46, RPM_UNIT_1_d_s);
-    _mav_put_uint16_t(buf, 48, d1);
-    _mav_put_uint16_t(buf, 50, d2);
-    _mav_put_uint16_t(buf, 52, d3);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADC_ARDUINO_8CH, buf, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC);
 #else
@@ -381,9 +342,6 @@ static inline void mavlink_msg_adc_arduino_8ch_send_buf(mavlink_message_t *msgbu
     packet->CH_8_UNIT_V = CH_8_UNIT_V;
     packet->Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet->RPM_UNIT_1_d_s = RPM_UNIT_1_d_s;
-    packet->d1 = d1;
-    packet->d2 = d2;
-    packet->d3 = d3;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ADC_ARDUINO_8CH, (const char *)packet, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_MIN_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_CRC);
 #endif
@@ -526,36 +484,6 @@ static inline uint16_t mavlink_msg_adc_arduino_8ch_get_RPM_UNIT_1_d_s(const mavl
 }
 
 /**
- * @brief Get field d1 from adc_arduino_8ch message
- *
- * @return  tbd 1
- */
-static inline uint16_t mavlink_msg_adc_arduino_8ch_get_d1(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint16_t(msg,  48);
-}
-
-/**
- * @brief Get field d2 from adc_arduino_8ch message
- *
- * @return  tbd 2
- */
-static inline uint16_t mavlink_msg_adc_arduino_8ch_get_d2(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint16_t(msg,  50);
-}
-
-/**
- * @brief Get field d3 from adc_arduino_8ch message
- *
- * @return  tbd 3
- */
-static inline uint16_t mavlink_msg_adc_arduino_8ch_get_d3(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint16_t(msg,  52);
-}
-
-/**
  * @brief Decode a adc_arduino_8ch message into a struct
  *
  * @param msg The message to decode
@@ -577,9 +505,6 @@ static inline void mavlink_msg_adc_arduino_8ch_decode(const mavlink_message_t* m
     adc_arduino_8ch->CH_8_UNIT_V = mavlink_msg_adc_arduino_8ch_get_CH_8_UNIT_V(msg);
     adc_arduino_8ch->Sensor_processing_time_UNIT_us = mavlink_msg_adc_arduino_8ch_get_Sensor_processing_time_UNIT_us(msg);
     adc_arduino_8ch->RPM_UNIT_1_d_s = mavlink_msg_adc_arduino_8ch_get_RPM_UNIT_1_d_s(msg);
-    adc_arduino_8ch->d1 = mavlink_msg_adc_arduino_8ch_get_d1(msg);
-    adc_arduino_8ch->d2 = mavlink_msg_adc_arduino_8ch_get_d2(msg);
-    adc_arduino_8ch->d3 = mavlink_msg_adc_arduino_8ch_get_d3(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN? msg->len : MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN;
         memset(adc_arduino_8ch, 0, MAVLINK_MSG_ID_ADC_ARDUINO_8CH_LEN);

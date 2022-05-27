@@ -8,24 +8,26 @@ typedef struct __mavlink_power_sensor_t {
  uint32_t Sensor_time_UNIT_100us; /*<  Sensor time in 100 usec*/
  uint32_t Sync_data_Unit_variable; /*<  Sync count or time in 100 usec*/
  uint32_t Recorded_time_UNIT_100us; /*<  recording timestamp in 100 usec*/
- float Voltage_UNIT_V; /*<  Voltage [V]*/
- float Current_UNIT_A; /*<  Current [A]*/
- float Power_UNIT_W; /*<  Power [W]*/
- float Temp_UNIT_C; /*<  Temperature [C]*/
- float d1; /*<  tbd 1*/
- float d2; /*<  tbd 2*/
- float d3; /*<  tbd 3*/
+ float Motor_Voltage_UNIT_V; /*<  Motor voltage [V]*/
+ float Motor_Current_UNIT_A; /*<  Motor current [A]*/
+ float Motor_Power_UNIT_W; /*<  Motor power [W]*/
+ float Motor_Temp_UNIT_C; /*<  Motor temperature [C]*/
+ float Servo_Voltage_UNIT_V; /*<  Servo voltage [V]*/
+ float Servo_Current_UNIT_A; /*<  Servo current [A]*/
+ float System_Voltage_UNIT_V; /*<  System voltage [V]*/
+ float System_Current_UNIT_A; /*<  System current [A]*/
+ float Temp_UNIT_C; /*<  Temp [C]*/
  int16_t Sensor_processing_time_UNIT_us; /*<  Sensor processing time in usec, -1 for unknown*/
  uint16_t RPM_UNIT_1_d_sec; /*<  Motor RPM [1/sec]*/
 } mavlink_power_sensor_t;
 
-#define MAVLINK_MSG_ID_POWER_SENSOR_LEN 44
-#define MAVLINK_MSG_ID_POWER_SENSOR_MIN_LEN 44
-#define MAVLINK_MSG_ID_226_LEN 44
-#define MAVLINK_MSG_ID_226_MIN_LEN 44
+#define MAVLINK_MSG_ID_POWER_SENSOR_LEN 52
+#define MAVLINK_MSG_ID_POWER_SENSOR_MIN_LEN 52
+#define MAVLINK_MSG_ID_226_LEN 52
+#define MAVLINK_MSG_ID_226_MIN_LEN 52
 
-#define MAVLINK_MSG_ID_POWER_SENSOR_CRC 176
-#define MAVLINK_MSG_ID_226_CRC 176
+#define MAVLINK_MSG_ID_POWER_SENSOR_CRC 187
+#define MAVLINK_MSG_ID_226_CRC 187
 
 
 
@@ -33,37 +35,41 @@ typedef struct __mavlink_power_sensor_t {
 #define MAVLINK_MESSAGE_INFO_POWER_SENSOR { \
     226, \
     "POWER_SENSOR", \
-    12, \
+    14, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_power_sensor_t, Sensor_time_UNIT_100us) }, \
          { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_power_sensor_t, Sync_data_Unit_variable) }, \
-         { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 40, offsetof(mavlink_power_sensor_t, Sensor_processing_time_UNIT_us) }, \
+         { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_power_sensor_t, Sensor_processing_time_UNIT_us) }, \
          { "Recorded_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_power_sensor_t, Recorded_time_UNIT_100us) }, \
-         { "Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_power_sensor_t, Voltage_UNIT_V) }, \
-         { "Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_power_sensor_t, Current_UNIT_A) }, \
-         { "Power_UNIT_W", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_power_sensor_t, Power_UNIT_W) }, \
-         { "Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_power_sensor_t, Temp_UNIT_C) }, \
-         { "RPM_UNIT_1_d_sec", NULL, MAVLINK_TYPE_UINT16_T, 0, 42, offsetof(mavlink_power_sensor_t, RPM_UNIT_1_d_sec) }, \
-         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_power_sensor_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_power_sensor_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_power_sensor_t, d3) }, \
+         { "Motor_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_power_sensor_t, Motor_Voltage_UNIT_V) }, \
+         { "Motor_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_power_sensor_t, Motor_Current_UNIT_A) }, \
+         { "Motor_Power_UNIT_W", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_power_sensor_t, Motor_Power_UNIT_W) }, \
+         { "Motor_Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_power_sensor_t, Motor_Temp_UNIT_C) }, \
+         { "RPM_UNIT_1_d_sec", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_power_sensor_t, RPM_UNIT_1_d_sec) }, \
+         { "Servo_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_power_sensor_t, Servo_Voltage_UNIT_V) }, \
+         { "Servo_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_power_sensor_t, Servo_Current_UNIT_A) }, \
+         { "System_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_power_sensor_t, System_Voltage_UNIT_V) }, \
+         { "System_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_power_sensor_t, System_Current_UNIT_A) }, \
+         { "Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_power_sensor_t, Temp_UNIT_C) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_POWER_SENSOR { \
     "POWER_SENSOR", \
-    12, \
+    14, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_power_sensor_t, Sensor_time_UNIT_100us) }, \
          { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_power_sensor_t, Sync_data_Unit_variable) }, \
-         { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 40, offsetof(mavlink_power_sensor_t, Sensor_processing_time_UNIT_us) }, \
+         { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 48, offsetof(mavlink_power_sensor_t, Sensor_processing_time_UNIT_us) }, \
          { "Recorded_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_power_sensor_t, Recorded_time_UNIT_100us) }, \
-         { "Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_power_sensor_t, Voltage_UNIT_V) }, \
-         { "Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_power_sensor_t, Current_UNIT_A) }, \
-         { "Power_UNIT_W", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_power_sensor_t, Power_UNIT_W) }, \
-         { "Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_power_sensor_t, Temp_UNIT_C) }, \
-         { "RPM_UNIT_1_d_sec", NULL, MAVLINK_TYPE_UINT16_T, 0, 42, offsetof(mavlink_power_sensor_t, RPM_UNIT_1_d_sec) }, \
-         { "d1", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_power_sensor_t, d1) }, \
-         { "d2", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_power_sensor_t, d2) }, \
-         { "d3", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_power_sensor_t, d3) }, \
+         { "Motor_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_power_sensor_t, Motor_Voltage_UNIT_V) }, \
+         { "Motor_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_power_sensor_t, Motor_Current_UNIT_A) }, \
+         { "Motor_Power_UNIT_W", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_power_sensor_t, Motor_Power_UNIT_W) }, \
+         { "Motor_Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_power_sensor_t, Motor_Temp_UNIT_C) }, \
+         { "RPM_UNIT_1_d_sec", NULL, MAVLINK_TYPE_UINT16_T, 0, 50, offsetof(mavlink_power_sensor_t, RPM_UNIT_1_d_sec) }, \
+         { "Servo_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 28, offsetof(mavlink_power_sensor_t, Servo_Voltage_UNIT_V) }, \
+         { "Servo_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 32, offsetof(mavlink_power_sensor_t, Servo_Current_UNIT_A) }, \
+         { "System_Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_power_sensor_t, System_Voltage_UNIT_V) }, \
+         { "System_Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_power_sensor_t, System_Current_UNIT_A) }, \
+         { "Temp_UNIT_C", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_power_sensor_t, Temp_UNIT_C) }, \
          } \
 }
 #endif
@@ -78,33 +84,37 @@ typedef struct __mavlink_power_sensor_t {
  * @param Sync_data_Unit_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
- * @param Voltage_UNIT_V  Voltage [V]
- * @param Current_UNIT_A  Current [A]
- * @param Power_UNIT_W  Power [W]
- * @param Temp_UNIT_C  Temperature [C]
+ * @param Motor_Voltage_UNIT_V  Motor voltage [V]
+ * @param Motor_Current_UNIT_A  Motor current [A]
+ * @param Motor_Power_UNIT_W  Motor power [W]
+ * @param Motor_Temp_UNIT_C  Motor temperature [C]
  * @param RPM_UNIT_1_d_sec  Motor RPM [1/sec]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
+ * @param Servo_Voltage_UNIT_V  Servo voltage [V]
+ * @param Servo_Current_UNIT_A  Servo current [A]
+ * @param System_Voltage_UNIT_V  System voltage [V]
+ * @param System_Current_UNIT_A  System current [A]
+ * @param Temp_UNIT_C  Temp [C]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_power_sensor_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Voltage_UNIT_V, float Current_UNIT_A, float Power_UNIT_W, float Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float d1, float d2, float d3)
+                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Motor_Voltage_UNIT_V, float Motor_Current_UNIT_A, float Motor_Power_UNIT_W, float Motor_Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float Servo_Voltage_UNIT_V, float Servo_Current_UNIT_A, float System_Voltage_UNIT_V, float System_Current_UNIT_A, float Temp_UNIT_C)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_POWER_SENSOR_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
     _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
-    _mav_put_float(buf, 12, Voltage_UNIT_V);
-    _mav_put_float(buf, 16, Current_UNIT_A);
-    _mav_put_float(buf, 20, Power_UNIT_W);
-    _mav_put_float(buf, 24, Temp_UNIT_C);
-    _mav_put_float(buf, 28, d1);
-    _mav_put_float(buf, 32, d2);
-    _mav_put_float(buf, 36, d3);
-    _mav_put_int16_t(buf, 40, Sensor_processing_time_UNIT_us);
-    _mav_put_uint16_t(buf, 42, RPM_UNIT_1_d_sec);
+    _mav_put_float(buf, 12, Motor_Voltage_UNIT_V);
+    _mav_put_float(buf, 16, Motor_Current_UNIT_A);
+    _mav_put_float(buf, 20, Motor_Power_UNIT_W);
+    _mav_put_float(buf, 24, Motor_Temp_UNIT_C);
+    _mav_put_float(buf, 28, Servo_Voltage_UNIT_V);
+    _mav_put_float(buf, 32, Servo_Current_UNIT_A);
+    _mav_put_float(buf, 36, System_Voltage_UNIT_V);
+    _mav_put_float(buf, 40, System_Current_UNIT_A);
+    _mav_put_float(buf, 44, Temp_UNIT_C);
+    _mav_put_int16_t(buf, 48, Sensor_processing_time_UNIT_us);
+    _mav_put_uint16_t(buf, 50, RPM_UNIT_1_d_sec);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_POWER_SENSOR_LEN);
 #else
@@ -112,13 +122,15 @@ static inline uint16_t mavlink_msg_power_sensor_pack(uint8_t system_id, uint8_t 
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
     packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
-    packet.Voltage_UNIT_V = Voltage_UNIT_V;
-    packet.Current_UNIT_A = Current_UNIT_A;
-    packet.Power_UNIT_W = Power_UNIT_W;
+    packet.Motor_Voltage_UNIT_V = Motor_Voltage_UNIT_V;
+    packet.Motor_Current_UNIT_A = Motor_Current_UNIT_A;
+    packet.Motor_Power_UNIT_W = Motor_Power_UNIT_W;
+    packet.Motor_Temp_UNIT_C = Motor_Temp_UNIT_C;
+    packet.Servo_Voltage_UNIT_V = Servo_Voltage_UNIT_V;
+    packet.Servo_Current_UNIT_A = Servo_Current_UNIT_A;
+    packet.System_Voltage_UNIT_V = System_Voltage_UNIT_V;
+    packet.System_Current_UNIT_A = System_Current_UNIT_A;
     packet.Temp_UNIT_C = Temp_UNIT_C;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_sec = RPM_UNIT_1_d_sec;
 
@@ -139,34 +151,38 @@ static inline uint16_t mavlink_msg_power_sensor_pack(uint8_t system_id, uint8_t 
  * @param Sync_data_Unit_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
- * @param Voltage_UNIT_V  Voltage [V]
- * @param Current_UNIT_A  Current [A]
- * @param Power_UNIT_W  Power [W]
- * @param Temp_UNIT_C  Temperature [C]
+ * @param Motor_Voltage_UNIT_V  Motor voltage [V]
+ * @param Motor_Current_UNIT_A  Motor current [A]
+ * @param Motor_Power_UNIT_W  Motor power [W]
+ * @param Motor_Temp_UNIT_C  Motor temperature [C]
  * @param RPM_UNIT_1_d_sec  Motor RPM [1/sec]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
+ * @param Servo_Voltage_UNIT_V  Servo voltage [V]
+ * @param Servo_Current_UNIT_A  Servo current [A]
+ * @param System_Voltage_UNIT_V  System voltage [V]
+ * @param System_Current_UNIT_A  System current [A]
+ * @param Temp_UNIT_C  Temp [C]
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_power_sensor_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_Unit_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float Voltage_UNIT_V,float Current_UNIT_A,float Power_UNIT_W,float Temp_UNIT_C,uint16_t RPM_UNIT_1_d_sec,float d1,float d2,float d3)
+                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_Unit_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float Motor_Voltage_UNIT_V,float Motor_Current_UNIT_A,float Motor_Power_UNIT_W,float Motor_Temp_UNIT_C,uint16_t RPM_UNIT_1_d_sec,float Servo_Voltage_UNIT_V,float Servo_Current_UNIT_A,float System_Voltage_UNIT_V,float System_Current_UNIT_A,float Temp_UNIT_C)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_POWER_SENSOR_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
     _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
-    _mav_put_float(buf, 12, Voltage_UNIT_V);
-    _mav_put_float(buf, 16, Current_UNIT_A);
-    _mav_put_float(buf, 20, Power_UNIT_W);
-    _mav_put_float(buf, 24, Temp_UNIT_C);
-    _mav_put_float(buf, 28, d1);
-    _mav_put_float(buf, 32, d2);
-    _mav_put_float(buf, 36, d3);
-    _mav_put_int16_t(buf, 40, Sensor_processing_time_UNIT_us);
-    _mav_put_uint16_t(buf, 42, RPM_UNIT_1_d_sec);
+    _mav_put_float(buf, 12, Motor_Voltage_UNIT_V);
+    _mav_put_float(buf, 16, Motor_Current_UNIT_A);
+    _mav_put_float(buf, 20, Motor_Power_UNIT_W);
+    _mav_put_float(buf, 24, Motor_Temp_UNIT_C);
+    _mav_put_float(buf, 28, Servo_Voltage_UNIT_V);
+    _mav_put_float(buf, 32, Servo_Current_UNIT_A);
+    _mav_put_float(buf, 36, System_Voltage_UNIT_V);
+    _mav_put_float(buf, 40, System_Current_UNIT_A);
+    _mav_put_float(buf, 44, Temp_UNIT_C);
+    _mav_put_int16_t(buf, 48, Sensor_processing_time_UNIT_us);
+    _mav_put_uint16_t(buf, 50, RPM_UNIT_1_d_sec);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_POWER_SENSOR_LEN);
 #else
@@ -174,13 +190,15 @@ static inline uint16_t mavlink_msg_power_sensor_pack_chan(uint8_t system_id, uin
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
     packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
-    packet.Voltage_UNIT_V = Voltage_UNIT_V;
-    packet.Current_UNIT_A = Current_UNIT_A;
-    packet.Power_UNIT_W = Power_UNIT_W;
+    packet.Motor_Voltage_UNIT_V = Motor_Voltage_UNIT_V;
+    packet.Motor_Current_UNIT_A = Motor_Current_UNIT_A;
+    packet.Motor_Power_UNIT_W = Motor_Power_UNIT_W;
+    packet.Motor_Temp_UNIT_C = Motor_Temp_UNIT_C;
+    packet.Servo_Voltage_UNIT_V = Servo_Voltage_UNIT_V;
+    packet.Servo_Current_UNIT_A = Servo_Current_UNIT_A;
+    packet.System_Voltage_UNIT_V = System_Voltage_UNIT_V;
+    packet.System_Current_UNIT_A = System_Current_UNIT_A;
     packet.Temp_UNIT_C = Temp_UNIT_C;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_sec = RPM_UNIT_1_d_sec;
 
@@ -201,7 +219,7 @@ static inline uint16_t mavlink_msg_power_sensor_pack_chan(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_power_sensor_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_power_sensor_t* power_sensor)
 {
-    return mavlink_msg_power_sensor_pack(system_id, component_id, msg, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Voltage_UNIT_V, power_sensor->Current_UNIT_A, power_sensor->Power_UNIT_W, power_sensor->Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->d1, power_sensor->d2, power_sensor->d3);
+    return mavlink_msg_power_sensor_pack(system_id, component_id, msg, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Motor_Voltage_UNIT_V, power_sensor->Motor_Current_UNIT_A, power_sensor->Motor_Power_UNIT_W, power_sensor->Motor_Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->Servo_Voltage_UNIT_V, power_sensor->Servo_Current_UNIT_A, power_sensor->System_Voltage_UNIT_V, power_sensor->System_Current_UNIT_A, power_sensor->Temp_UNIT_C);
 }
 
 /**
@@ -215,7 +233,7 @@ static inline uint16_t mavlink_msg_power_sensor_encode(uint8_t system_id, uint8_
  */
 static inline uint16_t mavlink_msg_power_sensor_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_power_sensor_t* power_sensor)
 {
-    return mavlink_msg_power_sensor_pack_chan(system_id, component_id, chan, msg, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Voltage_UNIT_V, power_sensor->Current_UNIT_A, power_sensor->Power_UNIT_W, power_sensor->Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->d1, power_sensor->d2, power_sensor->d3);
+    return mavlink_msg_power_sensor_pack_chan(system_id, component_id, chan, msg, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Motor_Voltage_UNIT_V, power_sensor->Motor_Current_UNIT_A, power_sensor->Motor_Power_UNIT_W, power_sensor->Motor_Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->Servo_Voltage_UNIT_V, power_sensor->Servo_Current_UNIT_A, power_sensor->System_Voltage_UNIT_V, power_sensor->System_Current_UNIT_A, power_sensor->Temp_UNIT_C);
 }
 
 /**
@@ -226,33 +244,37 @@ static inline uint16_t mavlink_msg_power_sensor_encode_chan(uint8_t system_id, u
  * @param Sync_data_Unit_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
- * @param Voltage_UNIT_V  Voltage [V]
- * @param Current_UNIT_A  Current [A]
- * @param Power_UNIT_W  Power [W]
- * @param Temp_UNIT_C  Temperature [C]
+ * @param Motor_Voltage_UNIT_V  Motor voltage [V]
+ * @param Motor_Current_UNIT_A  Motor current [A]
+ * @param Motor_Power_UNIT_W  Motor power [W]
+ * @param Motor_Temp_UNIT_C  Motor temperature [C]
  * @param RPM_UNIT_1_d_sec  Motor RPM [1/sec]
- * @param d1  tbd 1
- * @param d2  tbd 2
- * @param d3  tbd 3
+ * @param Servo_Voltage_UNIT_V  Servo voltage [V]
+ * @param Servo_Current_UNIT_A  Servo current [A]
+ * @param System_Voltage_UNIT_V  System voltage [V]
+ * @param System_Current_UNIT_A  System current [A]
+ * @param Temp_UNIT_C  Temp [C]
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_power_sensor_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Voltage_UNIT_V, float Current_UNIT_A, float Power_UNIT_W, float Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float d1, float d2, float d3)
+static inline void mavlink_msg_power_sensor_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Motor_Voltage_UNIT_V, float Motor_Current_UNIT_A, float Motor_Power_UNIT_W, float Motor_Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float Servo_Voltage_UNIT_V, float Servo_Current_UNIT_A, float System_Voltage_UNIT_V, float System_Current_UNIT_A, float Temp_UNIT_C)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_POWER_SENSOR_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
     _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
-    _mav_put_float(buf, 12, Voltage_UNIT_V);
-    _mav_put_float(buf, 16, Current_UNIT_A);
-    _mav_put_float(buf, 20, Power_UNIT_W);
-    _mav_put_float(buf, 24, Temp_UNIT_C);
-    _mav_put_float(buf, 28, d1);
-    _mav_put_float(buf, 32, d2);
-    _mav_put_float(buf, 36, d3);
-    _mav_put_int16_t(buf, 40, Sensor_processing_time_UNIT_us);
-    _mav_put_uint16_t(buf, 42, RPM_UNIT_1_d_sec);
+    _mav_put_float(buf, 12, Motor_Voltage_UNIT_V);
+    _mav_put_float(buf, 16, Motor_Current_UNIT_A);
+    _mav_put_float(buf, 20, Motor_Power_UNIT_W);
+    _mav_put_float(buf, 24, Motor_Temp_UNIT_C);
+    _mav_put_float(buf, 28, Servo_Voltage_UNIT_V);
+    _mav_put_float(buf, 32, Servo_Current_UNIT_A);
+    _mav_put_float(buf, 36, System_Voltage_UNIT_V);
+    _mav_put_float(buf, 40, System_Current_UNIT_A);
+    _mav_put_float(buf, 44, Temp_UNIT_C);
+    _mav_put_int16_t(buf, 48, Sensor_processing_time_UNIT_us);
+    _mav_put_uint16_t(buf, 50, RPM_UNIT_1_d_sec);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_POWER_SENSOR, buf, MAVLINK_MSG_ID_POWER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_POWER_SENSOR_LEN, MAVLINK_MSG_ID_POWER_SENSOR_CRC);
 #else
@@ -260,13 +282,15 @@ static inline void mavlink_msg_power_sensor_send(mavlink_channel_t chan, uint32_
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
     packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
-    packet.Voltage_UNIT_V = Voltage_UNIT_V;
-    packet.Current_UNIT_A = Current_UNIT_A;
-    packet.Power_UNIT_W = Power_UNIT_W;
+    packet.Motor_Voltage_UNIT_V = Motor_Voltage_UNIT_V;
+    packet.Motor_Current_UNIT_A = Motor_Current_UNIT_A;
+    packet.Motor_Power_UNIT_W = Motor_Power_UNIT_W;
+    packet.Motor_Temp_UNIT_C = Motor_Temp_UNIT_C;
+    packet.Servo_Voltage_UNIT_V = Servo_Voltage_UNIT_V;
+    packet.Servo_Current_UNIT_A = Servo_Current_UNIT_A;
+    packet.System_Voltage_UNIT_V = System_Voltage_UNIT_V;
+    packet.System_Current_UNIT_A = System_Current_UNIT_A;
     packet.Temp_UNIT_C = Temp_UNIT_C;
-    packet.d1 = d1;
-    packet.d2 = d2;
-    packet.d3 = d3;
     packet.Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet.RPM_UNIT_1_d_sec = RPM_UNIT_1_d_sec;
 
@@ -282,7 +306,7 @@ static inline void mavlink_msg_power_sensor_send(mavlink_channel_t chan, uint32_
 static inline void mavlink_msg_power_sensor_send_struct(mavlink_channel_t chan, const mavlink_power_sensor_t* power_sensor)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_power_sensor_send(chan, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Voltage_UNIT_V, power_sensor->Current_UNIT_A, power_sensor->Power_UNIT_W, power_sensor->Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->d1, power_sensor->d2, power_sensor->d3);
+    mavlink_msg_power_sensor_send(chan, power_sensor->Sensor_time_UNIT_100us, power_sensor->Sync_data_Unit_variable, power_sensor->Sensor_processing_time_UNIT_us, power_sensor->Recorded_time_UNIT_100us, power_sensor->Motor_Voltage_UNIT_V, power_sensor->Motor_Current_UNIT_A, power_sensor->Motor_Power_UNIT_W, power_sensor->Motor_Temp_UNIT_C, power_sensor->RPM_UNIT_1_d_sec, power_sensor->Servo_Voltage_UNIT_V, power_sensor->Servo_Current_UNIT_A, power_sensor->System_Voltage_UNIT_V, power_sensor->System_Current_UNIT_A, power_sensor->Temp_UNIT_C);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_POWER_SENSOR, (const char *)power_sensor, MAVLINK_MSG_ID_POWER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_POWER_SENSOR_LEN, MAVLINK_MSG_ID_POWER_SENSOR_CRC);
 #endif
@@ -296,22 +320,24 @@ static inline void mavlink_msg_power_sensor_send_struct(mavlink_channel_t chan, 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_power_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Voltage_UNIT_V, float Current_UNIT_A, float Power_UNIT_W, float Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float d1, float d2, float d3)
+static inline void mavlink_msg_power_sensor_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Motor_Voltage_UNIT_V, float Motor_Current_UNIT_A, float Motor_Power_UNIT_W, float Motor_Temp_UNIT_C, uint16_t RPM_UNIT_1_d_sec, float Servo_Voltage_UNIT_V, float Servo_Current_UNIT_A, float System_Voltage_UNIT_V, float System_Current_UNIT_A, float Temp_UNIT_C)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
     _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
-    _mav_put_float(buf, 12, Voltage_UNIT_V);
-    _mav_put_float(buf, 16, Current_UNIT_A);
-    _mav_put_float(buf, 20, Power_UNIT_W);
-    _mav_put_float(buf, 24, Temp_UNIT_C);
-    _mav_put_float(buf, 28, d1);
-    _mav_put_float(buf, 32, d2);
-    _mav_put_float(buf, 36, d3);
-    _mav_put_int16_t(buf, 40, Sensor_processing_time_UNIT_us);
-    _mav_put_uint16_t(buf, 42, RPM_UNIT_1_d_sec);
+    _mav_put_float(buf, 12, Motor_Voltage_UNIT_V);
+    _mav_put_float(buf, 16, Motor_Current_UNIT_A);
+    _mav_put_float(buf, 20, Motor_Power_UNIT_W);
+    _mav_put_float(buf, 24, Motor_Temp_UNIT_C);
+    _mav_put_float(buf, 28, Servo_Voltage_UNIT_V);
+    _mav_put_float(buf, 32, Servo_Current_UNIT_A);
+    _mav_put_float(buf, 36, System_Voltage_UNIT_V);
+    _mav_put_float(buf, 40, System_Current_UNIT_A);
+    _mav_put_float(buf, 44, Temp_UNIT_C);
+    _mav_put_int16_t(buf, 48, Sensor_processing_time_UNIT_us);
+    _mav_put_uint16_t(buf, 50, RPM_UNIT_1_d_sec);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_POWER_SENSOR, buf, MAVLINK_MSG_ID_POWER_SENSOR_MIN_LEN, MAVLINK_MSG_ID_POWER_SENSOR_LEN, MAVLINK_MSG_ID_POWER_SENSOR_CRC);
 #else
@@ -319,13 +345,15 @@ static inline void mavlink_msg_power_sensor_send_buf(mavlink_message_t *msgbuf, 
     packet->Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
     packet->Sync_data_Unit_variable = Sync_data_Unit_variable;
     packet->Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
-    packet->Voltage_UNIT_V = Voltage_UNIT_V;
-    packet->Current_UNIT_A = Current_UNIT_A;
-    packet->Power_UNIT_W = Power_UNIT_W;
+    packet->Motor_Voltage_UNIT_V = Motor_Voltage_UNIT_V;
+    packet->Motor_Current_UNIT_A = Motor_Current_UNIT_A;
+    packet->Motor_Power_UNIT_W = Motor_Power_UNIT_W;
+    packet->Motor_Temp_UNIT_C = Motor_Temp_UNIT_C;
+    packet->Servo_Voltage_UNIT_V = Servo_Voltage_UNIT_V;
+    packet->Servo_Current_UNIT_A = Servo_Current_UNIT_A;
+    packet->System_Voltage_UNIT_V = System_Voltage_UNIT_V;
+    packet->System_Current_UNIT_A = System_Current_UNIT_A;
     packet->Temp_UNIT_C = Temp_UNIT_C;
-    packet->d1 = d1;
-    packet->d2 = d2;
-    packet->d3 = d3;
     packet->Sensor_processing_time_UNIT_us = Sensor_processing_time_UNIT_us;
     packet->RPM_UNIT_1_d_sec = RPM_UNIT_1_d_sec;
 
@@ -366,7 +394,7 @@ static inline uint32_t mavlink_msg_power_sensor_get_Sync_data_Unit_variable(cons
  */
 static inline int16_t mavlink_msg_power_sensor_get_Sensor_processing_time_UNIT_us(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int16_t(msg,  40);
+    return _MAV_RETURN_int16_t(msg,  48);
 }
 
 /**
@@ -380,41 +408,41 @@ static inline uint32_t mavlink_msg_power_sensor_get_Recorded_time_UNIT_100us(con
 }
 
 /**
- * @brief Get field Voltage_UNIT_V from power_sensor message
+ * @brief Get field Motor_Voltage_UNIT_V from power_sensor message
  *
- * @return  Voltage [V]
+ * @return  Motor voltage [V]
  */
-static inline float mavlink_msg_power_sensor_get_Voltage_UNIT_V(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Motor_Voltage_UNIT_V(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  12);
 }
 
 /**
- * @brief Get field Current_UNIT_A from power_sensor message
+ * @brief Get field Motor_Current_UNIT_A from power_sensor message
  *
- * @return  Current [A]
+ * @return  Motor current [A]
  */
-static inline float mavlink_msg_power_sensor_get_Current_UNIT_A(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Motor_Current_UNIT_A(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  16);
 }
 
 /**
- * @brief Get field Power_UNIT_W from power_sensor message
+ * @brief Get field Motor_Power_UNIT_W from power_sensor message
  *
- * @return  Power [W]
+ * @return  Motor power [W]
  */
-static inline float mavlink_msg_power_sensor_get_Power_UNIT_W(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Motor_Power_UNIT_W(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  20);
 }
 
 /**
- * @brief Get field Temp_UNIT_C from power_sensor message
+ * @brief Get field Motor_Temp_UNIT_C from power_sensor message
  *
- * @return  Temperature [C]
+ * @return  Motor temperature [C]
  */
-static inline float mavlink_msg_power_sensor_get_Temp_UNIT_C(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Motor_Temp_UNIT_C(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  24);
 }
@@ -426,37 +454,57 @@ static inline float mavlink_msg_power_sensor_get_Temp_UNIT_C(const mavlink_messa
  */
 static inline uint16_t mavlink_msg_power_sensor_get_RPM_UNIT_1_d_sec(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint16_t(msg,  42);
+    return _MAV_RETURN_uint16_t(msg,  50);
 }
 
 /**
- * @brief Get field d1 from power_sensor message
+ * @brief Get field Servo_Voltage_UNIT_V from power_sensor message
  *
- * @return  tbd 1
+ * @return  Servo voltage [V]
  */
-static inline float mavlink_msg_power_sensor_get_d1(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Servo_Voltage_UNIT_V(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  28);
 }
 
 /**
- * @brief Get field d2 from power_sensor message
+ * @brief Get field Servo_Current_UNIT_A from power_sensor message
  *
- * @return  tbd 2
+ * @return  Servo current [A]
  */
-static inline float mavlink_msg_power_sensor_get_d2(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_Servo_Current_UNIT_A(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  32);
 }
 
 /**
- * @brief Get field d3 from power_sensor message
+ * @brief Get field System_Voltage_UNIT_V from power_sensor message
  *
- * @return  tbd 3
+ * @return  System voltage [V]
  */
-static inline float mavlink_msg_power_sensor_get_d3(const mavlink_message_t* msg)
+static inline float mavlink_msg_power_sensor_get_System_Voltage_UNIT_V(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_float(msg,  36);
+}
+
+/**
+ * @brief Get field System_Current_UNIT_A from power_sensor message
+ *
+ * @return  System current [A]
+ */
+static inline float mavlink_msg_power_sensor_get_System_Current_UNIT_A(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  40);
+}
+
+/**
+ * @brief Get field Temp_UNIT_C from power_sensor message
+ *
+ * @return  Temp [C]
+ */
+static inline float mavlink_msg_power_sensor_get_Temp_UNIT_C(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  44);
 }
 
 /**
@@ -471,13 +519,15 @@ static inline void mavlink_msg_power_sensor_decode(const mavlink_message_t* msg,
     power_sensor->Sensor_time_UNIT_100us = mavlink_msg_power_sensor_get_Sensor_time_UNIT_100us(msg);
     power_sensor->Sync_data_Unit_variable = mavlink_msg_power_sensor_get_Sync_data_Unit_variable(msg);
     power_sensor->Recorded_time_UNIT_100us = mavlink_msg_power_sensor_get_Recorded_time_UNIT_100us(msg);
-    power_sensor->Voltage_UNIT_V = mavlink_msg_power_sensor_get_Voltage_UNIT_V(msg);
-    power_sensor->Current_UNIT_A = mavlink_msg_power_sensor_get_Current_UNIT_A(msg);
-    power_sensor->Power_UNIT_W = mavlink_msg_power_sensor_get_Power_UNIT_W(msg);
+    power_sensor->Motor_Voltage_UNIT_V = mavlink_msg_power_sensor_get_Motor_Voltage_UNIT_V(msg);
+    power_sensor->Motor_Current_UNIT_A = mavlink_msg_power_sensor_get_Motor_Current_UNIT_A(msg);
+    power_sensor->Motor_Power_UNIT_W = mavlink_msg_power_sensor_get_Motor_Power_UNIT_W(msg);
+    power_sensor->Motor_Temp_UNIT_C = mavlink_msg_power_sensor_get_Motor_Temp_UNIT_C(msg);
+    power_sensor->Servo_Voltage_UNIT_V = mavlink_msg_power_sensor_get_Servo_Voltage_UNIT_V(msg);
+    power_sensor->Servo_Current_UNIT_A = mavlink_msg_power_sensor_get_Servo_Current_UNIT_A(msg);
+    power_sensor->System_Voltage_UNIT_V = mavlink_msg_power_sensor_get_System_Voltage_UNIT_V(msg);
+    power_sensor->System_Current_UNIT_A = mavlink_msg_power_sensor_get_System_Current_UNIT_A(msg);
     power_sensor->Temp_UNIT_C = mavlink_msg_power_sensor_get_Temp_UNIT_C(msg);
-    power_sensor->d1 = mavlink_msg_power_sensor_get_d1(msg);
-    power_sensor->d2 = mavlink_msg_power_sensor_get_d2(msg);
-    power_sensor->d3 = mavlink_msg_power_sensor_get_d3(msg);
     power_sensor->Sensor_processing_time_UNIT_us = mavlink_msg_power_sensor_get_Sensor_processing_time_UNIT_us(msg);
     power_sensor->RPM_UNIT_1_d_sec = mavlink_msg_power_sensor_get_RPM_UNIT_1_d_sec(msg);
 #else
