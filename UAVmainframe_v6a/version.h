@@ -1,5 +1,5 @@
 /** @file
- *  @brief MAVLink comm protocol built from minimal.xml
+ *  @brief MAVLink comm protocol built from UAVmainframe_v6a.xml
  *  @see http://mavlink.org
  */
 #pragma once
@@ -9,6 +9,6 @@
 
 #define MAVLINK_BUILD_DATE "Fri May 27 2022"
 #define MAVLINK_WIRE_PROTOCOL_VERSION "1.0"
-#define MAVLINK_MAX_DIALECT_PAYLOAD_SIZE 9
+#define MAVLINK_MAX_DIALECT_PAYLOAD_SIZE 255
  
 #endif // MAVLINK_VERSION_H
