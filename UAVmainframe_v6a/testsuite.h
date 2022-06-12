@@ -2052,6 +2052,113 @@ static void mavlink_test_adc_arduino_8ch(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
 
+static void mavlink_test_imu_3dof(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_IMU_3DoF >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_imu_3dof_t packet_in = {
+        963497464,963497672,963497880,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,549.0,577.0,605.0,633.0,661.0,689.0,717.0,745.0,773.0,801.0,829.0,857.0,885.0,913.0,941.0,969.0,997.0,1025.0,1053.0,1081.0,1109.0,1137.0,1165.0,1193.0,1221.0,1249.0,1277.0,1305.0,1333.0,1361.0,1389.0,1417.0,1445.0,1473.0,28259
+    };
+    mavlink_imu_3dof_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.Sensor_time_UNIT_100us = packet_in.Sensor_time_UNIT_100us;
+        packet1.Sync_data_Unit_variable = packet_in.Sync_data_Unit_variable;
+        packet1.Recorded_time_UNIT_100us = packet_in.Recorded_time_UNIT_100us;
+        packet1.Roll_UNIT_deg = packet_in.Roll_UNIT_deg;
+        packet1.Pitch_UNIT_deg = packet_in.Pitch_UNIT_deg;
+        packet1.Yaw_UNIT_deg = packet_in.Yaw_UNIT_deg;
+        packet1.Roll_Rate_UNIT_deg_d_s = packet_in.Roll_Rate_UNIT_deg_d_s;
+        packet1.Pitch_Rate_UNIT_deg_d_s = packet_in.Pitch_Rate_UNIT_deg_d_s;
+        packet1.Yaw_Rate_UNIT_deg_d_s = packet_in.Yaw_Rate_UNIT_deg_d_s;
+        packet1.RollU_UNIT_deg = packet_in.RollU_UNIT_deg;
+        packet1.PitchU_UNIT_deg = packet_in.PitchU_UNIT_deg;
+        packet1.YawU_UNIT_deg = packet_in.YawU_UNIT_deg;
+        packet1.q0_UNIT_none = packet_in.q0_UNIT_none;
+        packet1.q1_UNIT_none = packet_in.q1_UNIT_none;
+        packet1.q2_UNIT_none = packet_in.q2_UNIT_none;
+        packet1.q3_UNIT_none = packet_in.q3_UNIT_none;
+        packet1.Gyro_X_bias_UNIT_deg_d_s = packet_in.Gyro_X_bias_UNIT_deg_d_s;
+        packet1.Gyro_Y_bias_UNIT_deg_d_s = packet_in.Gyro_Y_bias_UNIT_deg_d_s;
+        packet1.Gyro_Z_bias_UNIT_deg_d_s = packet_in.Gyro_Z_bias_UNIT_deg_d_s;
+        packet1.Accel_X_bias_UNIT_g = packet_in.Accel_X_bias_UNIT_g;
+        packet1.Accel_Y_bias_UNIT_g = packet_in.Accel_Y_bias_UNIT_g;
+        packet1.Accel_Z_bias_UNIT_g = packet_in.Accel_Z_bias_UNIT_g;
+        packet1.Mag_X_bias_UNIT_uT = packet_in.Mag_X_bias_UNIT_uT;
+        packet1.Mag_Y_bias_UNIT_uT = packet_in.Mag_Y_bias_UNIT_uT;
+        packet1.Mag_Z_bias_UNIT_uT = packet_in.Mag_Z_bias_UNIT_uT;
+        packet1.U_Gyro_X_UNIT_deg_d_s = packet_in.U_Gyro_X_UNIT_deg_d_s;
+        packet1.U_Gyro_Y_UNIT_deg_d_s = packet_in.U_Gyro_Y_UNIT_deg_d_s;
+        packet1.U_Gyro_Z_UNIT_deg_d_s = packet_in.U_Gyro_Z_UNIT_deg_d_s;
+        packet1.Z_Mag_X_UNIT_uT = packet_in.Z_Mag_X_UNIT_uT;
+        packet1.Z_Mag_Y_UNIT_uT = packet_in.Z_Mag_Y_UNIT_uT;
+        packet1.Z_Mag_Z_UNIT_uT = packet_in.Z_Mag_Z_UNIT_uT;
+        packet1.Z_Acc_X_UNIT_g = packet_in.Z_Acc_X_UNIT_g;
+        packet1.Z_Acc_Y_UNIT_g = packet_in.Z_Acc_Y_UNIT_g;
+        packet1.Z_Acc_Z_UNIT_g = packet_in.Z_Acc_Z_UNIT_g;
+        packet1.Y_Mag_X_UNIT_uT = packet_in.Y_Mag_X_UNIT_uT;
+        packet1.Y_Mag_Y_UNIT_uT = packet_in.Y_Mag_Y_UNIT_uT;
+        packet1.Y_Mag_Z_UNIT_uT = packet_in.Y_Mag_Z_UNIT_uT;
+        packet1.Y_Acc_X_UNIT_g = packet_in.Y_Acc_X_UNIT_g;
+        packet1.Y_Acc_Y_UNIT_g = packet_in.Y_Acc_Y_UNIT_g;
+        packet1.Y_Acc_Z_UNIT_g = packet_in.Y_Acc_Z_UNIT_g;
+        packet1.q0_U_UNIT_none = packet_in.q0_U_UNIT_none;
+        packet1.q1_U_UNIT_none = packet_in.q1_U_UNIT_none;
+        packet1.q2_U_UNIT_none = packet_in.q2_U_UNIT_none;
+        packet1.q3_U_UNIT_none = packet_in.q3_U_UNIT_none;
+        packet1.Gyro_X_bias_U_UNIT_deg_d_s = packet_in.Gyro_X_bias_U_UNIT_deg_d_s;
+        packet1.Gyro_Y_bias_U_UNIT_deg_d_s = packet_in.Gyro_Y_bias_U_UNIT_deg_d_s;
+        packet1.Gyro_Z_bias_U_UNIT_deg_d_s = packet_in.Gyro_Z_bias_U_UNIT_deg_d_s;
+        packet1.Accel_X_bias_U_UNIT_g = packet_in.Accel_X_bias_U_UNIT_g;
+        packet1.Accel_Y_bias_U_UNIT_g = packet_in.Accel_Y_bias_U_UNIT_g;
+        packet1.Accel_Z_bias_U_UNIT_g = packet_in.Accel_Z_bias_U_UNIT_g;
+        packet1.Mag_X_bias_U_UNIT_uT = packet_in.Mag_X_bias_U_UNIT_uT;
+        packet1.Mag_Y_bias_U_UNIT_uT = packet_in.Mag_Y_bias_U_UNIT_uT;
+        packet1.Mag_Z_bias_U_UNIT_uT = packet_in.Mag_Z_bias_U_UNIT_uT;
+        packet1.Sensor_processing_time_UNIT_us = packet_in.Sensor_processing_time_UNIT_us;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_IMU_3DoF_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_IMU_3DoF_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_imu_3dof_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_imu_3dof_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_imu_3dof_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Roll_UNIT_deg , packet1.Pitch_UNIT_deg , packet1.Yaw_UNIT_deg , packet1.Roll_Rate_UNIT_deg_d_s , packet1.Pitch_Rate_UNIT_deg_d_s , packet1.Yaw_Rate_UNIT_deg_d_s , packet1.RollU_UNIT_deg , packet1.PitchU_UNIT_deg , packet1.YawU_UNIT_deg , packet1.q0_UNIT_none , packet1.q1_UNIT_none , packet1.q2_UNIT_none , packet1.q3_UNIT_none , packet1.Gyro_X_bias_UNIT_deg_d_s , packet1.Gyro_Y_bias_UNIT_deg_d_s , packet1.Gyro_Z_bias_UNIT_deg_d_s , packet1.Accel_X_bias_UNIT_g , packet1.Accel_Y_bias_UNIT_g , packet1.Accel_Z_bias_UNIT_g , packet1.Mag_X_bias_UNIT_uT , packet1.Mag_Y_bias_UNIT_uT , packet1.Mag_Z_bias_UNIT_uT , packet1.U_Gyro_X_UNIT_deg_d_s , packet1.U_Gyro_Y_UNIT_deg_d_s , packet1.U_Gyro_Z_UNIT_deg_d_s , packet1.Z_Mag_X_UNIT_uT , packet1.Z_Mag_Y_UNIT_uT , packet1.Z_Mag_Z_UNIT_uT , packet1.Z_Acc_X_UNIT_g , packet1.Z_Acc_Y_UNIT_g , packet1.Z_Acc_Z_UNIT_g , packet1.Y_Mag_X_UNIT_uT , packet1.Y_Mag_Y_UNIT_uT , packet1.Y_Mag_Z_UNIT_uT , packet1.Y_Acc_X_UNIT_g , packet1.Y_Acc_Y_UNIT_g , packet1.Y_Acc_Z_UNIT_g , packet1.q0_U_UNIT_none , packet1.q1_U_UNIT_none , packet1.q2_U_UNIT_none , packet1.q3_U_UNIT_none , packet1.Gyro_X_bias_U_UNIT_deg_d_s , packet1.Gyro_Y_bias_U_UNIT_deg_d_s , packet1.Gyro_Z_bias_U_UNIT_deg_d_s , packet1.Accel_X_bias_U_UNIT_g , packet1.Accel_Y_bias_U_UNIT_g , packet1.Accel_Z_bias_U_UNIT_g , packet1.Mag_X_bias_U_UNIT_uT , packet1.Mag_Y_bias_U_UNIT_uT , packet1.Mag_Z_bias_U_UNIT_uT );
+    mavlink_msg_imu_3dof_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_imu_3dof_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Roll_UNIT_deg , packet1.Pitch_UNIT_deg , packet1.Yaw_UNIT_deg , packet1.Roll_Rate_UNIT_deg_d_s , packet1.Pitch_Rate_UNIT_deg_d_s , packet1.Yaw_Rate_UNIT_deg_d_s , packet1.RollU_UNIT_deg , packet1.PitchU_UNIT_deg , packet1.YawU_UNIT_deg , packet1.q0_UNIT_none , packet1.q1_UNIT_none , packet1.q2_UNIT_none , packet1.q3_UNIT_none , packet1.Gyro_X_bias_UNIT_deg_d_s , packet1.Gyro_Y_bias_UNIT_deg_d_s , packet1.Gyro_Z_bias_UNIT_deg_d_s , packet1.Accel_X_bias_UNIT_g , packet1.Accel_Y_bias_UNIT_g , packet1.Accel_Z_bias_UNIT_g , packet1.Mag_X_bias_UNIT_uT , packet1.Mag_Y_bias_UNIT_uT , packet1.Mag_Z_bias_UNIT_uT , packet1.U_Gyro_X_UNIT_deg_d_s , packet1.U_Gyro_Y_UNIT_deg_d_s , packet1.U_Gyro_Z_UNIT_deg_d_s , packet1.Z_Mag_X_UNIT_uT , packet1.Z_Mag_Y_UNIT_uT , packet1.Z_Mag_Z_UNIT_uT , packet1.Z_Acc_X_UNIT_g , packet1.Z_Acc_Y_UNIT_g , packet1.Z_Acc_Z_UNIT_g , packet1.Y_Mag_X_UNIT_uT , packet1.Y_Mag_Y_UNIT_uT , packet1.Y_Mag_Z_UNIT_uT , packet1.Y_Acc_X_UNIT_g , packet1.Y_Acc_Y_UNIT_g , packet1.Y_Acc_Z_UNIT_g , packet1.q0_U_UNIT_none , packet1.q1_U_UNIT_none , packet1.q2_U_UNIT_none , packet1.q3_U_UNIT_none , packet1.Gyro_X_bias_U_UNIT_deg_d_s , packet1.Gyro_Y_bias_U_UNIT_deg_d_s , packet1.Gyro_Z_bias_U_UNIT_deg_d_s , packet1.Accel_X_bias_U_UNIT_g , packet1.Accel_Y_bias_U_UNIT_g , packet1.Accel_Z_bias_U_UNIT_g , packet1.Mag_X_bias_U_UNIT_uT , packet1.Mag_Y_bias_U_UNIT_uT , packet1.Mag_Z_bias_U_UNIT_uT );
+    mavlink_msg_imu_3dof_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_imu_3dof_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_imu_3dof_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_Unit_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.Roll_UNIT_deg , packet1.Pitch_UNIT_deg , packet1.Yaw_UNIT_deg , packet1.Roll_Rate_UNIT_deg_d_s , packet1.Pitch_Rate_UNIT_deg_d_s , packet1.Yaw_Rate_UNIT_deg_d_s , packet1.RollU_UNIT_deg , packet1.PitchU_UNIT_deg , packet1.YawU_UNIT_deg , packet1.q0_UNIT_none , packet1.q1_UNIT_none , packet1.q2_UNIT_none , packet1.q3_UNIT_none , packet1.Gyro_X_bias_UNIT_deg_d_s , packet1.Gyro_Y_bias_UNIT_deg_d_s , packet1.Gyro_Z_bias_UNIT_deg_d_s , packet1.Accel_X_bias_UNIT_g , packet1.Accel_Y_bias_UNIT_g , packet1.Accel_Z_bias_UNIT_g , packet1.Mag_X_bias_UNIT_uT , packet1.Mag_Y_bias_UNIT_uT , packet1.Mag_Z_bias_UNIT_uT , packet1.U_Gyro_X_UNIT_deg_d_s , packet1.U_Gyro_Y_UNIT_deg_d_s , packet1.U_Gyro_Z_UNIT_deg_d_s , packet1.Z_Mag_X_UNIT_uT , packet1.Z_Mag_Y_UNIT_uT , packet1.Z_Mag_Z_UNIT_uT , packet1.Z_Acc_X_UNIT_g , packet1.Z_Acc_Y_UNIT_g , packet1.Z_Acc_Z_UNIT_g , packet1.Y_Mag_X_UNIT_uT , packet1.Y_Mag_Y_UNIT_uT , packet1.Y_Mag_Z_UNIT_uT , packet1.Y_Acc_X_UNIT_g , packet1.Y_Acc_Y_UNIT_g , packet1.Y_Acc_Z_UNIT_g , packet1.q0_U_UNIT_none , packet1.q1_U_UNIT_none , packet1.q2_U_UNIT_none , packet1.q3_U_UNIT_none , packet1.Gyro_X_bias_U_UNIT_deg_d_s , packet1.Gyro_Y_bias_U_UNIT_deg_d_s , packet1.Gyro_Z_bias_U_UNIT_deg_d_s , packet1.Accel_X_bias_U_UNIT_g , packet1.Accel_Y_bias_U_UNIT_g , packet1.Accel_Z_bias_U_UNIT_g , packet1.Mag_X_bias_U_UNIT_uT , packet1.Mag_Y_bias_U_UNIT_uT , packet1.Mag_Z_bias_U_UNIT_uT );
+    mavlink_msg_imu_3dof_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+}
+
 static void mavlink_test_UAVmainframe_v6a(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_euler_debug(system_id, component_id, last_msg);
@@ -2086,6 +2193,7 @@ static void mavlink_test_UAVmainframe_v6a(uint8_t system_id, uint8_t component_i
     mavlink_test_power_sensor(system_id, component_id, last_msg);
     mavlink_test_thrust_sensor(system_id, component_id, last_msg);
     mavlink_test_adc_arduino_8ch(system_id, component_id, last_msg);
+    mavlink_test_imu_3dof(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
