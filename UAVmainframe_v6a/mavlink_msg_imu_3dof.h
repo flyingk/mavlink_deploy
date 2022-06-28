@@ -6,7 +6,7 @@
 
 typedef struct __mavlink_imu_3dof_t {
  uint32_t Sensor_time_UNIT_100us; /*<  Sensor time in 100 usec*/
- uint32_t Sync_data_Unit_variable; /*<  Sync count or time in 100 usec*/
+ uint32_t Sync_data_UNIT_variable; /*<  Sync count or time in 100 usec*/
  uint32_t Recorded_time_UNIT_100us; /*<  recording timestamp in 100 usec*/
  float Roll_UNIT_deg; /*<  Roll angle estimate [deg]*/
  float Pitch_UNIT_deg; /*<  Pitch angle estimate [deg]*/
@@ -66,8 +66,8 @@ typedef struct __mavlink_imu_3dof_t {
 #define MAVLINK_MSG_ID_229_LEN 214
 #define MAVLINK_MSG_ID_229_MIN_LEN 214
 
-#define MAVLINK_MSG_ID_IMU_3DoF_CRC 33
-#define MAVLINK_MSG_ID_229_CRC 33
+#define MAVLINK_MSG_ID_IMU_3DoF_CRC 41
+#define MAVLINK_MSG_ID_229_CRC 41
 
 
 
@@ -77,7 +77,7 @@ typedef struct __mavlink_imu_3dof_t {
     "IMU_3DoF", \
     54, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_imu_3dof_t, Sensor_time_UNIT_100us) }, \
-         { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_imu_3dof_t, Sync_data_Unit_variable) }, \
+         { "Sync_data_UNIT_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_imu_3dof_t, Sync_data_UNIT_variable) }, \
          { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 212, offsetof(mavlink_imu_3dof_t, Sensor_processing_time_UNIT_us) }, \
          { "Recorded_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_imu_3dof_t, Recorded_time_UNIT_100us) }, \
          { "Roll_UNIT_deg", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_imu_3dof_t, Roll_UNIT_deg) }, \
@@ -137,7 +137,7 @@ typedef struct __mavlink_imu_3dof_t {
     "IMU_3DoF", \
     54, \
     {  { "Sensor_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_imu_3dof_t, Sensor_time_UNIT_100us) }, \
-         { "Sync_data_Unit_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_imu_3dof_t, Sync_data_Unit_variable) }, \
+         { "Sync_data_UNIT_variable", NULL, MAVLINK_TYPE_UINT32_T, 0, 4, offsetof(mavlink_imu_3dof_t, Sync_data_UNIT_variable) }, \
          { "Sensor_processing_time_UNIT_us", NULL, MAVLINK_TYPE_INT16_T, 0, 212, offsetof(mavlink_imu_3dof_t, Sensor_processing_time_UNIT_us) }, \
          { "Recorded_time_UNIT_100us", NULL, MAVLINK_TYPE_UINT32_T, 0, 8, offsetof(mavlink_imu_3dof_t, Recorded_time_UNIT_100us) }, \
          { "Roll_UNIT_deg", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_imu_3dof_t, Roll_UNIT_deg) }, \
@@ -201,7 +201,7 @@ typedef struct __mavlink_imu_3dof_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param Sensor_time_UNIT_100us  Sensor time in 100 usec
- * @param Sync_data_Unit_variable  Sync count or time in 100 usec
+ * @param Sync_data_UNIT_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
  * @param Roll_UNIT_deg  Roll angle estimate [deg]
@@ -257,12 +257,12 @@ typedef struct __mavlink_imu_3dof_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_imu_3dof_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
+                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_IMU_3DoF_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
-    _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
+    _mav_put_uint32_t(buf, 4, Sync_data_UNIT_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
     _mav_put_float(buf, 12, Roll_UNIT_deg);
     _mav_put_float(buf, 16, Pitch_UNIT_deg);
@@ -320,7 +320,7 @@ static inline uint16_t mavlink_msg_imu_3dof_pack(uint8_t system_id, uint8_t comp
 #else
     mavlink_imu_3dof_t packet;
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
-    packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
+    packet.Sync_data_UNIT_variable = Sync_data_UNIT_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
     packet.Roll_UNIT_deg = Roll_UNIT_deg;
     packet.Pitch_UNIT_deg = Pitch_UNIT_deg;
@@ -388,7 +388,7 @@ static inline uint16_t mavlink_msg_imu_3dof_pack(uint8_t system_id, uint8_t comp
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param Sensor_time_UNIT_100us  Sensor time in 100 usec
- * @param Sync_data_Unit_variable  Sync count or time in 100 usec
+ * @param Sync_data_UNIT_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
  * @param Roll_UNIT_deg  Roll angle estimate [deg]
@@ -445,12 +445,12 @@ static inline uint16_t mavlink_msg_imu_3dof_pack(uint8_t system_id, uint8_t comp
  */
 static inline uint16_t mavlink_msg_imu_3dof_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_Unit_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float Roll_UNIT_deg,float Pitch_UNIT_deg,float Yaw_UNIT_deg,float Roll_Rate_UNIT_deg_d_s,float Pitch_Rate_UNIT_deg_d_s,float Yaw_Rate_UNIT_deg_d_s,float RollU_UNIT_deg,float PitchU_UNIT_deg,float YawU_UNIT_deg,float q0_UNIT_none,float q1_UNIT_none,float q2_UNIT_none,float q3_UNIT_none,float Gyro_X_bias_UNIT_deg_d_s,float Gyro_Y_bias_UNIT_deg_d_s,float Gyro_Z_bias_UNIT_deg_d_s,float Accel_X_bias_UNIT_g,float Accel_Y_bias_UNIT_g,float Accel_Z_bias_UNIT_g,float Mag_X_bias_UNIT_uT,float Mag_Y_bias_UNIT_uT,float Mag_Z_bias_UNIT_uT,float U_Gyro_X_UNIT_deg_d_s,float U_Gyro_Y_UNIT_deg_d_s,float U_Gyro_Z_UNIT_deg_d_s,float Z_Mag_X_UNIT_uT,float Z_Mag_Y_UNIT_uT,float Z_Mag_Z_UNIT_uT,float Z_Acc_X_UNIT_g,float Z_Acc_Y_UNIT_g,float Z_Acc_Z_UNIT_g,float Y_Mag_X_UNIT_uT,float Y_Mag_Y_UNIT_uT,float Y_Mag_Z_UNIT_uT,float Y_Acc_X_UNIT_g,float Y_Acc_Y_UNIT_g,float Y_Acc_Z_UNIT_g,float q0_U_UNIT_none,float q1_U_UNIT_none,float q2_U_UNIT_none,float q3_U_UNIT_none,float Gyro_X_bias_U_UNIT_deg_d_s,float Gyro_Y_bias_U_UNIT_deg_d_s,float Gyro_Z_bias_U_UNIT_deg_d_s,float Accel_X_bias_U_UNIT_g,float Accel_Y_bias_U_UNIT_g,float Accel_Z_bias_U_UNIT_g,float Mag_X_bias_U_UNIT_uT,float Mag_Y_bias_U_UNIT_uT,float Mag_Z_bias_U_UNIT_uT)
+                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_UNIT_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,float Roll_UNIT_deg,float Pitch_UNIT_deg,float Yaw_UNIT_deg,float Roll_Rate_UNIT_deg_d_s,float Pitch_Rate_UNIT_deg_d_s,float Yaw_Rate_UNIT_deg_d_s,float RollU_UNIT_deg,float PitchU_UNIT_deg,float YawU_UNIT_deg,float q0_UNIT_none,float q1_UNIT_none,float q2_UNIT_none,float q3_UNIT_none,float Gyro_X_bias_UNIT_deg_d_s,float Gyro_Y_bias_UNIT_deg_d_s,float Gyro_Z_bias_UNIT_deg_d_s,float Accel_X_bias_UNIT_g,float Accel_Y_bias_UNIT_g,float Accel_Z_bias_UNIT_g,float Mag_X_bias_UNIT_uT,float Mag_Y_bias_UNIT_uT,float Mag_Z_bias_UNIT_uT,float U_Gyro_X_UNIT_deg_d_s,float U_Gyro_Y_UNIT_deg_d_s,float U_Gyro_Z_UNIT_deg_d_s,float Z_Mag_X_UNIT_uT,float Z_Mag_Y_UNIT_uT,float Z_Mag_Z_UNIT_uT,float Z_Acc_X_UNIT_g,float Z_Acc_Y_UNIT_g,float Z_Acc_Z_UNIT_g,float Y_Mag_X_UNIT_uT,float Y_Mag_Y_UNIT_uT,float Y_Mag_Z_UNIT_uT,float Y_Acc_X_UNIT_g,float Y_Acc_Y_UNIT_g,float Y_Acc_Z_UNIT_g,float q0_U_UNIT_none,float q1_U_UNIT_none,float q2_U_UNIT_none,float q3_U_UNIT_none,float Gyro_X_bias_U_UNIT_deg_d_s,float Gyro_Y_bias_U_UNIT_deg_d_s,float Gyro_Z_bias_U_UNIT_deg_d_s,float Accel_X_bias_U_UNIT_g,float Accel_Y_bias_U_UNIT_g,float Accel_Z_bias_U_UNIT_g,float Mag_X_bias_U_UNIT_uT,float Mag_Y_bias_U_UNIT_uT,float Mag_Z_bias_U_UNIT_uT)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_IMU_3DoF_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
-    _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
+    _mav_put_uint32_t(buf, 4, Sync_data_UNIT_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
     _mav_put_float(buf, 12, Roll_UNIT_deg);
     _mav_put_float(buf, 16, Pitch_UNIT_deg);
@@ -508,7 +508,7 @@ static inline uint16_t mavlink_msg_imu_3dof_pack_chan(uint8_t system_id, uint8_t
 #else
     mavlink_imu_3dof_t packet;
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
-    packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
+    packet.Sync_data_UNIT_variable = Sync_data_UNIT_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
     packet.Roll_UNIT_deg = Roll_UNIT_deg;
     packet.Pitch_UNIT_deg = Pitch_UNIT_deg;
@@ -579,7 +579,7 @@ static inline uint16_t mavlink_msg_imu_3dof_pack_chan(uint8_t system_id, uint8_t
  */
 static inline uint16_t mavlink_msg_imu_3dof_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_imu_3dof_t* imu_3dof)
 {
-    return mavlink_msg_imu_3dof_pack(system_id, component_id, msg, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_Unit_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
+    return mavlink_msg_imu_3dof_pack(system_id, component_id, msg, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_UNIT_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
 }
 
 /**
@@ -593,7 +593,7 @@ static inline uint16_t mavlink_msg_imu_3dof_encode(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_imu_3dof_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_imu_3dof_t* imu_3dof)
 {
-    return mavlink_msg_imu_3dof_pack_chan(system_id, component_id, chan, msg, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_Unit_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
+    return mavlink_msg_imu_3dof_pack_chan(system_id, component_id, chan, msg, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_UNIT_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
 }
 
 /**
@@ -601,7 +601,7 @@ static inline uint16_t mavlink_msg_imu_3dof_encode_chan(uint8_t system_id, uint8
  * @param chan MAVLink channel to send the message
  *
  * @param Sensor_time_UNIT_100us  Sensor time in 100 usec
- * @param Sync_data_Unit_variable  Sync count or time in 100 usec
+ * @param Sync_data_UNIT_variable  Sync count or time in 100 usec
  * @param Sensor_processing_time_UNIT_us  Sensor processing time in usec, -1 for unknown
  * @param Recorded_time_UNIT_100us  recording timestamp in 100 usec
  * @param Roll_UNIT_deg  Roll angle estimate [deg]
@@ -657,12 +657,12 @@ static inline uint16_t mavlink_msg_imu_3dof_encode_chan(uint8_t system_id, uint8
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_imu_3dof_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
+static inline void mavlink_msg_imu_3dof_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_IMU_3DoF_LEN];
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
-    _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
+    _mav_put_uint32_t(buf, 4, Sync_data_UNIT_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
     _mav_put_float(buf, 12, Roll_UNIT_deg);
     _mav_put_float(buf, 16, Pitch_UNIT_deg);
@@ -720,7 +720,7 @@ static inline void mavlink_msg_imu_3dof_send(mavlink_channel_t chan, uint32_t Se
 #else
     mavlink_imu_3dof_t packet;
     packet.Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
-    packet.Sync_data_Unit_variable = Sync_data_Unit_variable;
+    packet.Sync_data_UNIT_variable = Sync_data_UNIT_variable;
     packet.Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
     packet.Roll_UNIT_deg = Roll_UNIT_deg;
     packet.Pitch_UNIT_deg = Pitch_UNIT_deg;
@@ -786,7 +786,7 @@ static inline void mavlink_msg_imu_3dof_send(mavlink_channel_t chan, uint32_t Se
 static inline void mavlink_msg_imu_3dof_send_struct(mavlink_channel_t chan, const mavlink_imu_3dof_t* imu_3dof)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_imu_3dof_send(chan, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_Unit_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
+    mavlink_msg_imu_3dof_send(chan, imu_3dof->Sensor_time_UNIT_100us, imu_3dof->Sync_data_UNIT_variable, imu_3dof->Sensor_processing_time_UNIT_us, imu_3dof->Recorded_time_UNIT_100us, imu_3dof->Roll_UNIT_deg, imu_3dof->Pitch_UNIT_deg, imu_3dof->Yaw_UNIT_deg, imu_3dof->Roll_Rate_UNIT_deg_d_s, imu_3dof->Pitch_Rate_UNIT_deg_d_s, imu_3dof->Yaw_Rate_UNIT_deg_d_s, imu_3dof->RollU_UNIT_deg, imu_3dof->PitchU_UNIT_deg, imu_3dof->YawU_UNIT_deg, imu_3dof->q0_UNIT_none, imu_3dof->q1_UNIT_none, imu_3dof->q2_UNIT_none, imu_3dof->q3_UNIT_none, imu_3dof->Gyro_X_bias_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_UNIT_deg_d_s, imu_3dof->Accel_X_bias_UNIT_g, imu_3dof->Accel_Y_bias_UNIT_g, imu_3dof->Accel_Z_bias_UNIT_g, imu_3dof->Mag_X_bias_UNIT_uT, imu_3dof->Mag_Y_bias_UNIT_uT, imu_3dof->Mag_Z_bias_UNIT_uT, imu_3dof->U_Gyro_X_UNIT_deg_d_s, imu_3dof->U_Gyro_Y_UNIT_deg_d_s, imu_3dof->U_Gyro_Z_UNIT_deg_d_s, imu_3dof->Z_Mag_X_UNIT_uT, imu_3dof->Z_Mag_Y_UNIT_uT, imu_3dof->Z_Mag_Z_UNIT_uT, imu_3dof->Z_Acc_X_UNIT_g, imu_3dof->Z_Acc_Y_UNIT_g, imu_3dof->Z_Acc_Z_UNIT_g, imu_3dof->Y_Mag_X_UNIT_uT, imu_3dof->Y_Mag_Y_UNIT_uT, imu_3dof->Y_Mag_Z_UNIT_uT, imu_3dof->Y_Acc_X_UNIT_g, imu_3dof->Y_Acc_Y_UNIT_g, imu_3dof->Y_Acc_Z_UNIT_g, imu_3dof->q0_U_UNIT_none, imu_3dof->q1_U_UNIT_none, imu_3dof->q2_U_UNIT_none, imu_3dof->q3_U_UNIT_none, imu_3dof->Gyro_X_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Y_bias_U_UNIT_deg_d_s, imu_3dof->Gyro_Z_bias_U_UNIT_deg_d_s, imu_3dof->Accel_X_bias_U_UNIT_g, imu_3dof->Accel_Y_bias_U_UNIT_g, imu_3dof->Accel_Z_bias_U_UNIT_g, imu_3dof->Mag_X_bias_U_UNIT_uT, imu_3dof->Mag_Y_bias_U_UNIT_uT, imu_3dof->Mag_Z_bias_U_UNIT_uT);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_IMU_3DoF, (const char *)imu_3dof, MAVLINK_MSG_ID_IMU_3DoF_MIN_LEN, MAVLINK_MSG_ID_IMU_3DoF_LEN, MAVLINK_MSG_ID_IMU_3DoF_CRC);
 #endif
@@ -794,18 +794,18 @@ static inline void mavlink_msg_imu_3dof_send_struct(mavlink_channel_t chan, cons
 
 #if MAVLINK_MSG_ID_IMU_3DoF_LEN <= MAVLINK_MAX_PAYLOAD_LEN
 /*
-  This varient of _send() can be used to save stack space by re-using
+  This variant of _send() can be used to save stack space by re-using
   memory from the receive buffer.  The caller provides a
   mavlink_message_t which is the size of a full mavlink message. This
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_imu_3dof_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_Unit_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
+static inline void mavlink_msg_imu_3dof_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, float Roll_UNIT_deg, float Pitch_UNIT_deg, float Yaw_UNIT_deg, float Roll_Rate_UNIT_deg_d_s, float Pitch_Rate_UNIT_deg_d_s, float Yaw_Rate_UNIT_deg_d_s, float RollU_UNIT_deg, float PitchU_UNIT_deg, float YawU_UNIT_deg, float q0_UNIT_none, float q1_UNIT_none, float q2_UNIT_none, float q3_UNIT_none, float Gyro_X_bias_UNIT_deg_d_s, float Gyro_Y_bias_UNIT_deg_d_s, float Gyro_Z_bias_UNIT_deg_d_s, float Accel_X_bias_UNIT_g, float Accel_Y_bias_UNIT_g, float Accel_Z_bias_UNIT_g, float Mag_X_bias_UNIT_uT, float Mag_Y_bias_UNIT_uT, float Mag_Z_bias_UNIT_uT, float U_Gyro_X_UNIT_deg_d_s, float U_Gyro_Y_UNIT_deg_d_s, float U_Gyro_Z_UNIT_deg_d_s, float Z_Mag_X_UNIT_uT, float Z_Mag_Y_UNIT_uT, float Z_Mag_Z_UNIT_uT, float Z_Acc_X_UNIT_g, float Z_Acc_Y_UNIT_g, float Z_Acc_Z_UNIT_g, float Y_Mag_X_UNIT_uT, float Y_Mag_Y_UNIT_uT, float Y_Mag_Z_UNIT_uT, float Y_Acc_X_UNIT_g, float Y_Acc_Y_UNIT_g, float Y_Acc_Z_UNIT_g, float q0_U_UNIT_none, float q1_U_UNIT_none, float q2_U_UNIT_none, float q3_U_UNIT_none, float Gyro_X_bias_U_UNIT_deg_d_s, float Gyro_Y_bias_U_UNIT_deg_d_s, float Gyro_Z_bias_U_UNIT_deg_d_s, float Accel_X_bias_U_UNIT_g, float Accel_Y_bias_U_UNIT_g, float Accel_Z_bias_U_UNIT_g, float Mag_X_bias_U_UNIT_uT, float Mag_Y_bias_U_UNIT_uT, float Mag_Z_bias_U_UNIT_uT)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint32_t(buf, 0, Sensor_time_UNIT_100us);
-    _mav_put_uint32_t(buf, 4, Sync_data_Unit_variable);
+    _mav_put_uint32_t(buf, 4, Sync_data_UNIT_variable);
     _mav_put_uint32_t(buf, 8, Recorded_time_UNIT_100us);
     _mav_put_float(buf, 12, Roll_UNIT_deg);
     _mav_put_float(buf, 16, Pitch_UNIT_deg);
@@ -863,7 +863,7 @@ static inline void mavlink_msg_imu_3dof_send_buf(mavlink_message_t *msgbuf, mavl
 #else
     mavlink_imu_3dof_t *packet = (mavlink_imu_3dof_t *)msgbuf;
     packet->Sensor_time_UNIT_100us = Sensor_time_UNIT_100us;
-    packet->Sync_data_Unit_variable = Sync_data_Unit_variable;
+    packet->Sync_data_UNIT_variable = Sync_data_UNIT_variable;
     packet->Recorded_time_UNIT_100us = Recorded_time_UNIT_100us;
     packet->Roll_UNIT_deg = Roll_UNIT_deg;
     packet->Pitch_UNIT_deg = Pitch_UNIT_deg;
@@ -938,11 +938,11 @@ static inline uint32_t mavlink_msg_imu_3dof_get_Sensor_time_UNIT_100us(const mav
 }
 
 /**
- * @brief Get field Sync_data_Unit_variable from imu_3dof message
+ * @brief Get field Sync_data_UNIT_variable from imu_3dof message
  *
  * @return  Sync count or time in 100 usec
  */
-static inline uint32_t mavlink_msg_imu_3dof_get_Sync_data_Unit_variable(const mavlink_message_t* msg)
+static inline uint32_t mavlink_msg_imu_3dof_get_Sync_data_UNIT_variable(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint32_t(msg,  4);
 }
@@ -1477,7 +1477,7 @@ static inline void mavlink_msg_imu_3dof_decode(const mavlink_message_t* msg, mav
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     imu_3dof->Sensor_time_UNIT_100us = mavlink_msg_imu_3dof_get_Sensor_time_UNIT_100us(msg);
-    imu_3dof->Sync_data_Unit_variable = mavlink_msg_imu_3dof_get_Sync_data_Unit_variable(msg);
+    imu_3dof->Sync_data_UNIT_variable = mavlink_msg_imu_3dof_get_Sync_data_UNIT_variable(msg);
     imu_3dof->Recorded_time_UNIT_100us = mavlink_msg_imu_3dof_get_Recorded_time_UNIT_100us(msg);
     imu_3dof->Roll_UNIT_deg = mavlink_msg_imu_3dof_get_Roll_UNIT_deg(msg);
     imu_3dof->Pitch_UNIT_deg = mavlink_msg_imu_3dof_get_Pitch_UNIT_deg(msg);
