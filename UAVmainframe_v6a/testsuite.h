@@ -1838,7 +1838,7 @@ static void mavlink_test_rc_data_in(uint8_t system_id, uint8_t component_id, mav
         packet1.SignalFadesSat2_UNIT_none = packet_in.SignalFadesSat2_UNIT_none;
         packet1.SignalFadesSat3_UNIT_none = packet_in.SignalFadesSat3_UNIT_none;
         packet1.TimeSinceLastCMD_UNIT_ms = packet_in.TimeSinceLastCMD_UNIT_ms;
-        packet1.SwitchStatus_UNIT_none = packet_in.SwitchStatus_UNIT_none;
+        packet1.SafetySwitchStatus_UNIT_none = packet_in.SafetySwitchStatus_UNIT_none;
         
         
 #ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
@@ -1853,12 +1853,12 @@ static void mavlink_test_rc_data_in(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_data_in_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_data_in_pack(system_id, component_id, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SafetySwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_data_in_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_data_in_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_data_in_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SafetySwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_data_in_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -1871,7 +1871,7 @@ static void mavlink_test_rc_data_in(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_rc_data_in_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
+    mavlink_msg_rc_data_in_send(MAVLINK_COMM_1 , packet1.Sensor_time_UNIT_100us , packet1.Sync_data_UNIT_variable , packet1.Sensor_processing_time_UNIT_us , packet1.Recorded_time_UNIT_100us , packet1.CH_1_UNIT_us , packet1.CH_2_UNIT_us , packet1.CH_3_UNIT_us , packet1.CH_4_UNIT_us , packet1.CH_5_UNIT_us , packet1.CH_6_UNIT_us , packet1.CH_7_UNIT_us , packet1.CH_8_UNIT_us , packet1.CH_9_UNIT_us , packet1.SignalHold_UNIT_none , packet1.SignalFrameLoss_UNIT_none , packet1.SignalFadesMain_UNIT_none , packet1.SignalFadesSat1_UNIT_none , packet1.SignalFadesSat2_UNIT_none , packet1.SignalFadesSat3_UNIT_none , packet1.TimeSinceLastCMD_UNIT_ms , packet1.SafetySwitchStatus_UNIT_none , packet1.Voltage_UNIT_V , packet1.Current_UNIT_A , packet1.ADC_3_UNIT_V , packet1.ADC_4_UNIT_V , packet1.d1 , packet1.d2 , packet1.d3 );
     mavlink_msg_rc_data_in_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 

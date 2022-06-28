@@ -32,7 +32,7 @@ typedef struct __mavlink_rc_data_in_t {
  uint16_t SignalFadesSat2_UNIT_none; /*<  RC signal fades sat2 antenna [-]*/
  uint16_t SignalFadesSat3_UNIT_none; /*<  RC signal fades sat3 antenna [-]*/
  uint16_t TimeSinceLastCMD_UNIT_ms; /*<  Time since the last CMD message from the Datahub was received [ms]*/
- uint8_t SwitchStatus_UNIT_none; /*<  tbd 1*/
+ uint8_t SafetySwitchStatus_UNIT_none; /*<  tbd 1*/
 } mavlink_rc_data_in_t;
 
 #define MAVLINK_MSG_ID_RC_DATA_IN_LEN 75
@@ -40,8 +40,8 @@ typedef struct __mavlink_rc_data_in_t {
 #define MAVLINK_MSG_ID_223_LEN 75
 #define MAVLINK_MSG_ID_223_MIN_LEN 75
 
-#define MAVLINK_MSG_ID_RC_DATA_IN_CRC 147
-#define MAVLINK_MSG_ID_223_CRC 147
+#define MAVLINK_MSG_ID_RC_DATA_IN_CRC 166
+#define MAVLINK_MSG_ID_223_CRC 166
 
 
 
@@ -70,7 +70,7 @@ typedef struct __mavlink_rc_data_in_t {
          { "SignalFadesSat2_UNIT_none", NULL, MAVLINK_TYPE_UINT16_T, 0, 68, offsetof(mavlink_rc_data_in_t, SignalFadesSat2_UNIT_none) }, \
          { "SignalFadesSat3_UNIT_none", NULL, MAVLINK_TYPE_UINT16_T, 0, 70, offsetof(mavlink_rc_data_in_t, SignalFadesSat3_UNIT_none) }, \
          { "TimeSinceLastCMD_UNIT_ms", NULL, MAVLINK_TYPE_UINT16_T, 0, 72, offsetof(mavlink_rc_data_in_t, TimeSinceLastCMD_UNIT_ms) }, \
-         { "SwitchStatus_UNIT_none", NULL, MAVLINK_TYPE_UINT8_T, 0, 74, offsetof(mavlink_rc_data_in_t, SwitchStatus_UNIT_none) }, \
+         { "SafetySwitchStatus_UNIT_none", NULL, MAVLINK_TYPE_UINT8_T, 0, 74, offsetof(mavlink_rc_data_in_t, SafetySwitchStatus_UNIT_none) }, \
          { "Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_rc_data_in_t, Voltage_UNIT_V) }, \
          { "Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_rc_data_in_t, Current_UNIT_A) }, \
          { "ADC_3_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_rc_data_in_t, ADC_3_UNIT_V) }, \
@@ -104,7 +104,7 @@ typedef struct __mavlink_rc_data_in_t {
          { "SignalFadesSat2_UNIT_none", NULL, MAVLINK_TYPE_UINT16_T, 0, 68, offsetof(mavlink_rc_data_in_t, SignalFadesSat2_UNIT_none) }, \
          { "SignalFadesSat3_UNIT_none", NULL, MAVLINK_TYPE_UINT16_T, 0, 70, offsetof(mavlink_rc_data_in_t, SignalFadesSat3_UNIT_none) }, \
          { "TimeSinceLastCMD_UNIT_ms", NULL, MAVLINK_TYPE_UINT16_T, 0, 72, offsetof(mavlink_rc_data_in_t, TimeSinceLastCMD_UNIT_ms) }, \
-         { "SwitchStatus_UNIT_none", NULL, MAVLINK_TYPE_UINT8_T, 0, 74, offsetof(mavlink_rc_data_in_t, SwitchStatus_UNIT_none) }, \
+         { "SafetySwitchStatus_UNIT_none", NULL, MAVLINK_TYPE_UINT8_T, 0, 74, offsetof(mavlink_rc_data_in_t, SafetySwitchStatus_UNIT_none) }, \
          { "Voltage_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_rc_data_in_t, Voltage_UNIT_V) }, \
          { "Current_UNIT_A", NULL, MAVLINK_TYPE_FLOAT, 0, 16, offsetof(mavlink_rc_data_in_t, Current_UNIT_A) }, \
          { "ADC_3_UNIT_V", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_rc_data_in_t, ADC_3_UNIT_V) }, \
@@ -142,7 +142,7 @@ typedef struct __mavlink_rc_data_in_t {
  * @param SignalFadesSat2_UNIT_none  RC signal fades sat2 antenna [-]
  * @param SignalFadesSat3_UNIT_none  RC signal fades sat3 antenna [-]
  * @param TimeSinceLastCMD_UNIT_ms  Time since the last CMD message from the Datahub was received [ms]
- * @param SwitchStatus_UNIT_none  tbd 1
+ * @param SafetySwitchStatus_UNIT_none  tbd 1
  * @param Voltage_UNIT_V  RC voltage [V]
  * @param Current_UNIT_A  RC servo current [A]
  * @param ADC_3_UNIT_V  ADC tbd 3
@@ -153,7 +153,7 @@ typedef struct __mavlink_rc_data_in_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_rc_data_in_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
+                               uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SafetySwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_DATA_IN_LEN];
@@ -184,7 +184,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack(uint8_t system_id, uint8_t co
     _mav_put_uint16_t(buf, 68, SignalFadesSat2_UNIT_none);
     _mav_put_uint16_t(buf, 70, SignalFadesSat3_UNIT_none);
     _mav_put_uint16_t(buf, 72, TimeSinceLastCMD_UNIT_ms);
-    _mav_put_uint8_t(buf, 74, SwitchStatus_UNIT_none);
+    _mav_put_uint8_t(buf, 74, SafetySwitchStatus_UNIT_none);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RC_DATA_IN_LEN);
 #else
@@ -216,7 +216,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack(uint8_t system_id, uint8_t co
     packet.SignalFadesSat2_UNIT_none = SignalFadesSat2_UNIT_none;
     packet.SignalFadesSat3_UNIT_none = SignalFadesSat3_UNIT_none;
     packet.TimeSinceLastCMD_UNIT_ms = TimeSinceLastCMD_UNIT_ms;
-    packet.SwitchStatus_UNIT_none = SwitchStatus_UNIT_none;
+    packet.SafetySwitchStatus_UNIT_none = SafetySwitchStatus_UNIT_none;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RC_DATA_IN_LEN);
 #endif
@@ -251,7 +251,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack(uint8_t system_id, uint8_t co
  * @param SignalFadesSat2_UNIT_none  RC signal fades sat2 antenna [-]
  * @param SignalFadesSat3_UNIT_none  RC signal fades sat3 antenna [-]
  * @param TimeSinceLastCMD_UNIT_ms  Time since the last CMD message from the Datahub was received [ms]
- * @param SwitchStatus_UNIT_none  tbd 1
+ * @param SafetySwitchStatus_UNIT_none  tbd 1
  * @param Voltage_UNIT_V  RC voltage [V]
  * @param Current_UNIT_A  RC servo current [A]
  * @param ADC_3_UNIT_V  ADC tbd 3
@@ -263,7 +263,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_rc_data_in_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_UNIT_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,uint16_t CH_1_UNIT_us,uint16_t CH_2_UNIT_us,uint16_t CH_3_UNIT_us,uint16_t CH_4_UNIT_us,uint16_t CH_5_UNIT_us,uint16_t CH_6_UNIT_us,uint16_t CH_7_UNIT_us,uint16_t CH_8_UNIT_us,uint16_t CH_9_UNIT_us,uint16_t SignalHold_UNIT_none,uint16_t SignalFrameLoss_UNIT_none,uint16_t SignalFadesMain_UNIT_none,uint16_t SignalFadesSat1_UNIT_none,uint16_t SignalFadesSat2_UNIT_none,uint16_t SignalFadesSat3_UNIT_none,uint16_t TimeSinceLastCMD_UNIT_ms,uint8_t SwitchStatus_UNIT_none,float Voltage_UNIT_V,float Current_UNIT_A,float ADC_3_UNIT_V,float ADC_4_UNIT_V,float d1,float d2,float d3)
+                                   uint32_t Sensor_time_UNIT_100us,uint32_t Sync_data_UNIT_variable,int16_t Sensor_processing_time_UNIT_us,uint32_t Recorded_time_UNIT_100us,uint16_t CH_1_UNIT_us,uint16_t CH_2_UNIT_us,uint16_t CH_3_UNIT_us,uint16_t CH_4_UNIT_us,uint16_t CH_5_UNIT_us,uint16_t CH_6_UNIT_us,uint16_t CH_7_UNIT_us,uint16_t CH_8_UNIT_us,uint16_t CH_9_UNIT_us,uint16_t SignalHold_UNIT_none,uint16_t SignalFrameLoss_UNIT_none,uint16_t SignalFadesMain_UNIT_none,uint16_t SignalFadesSat1_UNIT_none,uint16_t SignalFadesSat2_UNIT_none,uint16_t SignalFadesSat3_UNIT_none,uint16_t TimeSinceLastCMD_UNIT_ms,uint8_t SafetySwitchStatus_UNIT_none,float Voltage_UNIT_V,float Current_UNIT_A,float ADC_3_UNIT_V,float ADC_4_UNIT_V,float d1,float d2,float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_DATA_IN_LEN];
@@ -294,7 +294,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack_chan(uint8_t system_id, uint8
     _mav_put_uint16_t(buf, 68, SignalFadesSat2_UNIT_none);
     _mav_put_uint16_t(buf, 70, SignalFadesSat3_UNIT_none);
     _mav_put_uint16_t(buf, 72, TimeSinceLastCMD_UNIT_ms);
-    _mav_put_uint8_t(buf, 74, SwitchStatus_UNIT_none);
+    _mav_put_uint8_t(buf, 74, SafetySwitchStatus_UNIT_none);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_RC_DATA_IN_LEN);
 #else
@@ -326,7 +326,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack_chan(uint8_t system_id, uint8
     packet.SignalFadesSat2_UNIT_none = SignalFadesSat2_UNIT_none;
     packet.SignalFadesSat3_UNIT_none = SignalFadesSat3_UNIT_none;
     packet.TimeSinceLastCMD_UNIT_ms = TimeSinceLastCMD_UNIT_ms;
-    packet.SwitchStatus_UNIT_none = SwitchStatus_UNIT_none;
+    packet.SafetySwitchStatus_UNIT_none = SafetySwitchStatus_UNIT_none;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_RC_DATA_IN_LEN);
 #endif
@@ -345,7 +345,7 @@ static inline uint16_t mavlink_msg_rc_data_in_pack_chan(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_rc_data_in_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_rc_data_in_t* rc_data_in)
 {
-    return mavlink_msg_rc_data_in_pack(system_id, component_id, msg, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
+    return mavlink_msg_rc_data_in_pack(system_id, component_id, msg, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SafetySwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
 }
 
 /**
@@ -359,7 +359,7 @@ static inline uint16_t mavlink_msg_rc_data_in_encode(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_rc_data_in_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_rc_data_in_t* rc_data_in)
 {
-    return mavlink_msg_rc_data_in_pack_chan(system_id, component_id, chan, msg, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
+    return mavlink_msg_rc_data_in_pack_chan(system_id, component_id, chan, msg, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SafetySwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
 }
 
 /**
@@ -386,7 +386,7 @@ static inline uint16_t mavlink_msg_rc_data_in_encode_chan(uint8_t system_id, uin
  * @param SignalFadesSat2_UNIT_none  RC signal fades sat2 antenna [-]
  * @param SignalFadesSat3_UNIT_none  RC signal fades sat3 antenna [-]
  * @param TimeSinceLastCMD_UNIT_ms  Time since the last CMD message from the Datahub was received [ms]
- * @param SwitchStatus_UNIT_none  tbd 1
+ * @param SafetySwitchStatus_UNIT_none  tbd 1
  * @param Voltage_UNIT_V  RC voltage [V]
  * @param Current_UNIT_A  RC servo current [A]
  * @param ADC_3_UNIT_V  ADC tbd 3
@@ -397,7 +397,7 @@ static inline uint16_t mavlink_msg_rc_data_in_encode_chan(uint8_t system_id, uin
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_rc_data_in_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
+static inline void mavlink_msg_rc_data_in_send(mavlink_channel_t chan, uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SafetySwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RC_DATA_IN_LEN];
@@ -428,7 +428,7 @@ static inline void mavlink_msg_rc_data_in_send(mavlink_channel_t chan, uint32_t 
     _mav_put_uint16_t(buf, 68, SignalFadesSat2_UNIT_none);
     _mav_put_uint16_t(buf, 70, SignalFadesSat3_UNIT_none);
     _mav_put_uint16_t(buf, 72, TimeSinceLastCMD_UNIT_ms);
-    _mav_put_uint8_t(buf, 74, SwitchStatus_UNIT_none);
+    _mav_put_uint8_t(buf, 74, SafetySwitchStatus_UNIT_none);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_DATA_IN, buf, MAVLINK_MSG_ID_RC_DATA_IN_MIN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_CRC);
 #else
@@ -460,7 +460,7 @@ static inline void mavlink_msg_rc_data_in_send(mavlink_channel_t chan, uint32_t 
     packet.SignalFadesSat2_UNIT_none = SignalFadesSat2_UNIT_none;
     packet.SignalFadesSat3_UNIT_none = SignalFadesSat3_UNIT_none;
     packet.TimeSinceLastCMD_UNIT_ms = TimeSinceLastCMD_UNIT_ms;
-    packet.SwitchStatus_UNIT_none = SwitchStatus_UNIT_none;
+    packet.SafetySwitchStatus_UNIT_none = SafetySwitchStatus_UNIT_none;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_DATA_IN, (const char *)&packet, MAVLINK_MSG_ID_RC_DATA_IN_MIN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_CRC);
 #endif
@@ -474,7 +474,7 @@ static inline void mavlink_msg_rc_data_in_send(mavlink_channel_t chan, uint32_t 
 static inline void mavlink_msg_rc_data_in_send_struct(mavlink_channel_t chan, const mavlink_rc_data_in_t* rc_data_in)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_rc_data_in_send(chan, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
+    mavlink_msg_rc_data_in_send(chan, rc_data_in->Sensor_time_UNIT_100us, rc_data_in->Sync_data_UNIT_variable, rc_data_in->Sensor_processing_time_UNIT_us, rc_data_in->Recorded_time_UNIT_100us, rc_data_in->CH_1_UNIT_us, rc_data_in->CH_2_UNIT_us, rc_data_in->CH_3_UNIT_us, rc_data_in->CH_4_UNIT_us, rc_data_in->CH_5_UNIT_us, rc_data_in->CH_6_UNIT_us, rc_data_in->CH_7_UNIT_us, rc_data_in->CH_8_UNIT_us, rc_data_in->CH_9_UNIT_us, rc_data_in->SignalHold_UNIT_none, rc_data_in->SignalFrameLoss_UNIT_none, rc_data_in->SignalFadesMain_UNIT_none, rc_data_in->SignalFadesSat1_UNIT_none, rc_data_in->SignalFadesSat2_UNIT_none, rc_data_in->SignalFadesSat3_UNIT_none, rc_data_in->TimeSinceLastCMD_UNIT_ms, rc_data_in->SafetySwitchStatus_UNIT_none, rc_data_in->Voltage_UNIT_V, rc_data_in->Current_UNIT_A, rc_data_in->ADC_3_UNIT_V, rc_data_in->ADC_4_UNIT_V, rc_data_in->d1, rc_data_in->d2, rc_data_in->d3);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_DATA_IN, (const char *)rc_data_in, MAVLINK_MSG_ID_RC_DATA_IN_MIN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_CRC);
 #endif
@@ -488,7 +488,7 @@ static inline void mavlink_msg_rc_data_in_send_struct(mavlink_channel_t chan, co
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_rc_data_in_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
+static inline void mavlink_msg_rc_data_in_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t Sensor_time_UNIT_100us, uint32_t Sync_data_UNIT_variable, int16_t Sensor_processing_time_UNIT_us, uint32_t Recorded_time_UNIT_100us, uint16_t CH_1_UNIT_us, uint16_t CH_2_UNIT_us, uint16_t CH_3_UNIT_us, uint16_t CH_4_UNIT_us, uint16_t CH_5_UNIT_us, uint16_t CH_6_UNIT_us, uint16_t CH_7_UNIT_us, uint16_t CH_8_UNIT_us, uint16_t CH_9_UNIT_us, uint16_t SignalHold_UNIT_none, uint16_t SignalFrameLoss_UNIT_none, uint16_t SignalFadesMain_UNIT_none, uint16_t SignalFadesSat1_UNIT_none, uint16_t SignalFadesSat2_UNIT_none, uint16_t SignalFadesSat3_UNIT_none, uint16_t TimeSinceLastCMD_UNIT_ms, uint8_t SafetySwitchStatus_UNIT_none, float Voltage_UNIT_V, float Current_UNIT_A, float ADC_3_UNIT_V, float ADC_4_UNIT_V, float d1, float d2, float d3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -519,7 +519,7 @@ static inline void mavlink_msg_rc_data_in_send_buf(mavlink_message_t *msgbuf, ma
     _mav_put_uint16_t(buf, 68, SignalFadesSat2_UNIT_none);
     _mav_put_uint16_t(buf, 70, SignalFadesSat3_UNIT_none);
     _mav_put_uint16_t(buf, 72, TimeSinceLastCMD_UNIT_ms);
-    _mav_put_uint8_t(buf, 74, SwitchStatus_UNIT_none);
+    _mav_put_uint8_t(buf, 74, SafetySwitchStatus_UNIT_none);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_DATA_IN, buf, MAVLINK_MSG_ID_RC_DATA_IN_MIN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_CRC);
 #else
@@ -551,7 +551,7 @@ static inline void mavlink_msg_rc_data_in_send_buf(mavlink_message_t *msgbuf, ma
     packet->SignalFadesSat2_UNIT_none = SignalFadesSat2_UNIT_none;
     packet->SignalFadesSat3_UNIT_none = SignalFadesSat3_UNIT_none;
     packet->TimeSinceLastCMD_UNIT_ms = TimeSinceLastCMD_UNIT_ms;
-    packet->SwitchStatus_UNIT_none = SwitchStatus_UNIT_none;
+    packet->SafetySwitchStatus_UNIT_none = SafetySwitchStatus_UNIT_none;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_RC_DATA_IN, (const char *)packet, MAVLINK_MSG_ID_RC_DATA_IN_MIN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_LEN, MAVLINK_MSG_ID_RC_DATA_IN_CRC);
 #endif
@@ -764,11 +764,11 @@ static inline uint16_t mavlink_msg_rc_data_in_get_TimeSinceLastCMD_UNIT_ms(const
 }
 
 /**
- * @brief Get field SwitchStatus_UNIT_none from rc_data_in message
+ * @brief Get field SafetySwitchStatus_UNIT_none from rc_data_in message
  *
  * @return  tbd 1
  */
-static inline uint8_t mavlink_msg_rc_data_in_get_SwitchStatus_UNIT_none(const mavlink_message_t* msg)
+static inline uint8_t mavlink_msg_rc_data_in_get_SafetySwitchStatus_UNIT_none(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  74);
 }
@@ -879,7 +879,7 @@ static inline void mavlink_msg_rc_data_in_decode(const mavlink_message_t* msg, m
     rc_data_in->SignalFadesSat2_UNIT_none = mavlink_msg_rc_data_in_get_SignalFadesSat2_UNIT_none(msg);
     rc_data_in->SignalFadesSat3_UNIT_none = mavlink_msg_rc_data_in_get_SignalFadesSat3_UNIT_none(msg);
     rc_data_in->TimeSinceLastCMD_UNIT_ms = mavlink_msg_rc_data_in_get_TimeSinceLastCMD_UNIT_ms(msg);
-    rc_data_in->SwitchStatus_UNIT_none = mavlink_msg_rc_data_in_get_SwitchStatus_UNIT_none(msg);
+    rc_data_in->SafetySwitchStatus_UNIT_none = mavlink_msg_rc_data_in_get_SafetySwitchStatus_UNIT_none(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_RC_DATA_IN_LEN? msg->len : MAVLINK_MSG_ID_RC_DATA_IN_LEN;
         memset(rc_data_in, 0, MAVLINK_MSG_ID_RC_DATA_IN_LEN);
